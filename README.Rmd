@@ -15,7 +15,9 @@ knitr::opts_chunk$set(
 [![R-CMD-check](https://github.com/jrdnbradford/readMDTable/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/jrdnbradford/readMDTable/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
-readMDTable converts markdown tables to tibbles.
+readMDTable converts raw markdown tables from a string, file, or URL to tibbles. 
+
+Many sites (like GitHub) convert markdown tables into HTML tables. For these types of tables you're probably better off using [rvest](https://rvest.tidyverse.org/).
 
 ## Installation
 
@@ -27,10 +29,31 @@ devtools::install_github("jrdnbradford/readMDTable")
 ## License
 GPL >= 3.
 
-## Usage
+## Docs
 
 Review the [package index reference](https://jrdnbradford.github.io/readMDTable/reference/index.html) or use
 ```{r, eval=FALSE}
 ?readMDTable
 ```
 for documentation.
+
+## Example
+
+```{r, echo=FALSE, include=FALSE}
+devtools::load_all()
+```
+
+Read in an example markdown table from the package:
+```{r}
+mtcars_file <- read_md_table_example("mtcars.md")
+```
+
+The raw markdown table:
+```{r}
+cat(readLines(mtcars_file), sep = "\n")
+```
+
+After reading it in:
+```{r}
+read_md_table(mtcars_file)
+```
