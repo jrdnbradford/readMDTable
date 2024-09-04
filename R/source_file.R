@@ -7,6 +7,8 @@
 #' @return Character vectors of markdown table
 #'
 #' @keywords internal
+#'
+#' @noRd
 source_file <- function(file) {
   if (file.exists(file)) {
     markdown_table <- read_file(file)

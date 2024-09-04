@@ -2,13 +2,13 @@ Package: readMDTable
 Title: Read Markdown Tables into Tibbles
 Version: 0.0.0.9000
 Authors@R: 
-    person("Jordan", "Bradford", , "jrdnbradford@gmail.com", role = c("aut", "cre"))
+    person("Jordan", "Bradford", , "jrdnbradford@gmail.com", role = c("aut", "cre", "cph"))
 Description: Read markdown tables from a string, file, or URL into tibbles.
 Imports:
     httr,
     readr,
     stringr
-URL: https://github.com/jrdnbradford/readMDTable, https://jrdnbradford.github.io/readMDTable
+URL: https://github.com/jrdnbradford/readMDTable, https://jrdnbradford.github.io/readMDTable/
 BugReports: https://github.com/jrdnbradford/readMDTable/issues
 License: GPL (>= 3)
 Encoding: UTF-8

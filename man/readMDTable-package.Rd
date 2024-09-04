@@ -12,13 +12,13 @@ Read markdown tables from a string, file, or URL into tibbles.
 Useful links:
 \itemize{
   \item \url{https://github.com/jrdnbradford/readMDTable}
-  \item \url{https://jrdnbradford.github.io/readMDTable}
+  \item \url{https://jrdnbradford.github.io/readMDTable/}
   \item Report bugs at \url{https://github.com/jrdnbradford/readMDTable/issues}
 }
 
 }
 \author{
-\strong{Maintainer}: Jordan Bradford \email{jrdnbradford@gmail.com}
+\strong{Maintainer}: Jordan Bradford \email{jrdnbradford@gmail.com} [copyright holder]
 
 }
 \keyword{internal}
