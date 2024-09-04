@@ -1,3 +1,10 @@
+#' @title Provide Warnings for Potential Markdown Table Issues
+#'
+#' @details Provide warnings for markdown tables provided to `read_md_table`
+#'
+#' @param lines Character vector provided by `source_file`
+#'
+#' @keywords internal
 warn_md_table <- function(lines) {
   # Remove the last line if it's empty
   if (length(lines) > 0 && lines[length(lines)] == "") {
@@ -27,6 +34,4 @@ warn_md_table <- function(lines) {
       warning(paste("Row does not have same number of cells as header row:", line))
     }
   }
-
-  return(TRUE)
 }
