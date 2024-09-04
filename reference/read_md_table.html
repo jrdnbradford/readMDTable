@@ -59,7 +59,7 @@ Files starting with ⁠http://⁠, ⁠https://⁠,
 
 
 <dt id="arg--">...<a class="anchor" aria-label="anchor" href="#arg--"></a></dt>
-<dd><p>Arguments passed on to <code>read_delim()</code></p></dd>
+<dd><p>Arguments passed on to <code><a href="https://readr.tidyverse.org/reference/read_delim.html" class="external-link">readr::read_delim</a></code></p></dd>
 
 </dl></div>
     <div class="section level2">
@@ -69,9 +69,9 @@ Files starting with ⁠http://⁠, ⁠https://⁠,
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
     <p><code>read_md_table</code> reads a markdown table into
-a tibble from a string, file, or URL. It is meant
-to be nearly identical in usage to <code>readr</code> functions
-such as <code>[readr::read_delim()]</code>.</p>
+a tibble from a string, file, or URL. It uses
+<code><a href="https://readr.tidyverse.org/reference/read_delim.html" class="external-link">readr::read_delim</a></code> to efficiently read in
+data.</p>
 <p><code>read_md_table</code> will warn if there are potential
 issues with the provided markdown table. Depending
 on the issue, <code>read_md_table</code> may still correctly
