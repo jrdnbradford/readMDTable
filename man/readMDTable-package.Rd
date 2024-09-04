@@ -11,7 +11,9 @@ Read markdown tables from a string, file, or URL into tibbles.
 \seealso{
 Useful links:
 \itemize{
+  \item \url{https://github.com/jrdnbradford/readMDTable}
   \item \url{https://jrdnbradford.github.io/readMDTable}
+  \item Report bugs at \url{https://github.com/jrdnbradford/readMDTable/issues}
 }
 
 }

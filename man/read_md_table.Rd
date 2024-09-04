@@ -12,7 +12,7 @@ literal data (either a single string or a raw vector).
 Files starting with ⁠http://⁠, ⁠https://⁠,
 ⁠ftp://⁠, or ⁠ftps://⁠ will be automatically downloaded.}
 
-\item{...}{Arguments passed on to \code{\link[=read_delim]{read_delim()}}}
+\item{...}{Arguments passed on to \code{\link[readr:read_delim]{readr::read_delim}}}
 }
 \value{
 A tibble created from the markdown table
@@ -22,9 +22,9 @@ Read a Markdown Table into a Tibble
 }
 \details{
 \code{read_md_table} reads a markdown table into
-a tibble from a string, file, or URL. It is meant
-to be nearly identical in usage to \code{readr} functions
-such as \verb{[readr::read_delim()]}.
+a tibble from a string, file, or URL. It uses
+\code{\link[readr:read_delim]{readr::read_delim}} to efficiently read in
+data.
 
 \code{read_md_table} will warn if there are potential
 issues with the provided markdown table. Depending

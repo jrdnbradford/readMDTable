@@ -8,7 +8,7 @@ Imports:
     httr,
     readr,
     stringr
-URL: https://jrdnbradford.github.io/readMDTable
+URL: https://github.com/jrdnbradford/readMDTable, https://jrdnbradford.github.io/readMDTable
 BugReports: https://github.com/jrdnbradford/readMDTable/issues
 License: GPL (>= 3)
 Encoding: UTF-8
