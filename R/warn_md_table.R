@@ -5,6 +5,8 @@
 #' @param lines Character vector provided by `source_file`
 #'
 #' @keywords internal
+#'
+#' @noRd
 warn_md_table <- function(lines) {
   # Remove the last line if it's empty
   if (length(lines) > 0 && lines[length(lines)] == "") {
