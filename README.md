@@ -4,6 +4,8 @@
 <!-- badges: start -->
 
 [![R-CMD-check](https://github.com/jrdnbradford/readMDTable/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/jrdnbradford/readMDTable/actions/workflows/R-CMD-check.yaml)
+[![Dev
+status](https://img.shields.io/github/r-package/v/jrdnbradford/readMDTable/main?label=Dev%20Version&style=flat-square&logo=github)](https://github.com/jrdnbradford/readMDTable)
 <!-- badges: end -->
 
 readMDTable converts raw markdown tables from a string, file, or URL to
@@ -21,10 +23,6 @@ Install from GitHub:
 devtools::install_github("jrdnbradford/readMDTable")
 ```
 
-## License
-
-GPL \>= 3.
-
 ## Docs
 
 Review the [package index
@@ -37,7 +35,9 @@ or use
 
 for documentation.
 
-## Example
+## Usage
+
+### From a File
 
 Read in an example markdown table from the package:
 
@@ -48,67 +48,128 @@ mtcars_file <- read_md_table_example("mtcars.md")
 The raw markdown table:
 
 ``` r
-cat(readLines(mtcars_file), sep = "\n")
-## |model              |mpg |cyl|disp |hp |drat|wt   |qsec |vs |am |gear|carb|
-## |-------------------|----|---|-----|---|----|-----|-----|---|---|----|----|
-## |Mazda RX4          |21  |6  |160  |110|3.9 |2.62 |16.46|0  |1  |4   |4   |
-## |Mazda RX4 Wag      |21  |6  |160  |110|3.9 |2.875|17.02|0  |1  |4   |4   |
-## |Datsun 710         |22.8|4  |108  |93 |3.85|2.32 |18.61|1  |1  |4   |1   |
-## |Hornet 4 Drive     |21.4|6  |258  |110|3.08|3.215|19.44|1  |0  |3   |1   |
-## |Hornet Sportabout  |18.7|8  |360  |175|3.15|3.44 |17.02|0  |0  |3   |2   |
-## |Valiant            |18.1|6  |225  |105|2.76|3.46 |20.22|1  |0  |3   |1   |
-## |Duster 360         |14.3|8  |360  |245|3.21|3.57 |15.84|0  |0  |3   |4   |
-## |Merc 240D          |24.4|4  |146.7|62 |3.69|3.19 |20   |1  |0  |4   |2   |
-## |Merc 230           |22.8|4  |140.8|95 |3.92|3.15 |22.9 |1  |0  |4   |2   |
-## |Merc 280           |19.2|6  |167.6|123|3.92|3.44 |18.3 |1  |0  |4   |4   |
-## |Merc 280C          |17.8|6  |167.6|123|3.92|3.44 |18.9 |1  |0  |4   |4   |
-## |Merc 450SE         |16.4|8  |275.8|180|3.07|4.07 |17.4 |0  |0  |3   |3   |
-## |Merc 450SL         |17.3|8  |275.8|180|3.07|3.73 |17.6 |0  |0  |3   |3   |
-## |Merc 450SLC        |15.2|8  |275.8|180|3.07|3.78 |18   |0  |0  |3   |3   |
-## |Cadillac Fleetwood |10.4|8  |472  |205|2.93|5.25 |17.98|0  |0  |3   |4   |
-## |Lincoln Continental|10.4|8  |460  |215|3   |5.424|17.82|0  |0  |3   |4   |
-## |Chrysler Imperial  |14.7|8  |440  |230|3.23|5.345|17.42|0  |0  |3   |4   |
-## |Fiat 128           |32.4|4  |78.7 |66 |4.08|2.2  |19.47|1  |1  |4   |1   |
-## |Honda Civic        |30.4|4  |75.7 |52 |4.93|1.615|18.52|1  |1  |4   |2   |
-## |Toyota Corolla     |33.9|4  |71.1 |65 |4.22|1.835|19.9 |1  |1  |4   |1   |
-## |Toyota Corona      |21.5|4  |120.1|97 |3.7 |2.465|20.01|1  |0  |3   |1   |
-## |Dodge Challenger   |15.5|8  |318  |150|2.76|3.52 |16.87|0  |0  |3   |2   |
-## |AMC Javelin        |15.2|8  |304  |150|3.15|3.435|17.3 |0  |0  |3   |2   |
-## |Camaro Z28         |13.3|8  |350  |245|3.73|3.84 |15.41|0  |0  |3   |4   |
-## |Pontiac Firebird   |19.2|8  |400  |175|3.08|3.845|17.05|0  |0  |3   |2   |
-## |Fiat X1-9          |27.3|4  |79   |66 |4.08|1.935|18.9 |1  |1  |4   |1   |
-## |Porsche 914-2      |26  |4  |120.3|91 |4.43|2.14 |16.7 |0  |1  |5   |2   |
-## |Lotus Europa       |30.4|4  |95.1 |113|3.77|1.513|16.9 |1  |1  |5   |2   |
-## |Ford Pantera L     |15.8|8  |351  |264|4.22|3.17 |14.5 |0  |1  |5   |4   |
-## |Ferrari Dino       |19.7|6  |145  |175|3.62|2.77 |15.5 |0  |1  |5   |6   |
-## |Maserati Bora      |15  |8  |301  |335|3.54|3.57 |14.6 |0  |1  |5   |8   |
-## |Volvo 142E         |21.4|4  |121  |109|4.11|2.78 |18.6 |1  |1  |4   |2   |
+cat(readLines(mtcars_file, 10), sep = "\n")
+#> |model              |mpg |cyl|disp |hp |drat|wt   |qsec |vs |am |gear|carb|
+#> |-------------------|----|---|-----|---|----|-----|-----|---|---|----|----|
+#> |Mazda RX4          |21  |6  |160  |110|3.9 |2.62 |16.46|0  |1  |4   |4   |
+#> |Mazda RX4 Wag      |21  |6  |160  |110|3.9 |2.875|17.02|0  |1  |4   |4   |
+#> |Datsun 710         |22.8|4  |108  |93 |3.85|2.32 |18.61|1  |1  |4   |1   |
+#> |Hornet 4 Drive     |21.4|6  |258  |110|3.08|3.215|19.44|1  |0  |3   |1   |
+#> |Hornet Sportabout  |18.7|8  |360  |175|3.15|3.44 |17.02|0  |0  |3   |2   |
+#> |Valiant            |18.1|6  |225  |105|2.76|3.46 |20.22|1  |0  |3   |1   |
+#> |Duster 360         |14.3|8  |360  |245|3.21|3.57 |15.84|0  |0  |3   |4   |
+#> |Merc 240D          |24.4|4  |146.7|62 |3.69|3.19 |20   |1  |0  |4   |2   |
 ```
 
 After reading it in:
 
 ``` r
 read_md_table(mtcars_file)
-## Rows: 32 Columns: 12
-## ── Column specification ────────────────────────────────────────────────────────
-## Delimiter: "|"
-## chr  (1): model
-## dbl (11): mpg, cyl, disp, hp, drat, wt, qsec, vs, am, gear, carb
-## 
-## ℹ Use `spec()` to retrieve the full column specification for this data.
-## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
-## # A tibble: 32 × 12
-##    model         mpg   cyl  disp    hp  drat    wt  qsec    vs    am  gear  carb
-##    <chr>       <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl>
-##  1 Mazda RX4    21       6  160    110  3.9   2.62  16.5     0     1     4     4
-##  2 Mazda RX4 …  21       6  160    110  3.9   2.88  17.0     0     1     4     4
-##  3 Datsun 710   22.8     4  108     93  3.85  2.32  18.6     1     1     4     1
-##  4 Hornet 4 D…  21.4     6  258    110  3.08  3.22  19.4     1     0     3     1
-##  5 Hornet Spo…  18.7     8  360    175  3.15  3.44  17.0     0     0     3     2
-##  6 Valiant      18.1     6  225    105  2.76  3.46  20.2     1     0     3     1
-##  7 Duster 360   14.3     8  360    245  3.21  3.57  15.8     0     0     3     4
-##  8 Merc 240D    24.4     4  147.    62  3.69  3.19  20       1     0     4     2
-##  9 Merc 230     22.8     4  141.    95  3.92  3.15  22.9     1     0     4     2
-## 10 Merc 280     19.2     6  168.   123  3.92  3.44  18.3     1     0     4     4
-## # ℹ 22 more rows
+#> Rows: 32 Columns: 12
+#> ── Column specification ────────────────────────────────────────────────────────
+#> Delimiter: "|"
+#> chr  (1): model
+#> dbl (11): mpg, cyl, disp, hp, drat, wt, qsec, vs, am, gear, carb
+#> 
+#> ℹ Use `spec()` to retrieve the full column specification for this data.
+#> ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+#> # A tibble: 32 × 12
+#>    model         mpg   cyl  disp    hp  drat    wt  qsec    vs    am  gear  carb
+#>    <chr>       <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl>
+#>  1 Mazda RX4    21       6  160    110  3.9   2.62  16.5     0     1     4     4
+#>  2 Mazda RX4 …  21       6  160    110  3.9   2.88  17.0     0     1     4     4
+#>  3 Datsun 710   22.8     4  108     93  3.85  2.32  18.6     1     1     4     1
+#>  4 Hornet 4 D…  21.4     6  258    110  3.08  3.22  19.4     1     0     3     1
+#>  5 Hornet Spo…  18.7     8  360    175  3.15  3.44  17.0     0     0     3     2
+#>  6 Valiant      18.1     6  225    105  2.76  3.46  20.2     1     0     3     1
+#>  7 Duster 360   14.3     8  360    245  3.21  3.57  15.8     0     0     3     4
+#>  8 Merc 240D    24.4     4  147.    62  3.69  3.19  20       1     0     4     2
+#>  9 Merc 230     22.8     4  141.    95  3.92  3.15  22.9     1     0     4     2
+#> 10 Merc 280     19.2     6  168.   123  3.92  3.44  18.3     1     0     4     4
+#> # ℹ 22 more rows
 ```
+
+### From a String
+
+``` r
+read_md_table("| rownames | len | supp | dose |\n|---|---|---|---|\n| 1 | 4.2 | VC | 0.5 |")
+#> Rows: 1 Columns: 4
+#> ── Column specification ────────────────────────────────────────────────────────
+#> Delimiter: "|"
+#> chr (1): supp
+#> dbl (3): rownames, len, dose
+#> 
+#> ℹ Use `spec()` to retrieve the full column specification for this data.
+#> ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+#> # A tibble: 1 × 4
+#>   rownames   len supp   dose
+#>      <dbl> <dbl> <chr> <dbl>
+#> 1        1   4.2 VC      0.5
+```
+
+### From a URL
+
+``` r
+read_md_table("https://raw.githubusercontent.com/jrdnbradford/readMDTable/main/inst/extdata/iris.md")
+#> Rows: 150 Columns: 5
+#> ── Column specification ────────────────────────────────────────────────────────
+#> Delimiter: "|"
+#> chr (1): variety
+#> dbl (4): sepal.length, sepal.width, petal.length, petal.width
+#> 
+#> ℹ Use `spec()` to retrieve the full column specification for this data.
+#> ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+#> # A tibble: 150 × 5
+#>    sepal.length sepal.width petal.length petal.width variety
+#>           <dbl>       <dbl>        <dbl>       <dbl> <chr>  
+#>  1          5.1         3.5          1.4         0.2 Setosa 
+#>  2          4.9         3            1.4         0.2 Setosa 
+#>  3          4.7         3.2          1.3         0.2 Setosa 
+#>  4          4.6         3.1          1.5         0.2 Setosa 
+#>  5          5           3.6          1.4         0.2 Setosa 
+#>  6          5.4         3.9          1.7         0.4 Setosa 
+#>  7          4.6         3.4          1.4         0.3 Setosa 
+#>  8          5           3.4          1.5         0.2 Setosa 
+#>  9          4.4         2.9          1.4         0.2 Setosa 
+#> 10          4.9         3.1          1.5         0.1 Setosa 
+#> # ℹ 140 more rows
+```
+
+### Warnings and Messy Data
+
+readMDTable will throw warnings if there are potential issues with the
+markdown table. In many cases it will still correctly read in the messy
+data:
+
+``` r
+read_md_table(
+"  | Name   | Age |            City        | Date   |
+|-------|-----|-------------|------------|
+  | Alice |      30 |           | 2021/01/08 |
+  | Bob          | 25  | Los Angeles | 2023/07/22      
+  | Carol | 27       | Chicago     |      |"
+)
+#> Warning in warn_md_table(markdown_table): Invalid table row: | Bob | 25 | Los
+#> Angeles | 2023/07/22
+#> Warning in warn_md_table(markdown_table): Row does not have same number of
+#> cells as header row: | Bob | 25 | Los Angeles | 2023/07/22
+#> Rows: 3 Columns: 4
+#> ── Column specification ────────────────────────────────────────────────────────
+#> Delimiter: "|"
+#> chr  (2): Name, City
+#> dbl  (1): Age
+#> date (1): Date
+#> 
+#> ℹ Use `spec()` to retrieve the full column specification for this data.
+#> ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+#> # A tibble: 3 × 4
+#>   Name    Age City        Date      
+#>   <chr> <dbl> <chr>       <date>    
+#> 1 Alice    30 <NA>        2021-01-08
+#> 2 Bob      25 Los Angeles 2023-07-22
+#> 3 Carol    27 Chicago     NA
+```
+
+## License
+
+GPL \>= 3.

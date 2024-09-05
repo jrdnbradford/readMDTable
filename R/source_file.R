@@ -11,15 +11,15 @@
 #' @noRd
 source_file <- function(file) {
   if (file.exists(file)) {
-    markdown_table <- read_file(file)
+    markdown_table <- readr::read_file(file)
   } else if (grepl("^((http|ftp)s?|sftp)://", file)) {
-    response <- GET(file)
-    markdown_table <- content(response, "text")
+    response <- httr::GET(file)
+    markdown_table <- httr::content(response, "text")
   } else {
     markdown_table <- file
   }
 
-  markdown_table <- str_split(markdown_table, "\n")[[1]]
+  markdown_table <- stringr::str_split(markdown_table, "\n")[[1]]
 
   return(markdown_table)
 }
