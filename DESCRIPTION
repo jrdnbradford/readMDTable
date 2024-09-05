@@ -6,8 +6,10 @@ Authors@R:
 Description: Read markdown tables from a string, file, or URL into tibbles.
 Imports:
     httr,
+    lubridate,
     readr,
-    stringr
+    stringr,
+    tibble
 URL: https://github.com/jrdnbradford/readMDTable, https://jrdnbradford.github.io/readMDTable/
 BugReports: https://github.com/jrdnbradford/readMDTable/issues
 License: GPL (>= 3)
@@ -15,7 +17,5 @@ Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.2
 Suggests:
-    lubridate,
-    testthat (>= 3.0.0),
-    tibble
+    testthat (>= 3.0.0)
 Config/testthat/edition: 3
