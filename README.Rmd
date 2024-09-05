@@ -5,7 +5,7 @@ output: github_document
 ```{r, echo = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
-  comment = "##",
+  comment = "#>",
   fig.path = "README-"
 )
 ```
@@ -13,6 +13,7 @@ knitr::opts_chunk$set(
 # readMDTable
 <!-- badges: start -->
 [![R-CMD-check](https://github.com/jrdnbradford/readMDTable/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/jrdnbradford/readMDTable/actions/workflows/R-CMD-check.yaml)
+[![Dev status](https://img.shields.io/github/r-package/v/jrdnbradford/readMDTable/main?label=Dev%20Version&style=flat-square&logo=github)](https://github.com/jrdnbradford/readMDTable)
 <!-- badges: end -->
 
 readMDTable converts raw markdown tables from a string, file, or URL to tibbles. 
@@ -26,9 +27,6 @@ Install from GitHub:
 devtools::install_github("jrdnbradford/readMDTable")
 ```
 
-## License
-GPL >= 3.
-
 ## Docs
 
 Review the [package index reference](https://jrdnbradford.github.io/readMDTable/reference/index.html) or use
@@ -37,8 +35,9 @@ Review the [package index reference](https://jrdnbradford.github.io/readMDTable/
 ```
 for documentation.
 
-## Example
+## Usage
 
+### From a File
 ```{r, echo=FALSE, include=FALSE}
 devtools::load_all()
 ```
@@ -50,10 +49,35 @@ mtcars_file <- read_md_table_example("mtcars.md")
 
 The raw markdown table:
 ```{r}
-cat(readLines(mtcars_file), sep = "\n")
+cat(readLines(mtcars_file, 10), sep = "\n")
 ```
 
 After reading it in:
 ```{r}
 read_md_table(mtcars_file)
 ```
+
+### From a String
+```{r}
+read_md_table("| rownames | len | supp | dose |\n|---|---|---|---|\n| 1 | 4.2 | VC | 0.5 |")
+```
+
+### From a URL
+```{r}
+read_md_table("https://raw.githubusercontent.com/jrdnbradford/readMDTable/main/inst/extdata/iris.md")
+```
+
+### Warnings and Messy Data
+readMDTable will throw warnings if there are potential issues with the markdown table. In many cases it will still correctly read in the messy data:
+```{r}
+read_md_table(
+"  | Name   | Age |            City        | Date   |
+|-------|-----|-------------|------------|
+  | Alice |      30 |           | 2021/01/08 |
+  | Bob          | 25  | Los Angeles | 2023/07/22      
+  | Carol | 27       | Chicago     |      |"
+)
+```
+
+## License
+GPL >= 3.

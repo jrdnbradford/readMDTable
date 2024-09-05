@@ -33,13 +33,13 @@ read_md_table <- function(file, ...) {
   markdown_table <- markdown_table[-2]
 
   # Remove leading and trailing pipes and trim whitespace
-  markdown_table <- str_replace_all(
+  markdown_table <- stringr::str_replace_all(
     markdown_table,
     "^\\s*\\|\\s*|\\s*\\|\\s*$",
     ""
   )
 
-  markdown_tibble <- read_delim(
+  markdown_tibble <- readr::read_delim(
     paste(markdown_table, collapse = "\n"),
     delim = "|",
     trim_ws = TRUE,
