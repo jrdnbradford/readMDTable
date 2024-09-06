@@ -5,6 +5,7 @@ Authors@R:
     person("Jordan", "Bradford", , "jrdnbradford@gmail.com", role = c("aut", "cre", "cph"))
 Description: Read markdown tables from a string, file, or URL into tibbles.
 Imports:
+    cli,
     httr,
     lubridate,
     readr,

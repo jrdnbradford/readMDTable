@@ -77,6 +77,12 @@ test_that("read_md_table warns that markdown has invalid row", {
 })
 
 
+test_that("read_md_table warns that markdown has invalid rows", {
+  input_string <- "| H1 | H2 | \n|---|---|\n R1C1  R1C2 \n R2C1  R2C2"
+  expect_snapshot(read_md_table(input_string, show_col_types = FALSE))
+})
+
+
 test_that("read_md_table warns that markdown row has different # cells than header", {
   input_string <- "| H1 | H2 | \n|---|---|\n| R1C1 | R1C2 ||\n| R2C1 | R2C2 |"
   expect_snapshot(read_md_table(input_string, show_col_types = FALSE))
