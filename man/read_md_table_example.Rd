@@ -2,24 +2,34 @@
 % Please edit documentation in R/read_md_table_example.R
 \name{read_md_table_example}
 \alias{read_md_table_example}
-\title{Get Path to readMDTable Example}
+\title{Get Path to readMDTable Examples}
 \usage{
 read_md_table_example(file = NULL)
 }
 \arguments{
 \item{file}{Name of file. If \code{NULL}, the example files will be listed.}
 }
+\value{
+Vector of example file names if \code{file} is \code{NULL}, else the path
+to the example markdown table file.
+}
 \description{
-Get Path to readMDTable Example
+Get Path to readMDTable Examples
 }
 \details{
-readMDTable comes bundled with a number of sample files in its \code{inst/extdata}
-directory. This function makes them easy to access
+readMDTable comes bundled with a number of sample files
+in \code{inst/extdata} directory. This function makes them easy to access.
 }
 \examples{
+# List the available example files
 read_md_table_example()
+
+# Get the path to the mtcars example file
 read_md_table_example("mtcars.md")
 
+# Read in an example file
+mtcars_path <- read_md_table_example("mtcars.md")
+read_md_table(mtcars_path)
 }
 \references{
 This function and setup follows \code{\link[readr:readr_example]{readr::readr_example}}.

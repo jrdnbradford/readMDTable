@@ -12,10 +12,10 @@ literal data (either a single string or a raw vector).
 Files starting with ⁠http://⁠, ⁠https://⁠,
 ⁠ftp://⁠, or ⁠ftps://⁠ will be automatically downloaded.}
 
-\item{...}{Arguments passed on to \code{\link[readr:read_delim]{readr::read_delim}}}
+\item{...}{Arguments passed on to \code{\link[readr:read_delim]{readr::read_delim}}.}
 }
 \value{
-A tibble created from the markdown table
+A tibble created from the markdown table.
 }
 \description{
 Read a Markdown Table into a Tibble
@@ -32,8 +32,12 @@ on the issue, \code{read_md_table} may still correctly
 read the table.
 }
 \examples{
-  read_md_table("| H1 | H2 | \n|-----|-----|\n| R1C1 | R1C2 |\n| R2C1 | R2C2 |")
+# Read from a file
+read_md_table(read_md_table_example("mtcars.md"))
 
-  read_md_table(read_md_table_example("mtcars.md"))
+# Read from a string
+read_md_table("| H1 | H2 | \n|-----|-----|\n| R1C1 | R1C2 |\n| R2C1 | R2C2 |")
 
+# Read from a URL
+read_md_table("https://raw.githubusercontent.com/jrdnbradford/readMDTable/main/inst/extdata/iris.md")
 }

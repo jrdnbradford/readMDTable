@@ -1,10 +1,10 @@
 #' @title Get Markdown Table as Characters
 #'
-#' @details Get markdown table file as character vectors from `read_md_table`
+#' @details Get markdown table file as character vectors from `read_md_table`.
 #'
 #' @inheritParams read_md_table
 #'
-#' @return Character vectors of markdown table
+#' @returns Character vectors of markdown table.
 #'
 #' @keywords internal
 #'
