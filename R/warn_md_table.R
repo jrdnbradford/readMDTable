@@ -1,8 +1,10 @@
 #' @title Provide Warnings for Potential Markdown Table Issues
 #'
-#' @details Provide warnings for markdown tables provided to `read_md_table`
+#' @details Provide warnings for markdown tables provided to `read_md_table`.
 #'
-#' @param lines Character vector provided by `source_file`
+#' @param lines Character vector provided by `source_file`.
+#'
+#' @returns `NULL`, invisibly
 #'
 #' @keywords internal
 #'
@@ -36,4 +38,6 @@ warn_md_table <- function(lines) {
       warning(paste("Row does not have same number of cells as header row:", line))
     }
   }
+
+  invisible(NULL)
 }

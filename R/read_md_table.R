@@ -15,15 +15,19 @@
 #'   Files starting with ⁠http://⁠, ⁠https://⁠,
 #'   ⁠ftp://⁠, or ⁠ftps://⁠ will be automatically downloaded.
 #'
-#' @param ... Arguments passed on to [`readr::read_delim`]
+#' @param ... Arguments passed on to [`readr::read_delim`].
 #'
-#' @return A tibble created from the markdown table
+#' @returns A tibble created from the markdown table.
 #'
 #' @examples
-#'   read_md_table("| H1 | H2 | \n|-----|-----|\n| R1C1 | R1C2 |\n| R2C1 | R2C2 |")
+#' # Read from a file
+#' read_md_table(read_md_table_example("mtcars.md"))
 #'
-#'   read_md_table(read_md_table_example("mtcars.md"))
+#' # Read from a string
+#' read_md_table("| H1 | H2 | \n|-----|-----|\n| R1C1 | R1C2 |\n| R2C1 | R2C2 |")
 #'
+#' # Read from a URL
+#' read_md_table("https://raw.githubusercontent.com/jrdnbradford/readMDTable/main/inst/extdata/iris.md")
 #' @export
 read_md_table <- function(file, ...) {
   markdown_table <- source_file(file)
