@@ -149,8 +149,9 @@ read_md_table(
   | Bob          | 25  | Los Angeles | 2023/07/22      
   | Carol | 27       | Chicago     |      |"
 )
-#> ! Row does not have same number of cells as header row: | Bob | 25 | Los
-#> Angeles | 2023/07/22
+#> Warning: ✖ Row 4 of the table does not have the same number of cells as the header row:
+#>   | Bob | 25 | Los Angeles | 2023/07/22
+#> ℹ Expected: 5 pipes, but found: 4 pipes.
 #> Rows: 3 Columns: 4
 #> ── Column specification ────────────────────────────────────────────────────────
 #> Delimiter: "|"
