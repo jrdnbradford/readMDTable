@@ -2,6 +2,7 @@
 "_PACKAGE"
 
 ## usethis namespace: start
+#' @importFrom cli cli_warn
 #' @importFrom httr GET
 #' @importFrom httr content
 #' @importFrom readr read_delim

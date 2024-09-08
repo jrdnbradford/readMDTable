@@ -59,7 +59,7 @@ read_md_table(mtcars_file)
 
 ### From a String
 ```{r}
-read_md_table("| rownames | len | supp | dose |\n|---|---|---|---|\n| 1 | 4.2 | VC | 0.5 |")
+read_md_table("| len | supp | dose |\n|---|---|---|\n| 4.2 | VC | 0.5 |")
 ```
 
 ### From a URL

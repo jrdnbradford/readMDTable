@@ -92,19 +92,19 @@ read_md_table(mtcars_file)
 ### From a String
 
 ``` r
-read_md_table("| rownames | len | supp | dose |\n|---|---|---|---|\n| 1 | 4.2 | VC | 0.5 |")
-#> Rows: 1 Columns: 4
+read_md_table("| len | supp | dose |\n|---|---|---|\n| 4.2 | VC | 0.5 |")
+#> Rows: 1 Columns: 3
 #> ── Column specification ────────────────────────────────────────────────────────
 #> Delimiter: "|"
 #> chr (1): supp
-#> dbl (3): rownames, len, dose
+#> dbl (2): len, dose
 #> 
 #> ℹ Use `spec()` to retrieve the full column specification for this data.
 #> ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
-#> # A tibble: 1 × 4
-#>   rownames   len supp   dose
-#>      <dbl> <dbl> <chr> <dbl>
-#> 1        1   4.2 VC      0.5
+#> # A tibble: 1 × 3
+#>     len supp   dose
+#>   <dbl> <chr> <dbl>
+#> 1   4.2 VC      0.5
 ```
 
 ### From a URL
@@ -149,10 +149,9 @@ read_md_table(
   | Bob          | 25  | Los Angeles | 2023/07/22      
   | Carol | 27       | Chicago     |      |"
 )
-#> Warning in warn_md_table(markdown_table): Invalid table row: | Bob | 25 | Los
-#> Angeles | 2023/07/22
-#> Warning in warn_md_table(markdown_table): Row does not have same number of
-#> cells as header row: | Bob | 25 | Los Angeles | 2023/07/22
+#> Warning: ✖ Row 4 of the table does not have the same number of cells as the header row:
+#>   | Bob | 25 | Los Angeles | 2023/07/22
+#> ℹ Expected: 5 pipes, but found: 4 pipes.
 #> Rows: 3 Columns: 4
 #> ── Column specification ────────────────────────────────────────────────────────
 #> Delimiter: "|"
