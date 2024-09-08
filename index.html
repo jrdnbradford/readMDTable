@@ -128,19 +128,19 @@
 <h3 id="from-a-string">From a String<a class="anchor" aria-label="anchor" href="#from-a-string"></a>
 </h3>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="reference/read_md_table.html">read_md_table</a></span><span class="op">(</span><span class="st">"| rownames | len | supp | dose |\n|---|---|---|---|\n| 1 | 4.2 | VC | 0.5 |"</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Rows: 1 Columns: 4</span></span>
+<code class="sourceCode R"><span><span class="fu"><a href="reference/read_md_table.html">read_md_table</a></span><span class="op">(</span><span class="st">"| len | supp | dose |\n|---|---|---|\n| 4.2 | VC | 0.5 |"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Rows: 1 Columns: 3</span></span>
 <span><span class="co">#&gt; ── Column specification ────────────────────────────────────────────────────────</span></span>
 <span><span class="co">#&gt; Delimiter: "|"</span></span>
 <span><span class="co">#&gt; chr (1): supp</span></span>
-<span><span class="co">#&gt; dbl (3): rownames, len, dose</span></span>
+<span><span class="co">#&gt; dbl (2): len, dose</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; ℹ Use `spec()` to retrieve the full column specification for this data.</span></span>
 <span><span class="co">#&gt; ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</span></span>
-<span><span class="co">#&gt; # A tibble: 1 × 4</span></span>
-<span><span class="co">#&gt;   rownames   len supp   dose</span></span>
-<span><span class="co">#&gt;      &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt; &lt;dbl&gt;</span></span>
-<span><span class="co">#&gt; 1        1   4.2 VC      0.5</span></span></code></pre></div>
+<span><span class="co">#&gt; # A tibble: 1 × 3</span></span>
+<span><span class="co">#&gt;     len supp   dose</span></span>
+<span><span class="co">#&gt;   &lt;dbl&gt; &lt;chr&gt; &lt;dbl&gt;</span></span>
+<span><span class="co">#&gt; 1   4.2 VC      0.5</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="from-a-url">From a URL<a class="anchor" aria-label="anchor" href="#from-a-url"></a>
@@ -182,10 +182,9 @@
 <span><span class="st">  | Bob          | 25  | Los Angeles | 2023/07/22      </span></span>
 <span><span class="st">  | Carol | 27       | Chicago     |      |"</span></span>
 <span><span class="op">)</span></span>
-<span><span class="co">#&gt; Warning in warn_md_table(markdown_table): Invalid table row: | Bob | 25 | Los</span></span>
-<span><span class="co">#&gt; Angeles | 2023/07/22</span></span>
-<span><span class="co">#&gt; Warning in warn_md_table(markdown_table): Row does not have same number of</span></span>
-<span><span class="co">#&gt; cells as header row: | Bob | 25 | Los Angeles | 2023/07/22</span></span>
+<span><span class="co">#&gt; Warning: ✖ Row 4 of the table does not have the same number of cells as the header row:</span></span>
+<span><span class="co">#&gt;   | Bob | 25 | Los Angeles | 2023/07/22</span></span>
+<span><span class="co">#&gt; ℹ Expected: 5 pipes, but found: 4 pipes.</span></span>
 <span><span class="co">#&gt; Rows: 3 Columns: 4</span></span>
 <span><span class="co">#&gt; ── Column specification ────────────────────────────────────────────────────────</span></span>
 <span><span class="co">#&gt; Delimiter: "|"</span></span>
