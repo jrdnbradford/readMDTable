@@ -17,14 +17,24 @@ warn_md_table <- function(lines) {
 
   # Check if there is a header, separator, and at least one row
   if (length(lines) < 3) {
-    cli::cli_alert_warning("There {?is/are} only {length(lines)} line{?s}.")
-    cli::cli_alert_info("Generally markdown tables should have <=3 rows.")
+    cli::cli_warn(
+      c(
+        "x" = "There {?is/are} only {length(lines)} line{?s}.",
+        "i" = "Generally markdown tables should have <=3 rows."
+      )
+    )
   }
 
   # Check if the second line is a valid separator line
   separator_line <- lines[2]
-  if (!grepl("^\\|?\\s*-+\\s*(\\|\\s*-+\\s*)*\\|?$", separator_line)) {
-    cli::cli_alert_warning("Invalid separator line:\n{separator_line}")
+  if (!grepl("^\\|?\\s*(:?-+:?)\\s*(\\|\\s*(:?-+:?)\\s*)*\\|?$", separator_line)) {
+    cli::cli_warn(
+      c(
+        "x" = "Invalid separator line:",
+        " " = separator_line,
+        "i" = "Valid separator lines consist only of `|`, `-`, and `:`"
+      )
+    )
   }
 
   # Get the number of pipes in the header row
@@ -34,13 +44,16 @@ warn_md_table <- function(lines) {
   pipe_counts <- sapply(lines, function(line) length(gregexpr("\\|", line)[[1]]))
 
   # Identify lines that do not have the same number of pipes as the header row
-  invalid_lines <- lines[pipe_counts != num_pipes]
+  invalid_lines <- which(pipe_counts != num_pipes)
 
   if (length(invalid_lines) > 0) {
-    sapply(invalid_lines, function(line) {
-      cli::cli_alert_warning(
-        "Row does not have same number of cells as header row: {line}",
-        wrap = TRUE
+    sapply(invalid_lines, function(i) {
+      cli::cli_warn(
+        c(
+          "x" = "Row {i} of the table does not have the same number of cells as the header row:",
+          " " = lines[i],
+          "i" = "Expected: {num_pipes} pipes, but found: {pipe_counts[i]} pipes."
+        )
       )
     })
   }
