@@ -89,3 +89,19 @@
       1 R1C1  R1C2 |
       2 R2C1  R2C2  
 
+# read_md_table does not warn when warn = FALSE
+
+    Code
+      read_md_table(input_string, warn = FALSE, show_col_types = FALSE)
+    Condition
+      Warning:
+      One or more parsing issues, call `problems()` on your data frame for details, e.g.:
+        dat <- vroom(...)
+        problems(dat)
+    Output
+      # A tibble: 2 x 2
+        H1    H2    
+        <chr> <chr> 
+      1 R1C1  R1C2 |
+      2 R2C1  R2C2  
+

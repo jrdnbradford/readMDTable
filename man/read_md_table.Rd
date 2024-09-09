@@ -4,13 +4,17 @@
 \alias{read_md_table}
 \title{Read a Markdown Table into a Tibble}
 \usage{
-read_md_table(file, ...)
+read_md_table(file, warn = TRUE, ...)
 }
 \arguments{
 \item{file}{Either a path to a file, a connection, or
 literal data (either a single string or a raw vector).
 Files starting with ⁠http://⁠, ⁠https://⁠,
 ⁠ftp://⁠, or ⁠ftps://⁠ will be automatically downloaded.}
+
+\item{warn}{Boolean. Should \code{read_md_table} warn
+about possible issues with the passed \code{file}?
+Defaults to \code{TRUE}.}
 
 \item{...}{Arguments passed on to \code{\link[readr:read_delim]{readr::read_delim}}.}
 }
@@ -26,10 +30,8 @@ a tibble from a string, file, or URL. It uses
 \code{\link[readr:read_delim]{readr::read_delim}} to efficiently read in
 data.
 
-\code{read_md_table} will warn if there are potential
-issues with the provided markdown table. Depending
-on the issue, \code{read_md_table} may still correctly
-read the table.
+If \code{warn} is \verb{TRUE, }read_md_table\verb{will warn if there are potential issues with the provided markdown table. Depending on the issue,}read_md_table\verb{ may still correctly read the table. For instance, if the row separating the header from the other rows is malformed or any rows have missing leading or trailing pipes, warnings will be raised but the data will be read correctly. [}readr::read_delim`] will provide its own warnings
+if there are potential issue.
 }
 \examples{
 # Read from a file
