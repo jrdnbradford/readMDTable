@@ -8,6 +8,8 @@
 status](https://img.shields.io/github/r-package/v/jrdnbradford/readMDTable/main?label=Dev%20Version&logo=github&labelColor=3e474f&logoColor=959da5)](https://github.com/jrdnbradford/readMDTable)
 [![GitHub
 License](https://img.shields.io/github/license/jrdnbradford/readMDTable?logo=GNU&label=License)](https://www.gnu.org/licenses/gpl-3.0)
+[![Codecov test
+coverage](https://codecov.io/gh/jrdnbradford/readMDTable/graph/badge.svg)](https://app.codecov.io/gh/jrdnbradford/readMDTable)
 <!-- badges: end -->
 
 readMDTable converts raw markdown tables from a string, file, or URL to
