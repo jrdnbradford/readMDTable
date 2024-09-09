@@ -5,7 +5,7 @@
 
 [![R-CMD-check](https://github.com/jrdnbradford/readMDTable/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/jrdnbradford/readMDTable/actions/workflows/R-CMD-check.yaml)
 [![Dev
-status](https://img.shields.io/github/r-package/v/jrdnbradford/readMDTable/main?label=Dev%20Version&style=flat-square&logo=github)](https://github.com/jrdnbradford/readMDTable)
+status](https://img.shields.io/github/r-package/v/jrdnbradford/readMDTable/main?label=Dev%20Version&logo=github&labelColor=3e474f&logoColor=959da5)](https://github.com/jrdnbradford/readMDTable)
 <!-- badges: end -->
 
 readMDTable converts raw markdown tables from a string, file, or URL to
