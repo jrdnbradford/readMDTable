@@ -30,7 +30,15 @@ a tibble from a string, file, or URL. It uses
 \code{\link[readr:read_delim]{readr::read_delim}} to efficiently read in
 data.
 
-If \code{warn} is \verb{TRUE, }read_md_table\verb{will warn if there are potential issues with the provided markdown table. Depending on the issue,}read_md_table\verb{ may still correctly read the table. For instance, if the row separating the header from the other rows is malformed or any rows have missing leading or trailing pipes, warnings will be raised but the data will be read correctly. [}readr::read_delim`] will provide its own warnings
+If \code{warn} is \code{TRUE}, \code{read_md_table} will warn if
+there are potential issues with the provided
+markdown table. Depending on the issue,
+\code{read_md_table} may still correctly read the table.
+For instance, if the row separating the header from
+the other rows is malformed or any rows have missing
+leading or trailing pipes, warnings will be raised
+but the data will be read correctly.
+\code{\link[readr:read_delim]{readr::read_delim}} will provide its own warnings
 if there are potential issue.
 }
 \examples{

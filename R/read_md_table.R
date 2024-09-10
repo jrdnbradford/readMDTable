@@ -5,7 +5,7 @@
 #'   [`readr::read_delim`] to efficiently read in
 #'   data.
 #'
-#'   If `warn` is `TRUE, `read_md_table` will warn if
+#'   If `warn` is `TRUE`, `read_md_table` will warn if
 #'   there are potential issues with the provided
 #'   markdown table. Depending on the issue,
 #'   `read_md_table` may still correctly read the table.
