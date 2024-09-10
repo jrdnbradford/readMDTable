@@ -79,7 +79,15 @@ Defaults to <code>TRUE</code>.</p></dd>
 a tibble from a string, file, or URL. It uses
 <code><a href="https://readr.tidyverse.org/reference/read_delim.html" class="external-link">readr::read_delim</a></code> to efficiently read in
 data.</p>
-<p>If <code>warn</code> is <code>TRUE, </code>read_md_table<code>will warn if there are potential issues with the provided markdown table. Depending on the issue,</code>read_md_table<code> may still correctly read the table. For instance, if the row separating the header from the other rows is malformed or any rows have missing leading or trailing pipes, warnings will be raised but the data will be read correctly. [</code>readr::read_delim`] will provide its own warnings
+<p>If <code>warn</code> is <code>TRUE</code>, <code>read_md_table</code> will warn if
+there are potential issues with the provided
+markdown table. Depending on the issue,
+<code>read_md_table</code> may still correctly read the table.
+For instance, if the row separating the header from
+the other rows is malformed or any rows have missing
+leading or trailing pipes, warnings will be raised
+but the data will be read correctly.
+<code><a href="https://readr.tidyverse.org/reference/read_delim.html" class="external-link">readr::read_delim</a></code> will provide its own warnings
 if there are potential issue.</p>
     </div>
 
