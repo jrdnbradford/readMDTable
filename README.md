@@ -1,5 +1,5 @@
 
-# readMDTable
+# readMDTable <a href="https://jrdnbradford.github.io/readMDTable/"><img src="man/figures/logo.png" align="right" height="139" alt="readMDTable website" /></a>
 
 <!-- badges: start -->
 

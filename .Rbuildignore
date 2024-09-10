@@ -1,6 +1,7 @@
 ^readMDTable\.Rproj$
 ^\.Rproj\.user$
 ^LICENSE\.md$
+^data-raw$
 ^\.github$
 ^_pkgdown\.yml$
 ^docs$
