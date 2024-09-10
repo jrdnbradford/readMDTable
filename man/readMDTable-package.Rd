@@ -6,6 +6,8 @@
 \alias{readMDTable-package}
 \title{readMDTable: Read Markdown Tables into Tibbles}
 \description{
+\if{html}{\figure{logo.png}{options: style='float: right' alt='logo' width='120'}}
+
 Read markdown tables from a string, file, or URL into tibbles.
 }
 \seealso{
