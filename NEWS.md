@@ -1,5 +1,7 @@
 # readMDTable (development version)
 
+* Move from {httr} to {httr2}
+
 # readMDTable 0.1.0
 
 ## Warning Updates
