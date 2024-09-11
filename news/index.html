@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">readMDTable</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.1.9002</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -39,14 +39,25 @@
 
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="development version" id="readmdtable-development-version">readMDTable (development version)<a class="anchor" aria-label="anchor" href="#readmdtable-development-version"></a></h2>
+</div>
+    <div class="section level2">
+<h2 class="pkg-version" data-toc-text="0.1.0" id="readmdtable-010">readMDTable 0.1.0<a class="anchor" aria-label="anchor" href="#readmdtable-010"></a></h2>
+<div class="section level3">
+<h3 id="warning-updates-0-1-0">Warning Updates<a class="anchor" aria-label="anchor" href="#warning-updates-0-1-0"></a></h3>
 <ul><li>
-<code>warn_md_table</code> now uses vectorization for checking table row validity</li>
+<code>read_md_table</code> now has a <code>warn</code> param to make warnings optional (<a href="https://github.com/jrdnbradford/readMDTable/issues/15" class="external-link">#15</a>)</li>
+<li>Checking markdown table validity now uses vectorization (<a href="https://github.com/jrdnbradford/readMDTable/issues/12" class="external-link">#12</a>)</li>
+<li>Warnings now use {cli} (<a href="https://github.com/jrdnbradford/readMDTable/issues/12" class="external-link">#12</a>)</li>
 <li>
-<code>warn_md_table</code> now uses {cli} for warnings</li>
-<li>Improvements to function documentation</li>
-<li>
-<code>warn_md_table</code> now explicitly returns <code>NULL</code> invisibly</li>
+<code>warn_md_table</code> now explicitly returns <code>NULL</code> invisibly (<a href="https://github.com/jrdnbradford/readMDTable/issues/10" class="external-link">#10</a>)</li>
 </ul></div>
+<div class="section level3">
+<h3 id="misc-0-1-0">Misc<a class="anchor" aria-label="anchor" href="#misc-0-1-0"></a></h3>
+<ul><li>Added a logo (<a href="https://github.com/jrdnbradford/readMDTable/issues/22" class="external-link">#22</a>)</li>
+<li>Improvements to function documentation (<a href="https://github.com/jrdnbradford/readMDTable/issues/10" class="external-link">#10</a>)</li>
+<li>Added test coverage with {covr} (<a href="https://github.com/jrdnbradford/readMDTable/issues/17" class="external-link">#17</a>)</li>
+</ul></div>
+</div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.0.1" id="readmdtable-001">readMDTable 0.0.1<a class="anchor" aria-label="anchor" href="#readmdtable-001"></a></h2>
 <ul><li>Initial release.</li>
