@@ -59,6 +59,15 @@ test_that("read_md_table can read messy markdown table from string", {
 })
 
 
+test_that("read_md_table can read a markdown table from URL", {
+  mtcars <- "https://raw.githubusercontent.com/jrdnbradford/readMDTable/main/inst/extdata/mtcars.md"
+  expected_tibble <- read_md_table(mtcars, show_col_types = FALSE)
+  md <- read_md_table(read_md_table_example("mtcars.md"), show_col_types = FALSE)
+
+  expect_identical(expected_tibble, md)
+})
+
+
 test_that("read_md_table warns that markdown has invalid separator row", {
   input_string <- "| H1 | H2 | \n|-1-|-1-|\n| R1C1 | R1C2 |\n| R2C1 | R2C2 |"
   expect_snapshot(read_md_table(input_string, show_col_types = FALSE))

@@ -13,8 +13,11 @@ source_file <- function(file) {
   if (file.exists(file)) {
     markdown_table <- readr::read_file(file)
   } else if (grepl("^((http|ftp)s?|sftp)://", file)) {
-    response <- httr::GET(file)
-    markdown_table <- httr::content(response, "text")
+    markdown_table <- httr2::request(file) |>
+      httr2::req_retry(max_tries = 3) |>
+      httr2::req_headers("Accept" = "text/plain") |>
+      httr2::req_perform(verbosity = 0) |>
+      httr2::resp_body_string()
   } else {
     markdown_table <- file
   }

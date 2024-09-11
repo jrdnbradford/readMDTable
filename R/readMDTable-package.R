@@ -3,8 +3,11 @@
 
 ## usethis namespace: start
 #' @importFrom cli cli_warn
-#' @importFrom httr GET
-#' @importFrom httr content
+#' @importFrom httr2 request
+#' @importFrom httr2 req_headers
+#' @importFrom httr2 req_perform
+#' @importFrom httr2 req_retry
+#' @importFrom httr2 resp_body_string
 #' @importFrom readr read_delim
 #' @importFrom readr read_file
 #' @importFrom stringr str_replace_all
