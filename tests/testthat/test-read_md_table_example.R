@@ -1,9 +1,14 @@
-test_that("read_md_table_example with no args lists files", {
-  expect_length(read_md_table_example(), 3)
+test_that("read_md_table_example returns file paths", {
+  examples <- read_md_table_example()
+  example_paths <- read_md_table_example(examples)
+  expect_true(all(file.exists(example_paths)))
 })
 
 
-test_that("read_md_table_example returns a file path", {
-  mtcars <- read_md_table_example("mtcars.md")
-  expect_no_error(read_md_table(mtcars, show_col_types = FALSE))
+test_that("read_md_table_example files parse with no warnings", {
+  examples <- read_md_table_example()
+  example_paths <- read_md_table_example(examples)
+  for (example in example_paths) {
+    expect_no_warning(read_md_table(example, show_col_types = FALSE))
+  }
 })

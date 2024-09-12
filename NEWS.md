@@ -1,6 +1,7 @@
 # readMDTable (development version)
 
-* Move from {httr} to {httr2}
+* Fixed an issue on Windows where a warning was incorrectly raised on valid separator lines (#28)
+* Move from {httr} to {httr2} (#26)
 
 # readMDTable 0.1.0
 
