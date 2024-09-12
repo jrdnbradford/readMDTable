@@ -10,6 +10,9 @@
 #'
 #' @noRd
 warn_md_table <- function(lines) {
+  lines <- gsub("\r\n", "\n", lines)
+  lines <- gsub("\r", "\n", lines)
+
   # Remove the last line if it's empty
   if (length(lines) > 0 && lines[length(lines)] == "") {
     lines <- lines[-length(lines)]
