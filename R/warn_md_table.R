@@ -10,9 +10,6 @@
 #'
 #' @noRd
 warn_md_table <- function(lines) {
-  lines <- gsub("\r\n", "\n", lines)
-  lines <- gsub("\r", "\n", lines)
-
   # Remove the last line if it's empty
   if (length(lines) > 0 && lines[length(lines)] == "") {
     lines <- lines[-length(lines)]
@@ -29,7 +26,7 @@ warn_md_table <- function(lines) {
   }
 
   # Check if the second line is a valid separator line
-  separator_line <- lines[2]
+  separator_line <- trimws(lines[2])
   if (!grepl("^\\|?\\s*(:?-+:?)\\s*(\\|\\s*(:?-+:?)\\s*)*\\|?$", separator_line)) {
     cli::cli_warn(
       c(
