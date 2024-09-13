@@ -52,4 +52,13 @@ read_md_table("| H1 | H2 | \n|-----|-----|\n| R1C1 | R1C2 |\n| R2C1 | R2C2 |")
 read_md_table(
   "https://raw.githubusercontent.com/jrdnbradford/readMDTable/main/inst/extdata/iris.md"
 )
+
+# Get warnings for malformed tables
+read_md_table(
+  "| Name  | Age | City        | Date       |
+   |-------|-----|-------------|------------|
+   | Alice | 30  | New York    | 2021/01/08 |
+   | Bob   | 25  | Los Angeles | 2023/07/22 |
+     Carol | 27  | Chicago     | 2022/11/01  "
+)
 }

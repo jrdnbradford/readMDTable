@@ -40,6 +40,15 @@
 #' read_md_table(
 #'   "https://raw.githubusercontent.com/jrdnbradford/readMDTable/main/inst/extdata/iris.md"
 #' )
+#'
+#' # Get warnings for malformed tables
+#' read_md_table(
+#'   "| Name  | Age | City        | Date       |
+#'    |-------|-----|-------------|------------|
+#'    | Alice | 30  | New York    | 2021/01/08 |
+#'    | Bob   | 25  | Los Angeles | 2023/07/22 |
+#'      Carol | 27  | Chicago     | 2022/11/01  "
+#' )
 #' @export
 read_md_table <- function(file, warn = TRUE, ...) {
   markdown_table <- source_file(file)
