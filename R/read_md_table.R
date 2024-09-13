@@ -18,8 +18,8 @@
 #'
 #' @param file Either a path to a file, a connection, or
 #'   literal data (either a single string or a raw vector).
-#'   Files starting with ⁠http://⁠, ⁠https://⁠,
-#'   ⁠ftp://⁠, or ⁠ftps://⁠ will be automatically downloaded.
+#'   Files starting with `http://`, `https://`,
+#'   `ftp://`, or `ftps://` will be automatically downloaded.
 #'
 #' @param warn Boolean. Should `read_md_table` warn
 #'   about possible issues with the passed `file`?
