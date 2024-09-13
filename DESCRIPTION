@@ -1,6 +1,6 @@
 Package: readMDTable
 Title: Read Markdown Tables into Tibbles
-Version: 0.1.0.9000
+Version: 0.1.0.9001
 Authors@R: 
     person("Jordan", "Bradford", , "jrdnbradford@gmail.com", role = c("aut", "cre", "cph"))
 Description: Read markdown tables from a string, file, or URL into tibbles.
