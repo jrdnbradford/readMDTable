@@ -4,6 +4,8 @@
 <!-- badges: start -->
 
 [![R-CMD-check](https://github.com/jrdnbradford/readMDTable/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/jrdnbradford/readMDTable/actions/workflows/R-CMD-check.yaml)
+[![CRAN
+status](https://www.r-pkg.org/badges/version/readMDTable)](https://CRAN.R-project.org/package=readMDTable)
 [![Dev
 status](https://img.shields.io/github/r-package/v/jrdnbradford/readMDTable/main?label=Dev%20Version&logo=github&labelColor=3e474f&logoColor=959da5)](https://github.com/jrdnbradford/readMDTable)
 [![GitHub
@@ -21,23 +23,23 @@ these types of tables you’re probably better off using
 
 ## Installation
 
-Install from GitHub:
+Install the latest CRAN release with:
+
+``` r
+install.packages("readMDTable")
+```
+
+Install the development version from GitHub using pak:
+
+``` r
+pak::pkg_install("jrdnbradford/readMDTable")
+```
+
+or devtools:
 
 ``` r
 devtools::install_github("jrdnbradford/readMDTable")
 ```
-
-## Docs
-
-Review the [package index
-reference](https://jrdnbradford.github.io/readMDTable/reference/index.html)
-or use
-
-``` r
-?readMDTable
-```
-
-for documentation.
 
 ## Usage
 
