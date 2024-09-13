@@ -38,7 +38,9 @@
 #'
 #' \dontrun{
 #' # Read from a URL
-#' read_md_table("https://raw.githubusercontent.com/jrdnbradford/readMDTable/main/inst/extdata/iris.md")
+#' read_md_table(
+#'   "https://raw.githubusercontent.com/jrdnbradford/readMDTable/main/inst/extdata/iris.md"
+#' )
 #' }
 #'
 #' # Get warnings for malformed tables
