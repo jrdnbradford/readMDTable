@@ -17,8 +17,10 @@ to the example markdown table file.
 Get Path to readMDTable Examples
 }
 \details{
-readMDTable comes bundled with a number of sample files
-in \code{inst/extdata} directory. This function makes them easy to access.
+readMDTable comes with a number of well-known
+datasets as example markdown tables in the \code{inst/extdata}
+directory. \code{read_md_table_example} will list the file
+names or return the path of a specified file.
 }
 \examples{
 # List the available example files
@@ -30,7 +32,4 @@ read_md_table_example("mtcars.md")
 # Read in an example file
 mtcars_path <- read_md_table_example("mtcars.md")
 read_md_table(mtcars_path)
-}
-\references{
-This function and setup follows \code{\link[readr:readr_example]{readr::readr_example}}.
 }
