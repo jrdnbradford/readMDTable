@@ -1,7 +1,9 @@
 #' @title Get Path to readMDTable Examples
 #'
-#' @details readMDTable comes bundled with a number of sample files
-#' in `inst/extdata` directory. This function makes them easy to access.
+#' @details readMDTable comes with a number of well-known
+#' datasets as example markdown tables in the `inst/extdata`
+#' directory. `read_md_table_example` will list the file
+#' names or return the path of a specified file.
 #'
 #' @param file Name of file. If `NULL`, the example files will be listed.
 #'
@@ -18,8 +20,6 @@
 #' # Read in an example file
 #' mtcars_path <- read_md_table_example("mtcars.md")
 #' read_md_table(mtcars_path)
-#' @references This function and setup follows [`readr::readr_example`].
-#'
 #' @export
 read_md_table_example <- function(file = NULL) {
   if (is.null(file)) {

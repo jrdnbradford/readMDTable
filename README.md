@@ -21,23 +21,23 @@ these types of tables you’re probably better off using
 
 ## Installation
 
-Install from GitHub:
+Install the latest CRAN release with:
+
+``` r
+install.packages("readMDTable")
+```
+
+Install the development version from GitHub using pak:
+
+``` r
+pak::pkg_install("jrdnbradford/readMDTable")
+```
+
+or devtools:
 
 ``` r
 devtools::install_github("jrdnbradford/readMDTable")
 ```
-
-## Docs
-
-Review the [package index
-reference](https://jrdnbradford.github.io/readMDTable/reference/index.html)
-or use
-
-``` r
-?readMDTable
-```
-
-for documentation.
 
 ## Usage
 

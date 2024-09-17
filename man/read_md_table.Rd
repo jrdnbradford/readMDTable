@@ -9,8 +9,8 @@ read_md_table(file, warn = TRUE, ...)
 \arguments{
 \item{file}{Either a path to a file, a connection, or
 literal data (either a single string or a raw vector).
-Files starting with ⁠http://⁠, ⁠https://⁠,
-⁠ftp://⁠, or ⁠ftps://⁠ will be automatically downloaded.}
+Files starting with \verb{http://}, \verb{https://}, \verb{ftp://},
+or \verb{ftps://} will be automatically downloaded.}
 
 \item{warn}{Boolean. Should \code{read_md_table} warn
 about possible issues with the passed \code{file}?
@@ -39,7 +39,7 @@ the other rows is malformed or any rows have missing
 leading or trailing pipes, warnings will be raised
 but the data will be read correctly.
 \code{\link[readr:read_delim]{readr::read_delim}} will provide its own warnings
-if there are potential issue.
+if there are potential issues.
 }
 \examples{
 # Read from a file
@@ -48,9 +48,11 @@ read_md_table(read_md_table_example("mtcars.md"))
 # Read from a string
 read_md_table("| H1 | H2 | \n|-----|-----|\n| R1C1 | R1C2 |\n| R2C1 | R2C2 |")
 
-\dontrun{
+\donttest{
 # Read from a URL
-read_md_table("https://raw.githubusercontent.com/jrdnbradford/readMDTable/main/inst/extdata/iris.md")
+read_md_table(
+  "https://raw.githubusercontent.com/jrdnbradford/readMDTable/main/inst/extdata/iris.md"
+)
 }
 
 # Get warnings for malformed tables

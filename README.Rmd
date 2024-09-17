@@ -14,6 +14,7 @@ knitr::opts_chunk$set(
 
 <!-- badges: start -->
 [![R-CMD-check](https://github.com/jrdnbradford/readMDTable/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/jrdnbradford/readMDTable/actions/workflows/R-CMD-check.yaml)
+[![CRAN status](https://www.r-pkg.org/badges/version/readMDTable)](https://CRAN.R-project.org/package=readMDTable)
 [![Dev status](https://img.shields.io/github/r-package/v/jrdnbradford/readMDTable/main?label=Dev%20Version&logo=github&labelColor=3e474f&logoColor=959da5)](https://github.com/jrdnbradford/readMDTable)
 [![GitHub License](https://img.shields.io/github/license/jrdnbradford/readMDTable?logo=GNU&label=License)](https://www.gnu.org/licenses/gpl-3.0)
 [![Codecov test coverage](https://codecov.io/gh/jrdnbradford/readMDTable/graph/badge.svg)](https://app.codecov.io/gh/jrdnbradford/readMDTable)
@@ -25,18 +26,20 @@ Many sites (like GitHub) convert markdown tables into HTML tables. For these typ
 
 ## Installation
 
-Install from GitHub:
+Install the latest CRAN release with:
+```{r, eval=FALSE}
+install.packages("readMDTable")
+```
+
+Install the development version from GitHub using pak:
+```{r, eval=FALSE}
+pak::pkg_install("jrdnbradford/readMDTable")
+```
+
+or devtools:
 ```{r, eval=FALSE}
 devtools::install_github("jrdnbradford/readMDTable")
 ```
-
-## Docs
-
-Review the [package index reference](https://jrdnbradford.github.io/readMDTable/reference/index.html) or use
-```{r, eval=FALSE}
-?readMDTable
-```
-for documentation.
 
 ## Usage
 

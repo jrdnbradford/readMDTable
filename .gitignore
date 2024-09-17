@@ -46,3 +46,8 @@ vignettes/*.pdf
 # pkgdown site
 docs/
 docs
+
+/.quarto/
+
+# CRAN
+CRAN-SUBMISSION
