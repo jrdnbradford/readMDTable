@@ -54,6 +54,8 @@
 #' @export
 read_md_table <- function(file, warn = TRUE, ...) {
   markdown_table <- source_file(file)
+  markdown_table <- stringr::str_split(markdown_table, "\n")[[1]]
+
   if (warn) warn_md_table(markdown_table)
 
   # Remove the header separator line (second line)
