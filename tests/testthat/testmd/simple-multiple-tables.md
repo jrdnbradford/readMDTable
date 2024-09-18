@@ -14,6 +14,10 @@ We'll split the `mtcars` dataset for testing `extract_md_tables`.
 ## Another Heading 2
 Another paragraph.
 
+With some lines.
+
+Like this one.
+
 |model              |mpg |cyl|disp |hp |drat|wt   |qsec |vs |am |gear|carb|
 |-------------------|----|---|-----|---|----|-----|-----|---|---|----|----|
 |Hornet Sportabout  |18.7|8  |360  |175|3.15|3.44 |17.02|0  |0  |3   |2   |

@@ -2,8 +2,13 @@
 #'
 #' @details `read_md_table` reads a markdown table into
 #'   a tibble from a string, file, or URL. It uses
-#'   [`readr::read_delim`] to efficiently read in
-#'   data.
+#'   [`readr::read_delim`] to efficiently read in data.
+#'
+#'   `read_md_table` expects `file` to be a markdown table.
+#'   If `file` is a markdown file that contains more than
+#'   just a table or tables, the table(s) should be extracted
+#'   with [`readMDTable::extract_md_tables`] before reading them
+#'   in.
 #'
 #'   If `warn` is `TRUE`, `read_md_table` will warn if
 #'   there are potential issues with the provided

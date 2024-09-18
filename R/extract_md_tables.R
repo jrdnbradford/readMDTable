@@ -1,7 +1,10 @@
 #' @title Extract Markdown Tables from Markdown Files
 #'
-#' @details `extract_md_tables` uses regular expressions
-#'   to capture markdown tables.
+#' @details `extract_md_tables` attempts to capture all the markdown
+#'   tables from `file`. Because it must parse through markdown that
+#'   may contain much more than just tables, it requires that the
+#'   tables follow the markdown table format much more closely
+#'   than `readMDTable::read_md_table`.
 #'
 #' @inheritParams read_md_table
 #'
@@ -59,11 +62,18 @@
 #'
 #' # Read in the 2nd table
 #' read_md_table(tables[[2]])
+#'
+#' # Cleanup
+#' file.remove(temp_file)
 #' @export
 extract_md_tables <- function(file) {
-  markdown_tables <- readLines(file)
+  markdown_tables <- source_file(file)
+  markdown_tables <- stringr::str_split(markdown_tables, "\n")[[1]]
+  markdown_tables <- sapply(markdown_tables, trimws)
   markdown_tables <- paste(markdown_tables, collapse = "\n")
-  table_pattern <- "\\|.*\\|\\n\\|[-| ]+\\|\\n(\\|.*\\|\\n)+"
+
+  # See https://stackoverflow.com/questions/9837935/regex-for-markdown-table-syntax
+  table_pattern <- "/|(?:([^\r\n|]*)\\|)+\r?\n\\|(?:(:?-+:?)\\|)+\r?\n(\\|(?:([^\r\n|]*)\\|)+\r?\n)+"
   table_matches <- gregexpr(table_pattern, markdown_tables, perl = TRUE)
   tables <- regmatches(markdown_tables, table_matches)[[1]]
   return(tables)

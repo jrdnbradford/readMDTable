@@ -20,8 +20,11 @@ processed by \code{readMDTable::read_md_table}.
 Extract Markdown Tables from Markdown Files
 }
 \details{
-\code{extract_md_tables} uses regular expressions
-to capture markdown tables.
+\code{extract_md_tables} attempts to capture all the markdown
+tables from \code{file}. Because it must parse through markdown that
+may contain much more than just tables, it requires that the
+tables follow the markdown table format much more closely
+than \code{readMDTable::read_md_table}.
 }
 \examples{
 # Create a temporary markdown file with tables
@@ -74,4 +77,7 @@ tables <- extract_md_tables(temp_file)
 
 # Read in the 2nd table
 read_md_table(tables[[2]])
+
+# Cleanup
+file.remove(temp_file)
 }

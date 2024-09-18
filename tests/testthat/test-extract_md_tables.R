@@ -1,5 +1,20 @@
-test_that("extract_md_tables can read multiple markdown tables from file", {
-  md_file <- test_path("testmd", "multiple-tables.md")
+test_that("extract_md_tables can read a markdown table from file", {
+  md_file <- test_path("testmd", "simple.md")
+  md_table <- extract_md_tables(md_file)
+
+  expected_tibble <- tibble::tribble(
+    ~Name,   ~Age, ~City,         ~Date,
+    "Alice", 30,   "New York",    lubridate::ymd("2021/01/08"),
+    "Bob",   25,   "Los Angeles", lubridate::ymd("2023/07/22"),
+    "Carol", 27,   "Chicago",     lubridate::ymd("2022/11/01")
+  )
+
+  expect_identical(expected_tibble, read_md_table(md_table[[1]], show_col_types = FALSE))
+})
+
+
+test_that("extract_md_tables can read multiple markdown tables from simple file", {
+  md_file <- test_path("testmd", "simple-multiple-tables.md")
   md_tables <- extract_md_tables(md_file)
   expect_length(md_tables, 4)
 

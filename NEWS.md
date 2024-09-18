@@ -1,5 +1,7 @@
 # readMDTable (development version)
 
+* Added `extract_md_tables`, which captures all markdown tables from a markdown file (#36)
+
 # readMDTable 0.1.1
 
 * Fixed an issue on Windows where a warning was incorrectly raised on valid separator lines (#28)
