@@ -44,6 +44,7 @@ vignettes/*.pdf
 .Renviron
 
 # pkgdown site
+pkgdown/favicon/
 docs/
 docs
 

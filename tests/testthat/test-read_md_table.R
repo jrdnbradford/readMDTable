@@ -36,7 +36,7 @@ test_that("read_md_table can read messy markdown table from file", {
     ~Name,   ~Age, ~City,         ~Date,
     "Alice", 30,   NA,            lubridate::ymd("2021/01/08"),
     "Bob",   25,   "Los Angeles", lubridate::ymd("2023/07/22"),
-    "Carol", 27,   "Chicago",     NA,
+    "Carol", 27,   "Chicago",     NA
   )
 
   expect_identical(expected_tibble, md)

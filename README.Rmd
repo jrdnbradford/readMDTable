@@ -20,7 +20,7 @@ knitr::opts_chunk$set(
 [![Codecov test coverage](https://codecov.io/gh/jrdnbradford/readMDTable/graph/badge.svg)](https://app.codecov.io/gh/jrdnbradford/readMDTable)
 <!-- badges: end -->
 
-readMDTable converts raw markdown tables from a string, file, or URL to tibbles. 
+readMDTable helps convert raw markdown tables from a string, file, or URL to tibbles. 
 
 Many sites (like GitHub) convert markdown tables into HTML tables. For these types of tables you're probably better off using [rvest](https://rvest.tidyverse.org/).
 
@@ -42,25 +42,27 @@ devtools::install_github("jrdnbradford/readMDTable")
 ```
 
 ## Usage
-
-### From a File
 ```{r, echo=FALSE, include=FALSE}
 devtools::load_all()
 ```
 
+If the have a string, file, or URL whose entire content is just a markdown *table*, you should use `read_md_table` which will return a tibble. 
+
+If the string, file, or URL is a markdown file that has *other content* besides just a table or tables, such as headings, paragraphs, etc, you should use `extract_md_tables` which will parse the file, pass the tables to `read_md_table`, and return a tibble or list of tibbles.
+
+### From a File
 Read in an example markdown table from the package:
 ```{r}
 mtcars_file <- read_md_table_example("mtcars.md")
-```
 
-The raw markdown table:
-```{r}
-cat(readLines(mtcars_file, 10), sep = "\n")
-```
-
-After reading it in:
-```{r}
 read_md_table(mtcars_file)
+```
+
+Read in an example markdown file that has multiple tables:
+```{r}
+mtcars_file <- read_md_table_example("mtcars-split.md")
+
+extract_md_tables(mtcars_file, show_col_types = FALSE)
 ```
 
 ### From a String
@@ -72,9 +74,12 @@ read_md_table("| len | supp | dose |\n|---|---|---|\n| 4.2 | VC | 0.5 |")
 ```{r}
 read_md_table("https://raw.githubusercontent.com/jrdnbradford/readMDTable/main/inst/extdata/iris.md")
 ```
+```{r}
+extract_md_tables("https://raw.githubusercontent.com/jrdnbradford/readMDTable/main/inst/extdata/ToothGrowth.md")
+```
 
 ### Warnings and Messy Data
-readMDTable will throw warnings if there are potential issues with the markdown table. In many cases it will still correctly read in the messy data:
+`read_md_table` will throw warnings if there are potential issues with the markdown table. In many cases it will still correctly read in the messy data:
 ```{r}
 read_md_table(
 "  | Name   | Age |            City        | Date   |
@@ -84,6 +89,8 @@ read_md_table(
   | Carol | 27       | Chicago     |      |"
 )
 ```
+
+`extract_md_tables` may fail to recognize markdown tables with improper formatting, with the result that it won't pass on the content to `read_md_table` and therefore won't return a tibble for that table.
 
 ## License
 GPL >= 3.

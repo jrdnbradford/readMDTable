@@ -12,7 +12,7 @@ literal data (either a single string or a raw vector).
 Files starting with \verb{http://}, \verb{https://}, \verb{ftp://},
 or \verb{ftps://} will be automatically downloaded.}
 
-\item{warn}{Boolean. Should \code{read_md_table} warn
+\item{warn}{Boolean. Should warnings be raised
 about possible issues with the passed \code{file}?
 Defaults to \code{TRUE}.}
 
@@ -27,8 +27,13 @@ Read a Markdown Table into a Tibble
 \details{
 \code{read_md_table} reads a markdown table into
 a tibble from a string, file, or URL. It uses
-\code{\link[readr:read_delim]{readr::read_delim}} to efficiently read in
-data.
+\code{\link[readr:read_delim]{readr::read_delim}} to efficiently read in data.
+
+\code{read_md_table} expects \code{file} to be a markdown table.
+If \code{file} is a markdown file that contains more than
+just a table or tables, the table(s) should be extracted
+with \code{\link{extract_md_tables}} before reading them
+in.
 
 If \code{warn} is \code{TRUE}, \code{read_md_table} will warn if
 there are potential issues with the provided
