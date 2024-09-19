@@ -17,10 +17,9 @@ to the example markdown table file.
 Get Path to readMDTable Examples
 }
 \details{
-readMDTable comes with a number of well-known
-datasets as example markdown tables in the \code{inst/extdata}
-directory. \code{read_md_table_example} will list the file
-names or return the path of a specified file.
+readMDTable comes with a number of well-known datasets as example
+markdown tables in the \code{inst/extdata} directory. \code{read_md_table_example}
+will list the file names or return the path of a specified file.
 }
 \examples{
 # List the available example files

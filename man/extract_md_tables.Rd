@@ -7,14 +7,12 @@
 extract_md_tables(file, warn = TRUE, ...)
 }
 \arguments{
-\item{file}{Either a path to a file, a connection, or
-literal data (either a single string or a raw vector).
-Files starting with \verb{http://}, \verb{https://}, \verb{ftp://},
-or \verb{ftps://} will be automatically downloaded.}
+\item{file}{Either a path to a file, a connection, or literal data (either
+a single string or a raw vector). Files starting with \verb{http://},
+\verb{https://}, \verb{ftp://}, or \verb{ftps://} will be automatically downloaded.}
 
-\item{warn}{Boolean. Should warnings be raised
-about possible issues with the passed \code{file}?
-Defaults to \code{TRUE}.}
+\item{warn}{Boolean. Should warnings be raised about possible issues with
+the passed \code{file}? Defaults to \code{TRUE}.}
 
 \item{...}{Arguments passed on to \code{\link[readr:read_delim]{readr::read_delim}}.}
 }

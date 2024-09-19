@@ -4,7 +4,7 @@
 #'
 #' @param lines Character vector provided by `source_file`.
 #'
-#' @returns `NULL`, invisibly
+#' @returns `NULL`, invisibly.
 #'
 #' @keywords internal
 #'
