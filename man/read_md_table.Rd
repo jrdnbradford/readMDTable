@@ -12,7 +12,7 @@ literal data (either a single string or a raw vector).
 Files starting with \verb{http://}, \verb{https://}, \verb{ftp://},
 or \verb{ftps://} will be automatically downloaded.}
 
-\item{warn}{Boolean. Should \code{read_md_table} warn
+\item{warn}{Boolean. Should warnings be raised
 about possible issues with the passed \code{file}?
 Defaults to \code{TRUE}.}
 

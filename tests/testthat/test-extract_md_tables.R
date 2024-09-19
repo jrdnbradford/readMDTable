@@ -1,6 +1,6 @@
 test_that("extract_md_tables can read a markdown table from file", {
   md_file <- test_path("testmd", "simple.md")
-  md_table <- extract_md_tables(md_file)
+  md_table <- extract_md_tables(md_file, show_col_types = FALSE)
 
   expected_tibble <- tibble::tribble(
     ~Name,   ~Age, ~City,         ~Date,
@@ -9,14 +9,15 @@ test_that("extract_md_tables can read a markdown table from file", {
     "Carol", 27,   "Chicago",     lubridate::ymd("2022/11/01")
   )
 
-  expect_identical(expected_tibble, read_md_table(md_table[[1]], show_col_types = FALSE))
+  expect_identical(expected_tibble, md_table)
 })
 
 
 test_that("extract_md_tables can read multiple markdown tables from simple file", {
   md_file <- test_path("testmd", "simple-multiple-tables.md")
-  md_tables <- extract_md_tables(md_file)
+  md_tables <- extract_md_tables(md_file, show_col_types = FALSE)
   expect_length(md_tables, 4)
+  expect_true(inherits(md_tables, "list"))
 
   table1 <- tibble::tribble(
     ~model,          ~mpg, ~cyl, ~disp, ~hp,  ~drat, ~wt,    ~qsec, ~vs, ~am, ~gear, ~carb,
@@ -26,7 +27,7 @@ test_that("extract_md_tables can read multiple markdown tables from simple file"
     "Hornet 4 Drive", 21.4,  6,   258,   110,  3.08,  3.215, 19.44,   1,    0,    3,     1
   )
 
-  expect_identical(table1, read_md_table(md_tables[[1]], show_col_types = FALSE))
+  expect_identical(table1, md_tables[[1]])
 
   table2 <- tibble::tribble(
     ~model,              ~mpg, ~cyl, ~disp, ~hp,  ~drat, ~wt,    ~qsec, ~vs, ~am, ~gear, ~carb,
@@ -42,7 +43,7 @@ test_that("extract_md_tables can read multiple markdown tables from simple file"
     "Merc 450SLC",        15.2,  8,   275.8, 180,  3.07,  3.78,  18,      0,    0,    3,     3
   )
 
-  expect_identical(table2, read_md_table(md_tables[[2]], show_col_types = FALSE))
+  expect_identical(table2, md_tables[[2]])
 
   table3 <- tibble::tribble(
     ~model,               ~mpg, ~cyl, ~disp, ~hp,  ~drat, ~wt,    ~qsec, ~vs, ~am, ~gear, ~carb,
@@ -60,7 +61,7 @@ test_that("extract_md_tables can read multiple markdown tables from simple file"
     "Fiat X1-9",           27.3,  4,   79,     66,  4.08,  1.935, 18.9,    1,    1,    4,     1
   )
 
-  expect_identical(table3, read_md_table(md_tables[[3]], show_col_types = FALSE))
+  expect_identical(table3, md_tables[[3]])
 
   table4 <- tibble::tribble(
     ~model,          ~mpg, ~cyl, ~disp, ~hp,  ~drat, ~wt,    ~qsec, ~vs, ~am, ~gear, ~carb,
@@ -72,5 +73,5 @@ test_that("extract_md_tables can read multiple markdown tables from simple file"
     "Volvo 142E",     21.4,  4,   121,   109,  4.11,  2.78,  18.6,    1,    1,    4,     2
   )
 
-  expect_identical(table4, read_md_table(md_tables[[4]], show_col_types = FALSE))
+  expect_identical(table4, md_tables[[4]])
 })

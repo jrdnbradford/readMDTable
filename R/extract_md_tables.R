@@ -8,8 +8,7 @@
 #'
 #' @inheritParams read_md_table
 #'
-#' @returns A character vector of markdown tables that can be
-#'   processed by `readMDTable::read_md_table`.
+#' @returns A tibble or list of tibbles.
 #'
 #' @examples
 #' md <-
@@ -60,19 +59,23 @@
 #'
 #' # Extract tables from the markdown file
 #' tables <- extract_md_tables(md)
-#'
-#' # Read in the 2nd table
-#' read_md_table(tables[[2]])
+#' tables[[2]]
 #' @export
-extract_md_tables <- function(file) {
-  markdown_tables <- source_file(file)
-  markdown_tables <- stringr::str_split(markdown_tables, "\n")[[1]]
-  markdown_tables <- sapply(markdown_tables, trimws)
-  markdown_tables <- paste(markdown_tables, collapse = "\n")
+extract_md_tables <- function(file, warn = TRUE, ...) {
+  content <- source_file(file) |>
+    (\(x) stringr::str_split(x, "\n")[[1]])() |>
+    sapply(trimws) |>
+    paste(collapse = "\n")
 
   # See https://stackoverflow.com/questions/9837935/regex-for-markdown-table-syntax
   table_pattern <- "/|(?:([^\r\n|]*)\\|)+\r?\n\\|(?:(:?-+:?)\\|)+\r?\n(\\|(?:([^\r\n|]*)\\|)+\r?\n)+"
-  table_matches <- gregexpr(table_pattern, markdown_tables, perl = TRUE)
-  tables <- regmatches(markdown_tables, table_matches)[[1]]
-  return(tables)
+  table_matches <- gregexpr(table_pattern, content, perl = TRUE)
+  tables <- regmatches(content, table_matches)[[1]]
+  tibbles <- lapply(tables, read_md_table, warn = warn, ...)
+
+  if (length(tibbles) == 1) {
+    return(tibbles[[1]])
+  }
+
+  return(tibbles)
 }

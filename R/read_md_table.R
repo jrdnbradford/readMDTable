@@ -26,7 +26,7 @@
 #'   Files starting with `http://`, `https://`, `ftp://`,
 #'   or `ftps://` will be automatically downloaded.
 #'
-#' @param warn Boolean. Should `read_md_table` warn
+#' @param warn Boolean. Should warnings be raised
 #'   about possible issues with the passed `file`?
 #'   Defaults to `TRUE`.
 #'
