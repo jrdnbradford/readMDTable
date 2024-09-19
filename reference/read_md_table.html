@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">readMDTable</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.1.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.1.9001</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -59,7 +59,7 @@ or <code>ftps://</code> will be automatically downloaded.</p></dd>
 
 
 <dt id="arg-warn">warn<a class="anchor" aria-label="anchor" href="#arg-warn"></a></dt>
-<dd><p>Boolean. Should <code>read_md_table</code> warn
+<dd><p>Boolean. Should warnings be raised
 about possible issues with the passed <code>file</code>?
 Defaults to <code>TRUE</code>.</p></dd>
 
@@ -76,8 +76,12 @@ Defaults to <code>TRUE</code>.</p></dd>
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
     <p><code>read_md_table</code> reads a markdown table into
 a tibble from a string, file, or URL. It uses
-<code><a href="https://readr.tidyverse.org/reference/read_delim.html" class="external-link">readr::read_delim</a></code> to efficiently read in
-data.</p>
+<code><a href="https://readr.tidyverse.org/reference/read_delim.html" class="external-link">readr::read_delim</a></code> to efficiently read in data.</p>
+<p><code>read_md_table</code> expects <code>file</code> to be a markdown table.
+If <code>file</code> is a markdown file that contains more than
+just a table or tables, the table(s) should be extracted
+with <code><a href="extract_md_tables.html">extract_md_tables</a></code> before reading them
+in.</p>
 <p>If <code>warn</code> is <code>TRUE</code>, <code>read_md_table</code> will warn if
 there are potential issues with the provided
 markdown table. Depending on the issue,
@@ -198,7 +202,7 @@ if there are potential issues.</p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.</p>
 </div>
 
     </footer></div>

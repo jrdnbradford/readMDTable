@@ -23,7 +23,7 @@
 
     <a class="navbar-brand me-2" href="index.html">readMDTable</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.1.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.1.9001</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -63,7 +63,7 @@
 </div>
 <!-- badges: start -->
 
-<p>readMDTable converts raw markdown tables from a string, file, or URL to tibbles.</p>
+<p>readMDTable helps convert raw markdown tables from a string, file, or URL to tibbles.</p>
 <p>Many sites (like GitHub) convert markdown tables into HTML tables. For these types of tables you’re probably better off using <a href="https://rvest.tidyverse.org/" class="external-link">rvest</a>.</p>
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
@@ -81,28 +81,16 @@
 <div class="section level2">
 <h2 id="usage">Usage<a class="anchor" aria-label="anchor" href="#usage"></a>
 </h2>
+<p>If the have a string, file, or URL whose entire content is just a markdown <em>table</em>, you should use <code>read_md_table</code> which will return a tibble.</p>
+<p>If the string, file, or URL is a markdown file that has <em>other content</em> besides just a table or tables, such as headings, paragraphs, etc, you should use <code>extract_md_tables</code> which will parse the file, pass the tables to <code>read_md_table</code>, and return a tibble or list of tibbles.</p>
 <div class="section level3">
 <h3 id="from-a-file">From a File<a class="anchor" aria-label="anchor" href="#from-a-file"></a>
 </h3>
 <p>Read in an example markdown table from the package:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">mtcars_file</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/read_md_table_example.html">read_md_table_example</a></span><span class="op">(</span><span class="st">"mtcars.md"</span><span class="op">)</span></span></code></pre></div>
-<p>The raw markdown table:</p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/readLines.html" class="external-link">readLines</a></span><span class="op">(</span><span class="va">mtcars_file</span>, <span class="fl">10</span><span class="op">)</span>, sep <span class="op">=</span> <span class="st">"\n"</span><span class="op">)</span></span>
-<span><span class="co">#&gt; |model              |mpg |cyl|disp |hp |drat|wt   |qsec |vs |am |gear|carb|</span></span>
-<span><span class="co">#&gt; |-------------------|----|---|-----|---|----|-----|-----|---|---|----|----|</span></span>
-<span><span class="co">#&gt; |Mazda RX4          |21  |6  |160  |110|3.9 |2.62 |16.46|0  |1  |4   |4   |</span></span>
-<span><span class="co">#&gt; |Mazda RX4 Wag      |21  |6  |160  |110|3.9 |2.875|17.02|0  |1  |4   |4   |</span></span>
-<span><span class="co">#&gt; |Datsun 710         |22.8|4  |108  |93 |3.85|2.32 |18.61|1  |1  |4   |1   |</span></span>
-<span><span class="co">#&gt; |Hornet 4 Drive     |21.4|6  |258  |110|3.08|3.215|19.44|1  |0  |3   |1   |</span></span>
-<span><span class="co">#&gt; |Hornet Sportabout  |18.7|8  |360  |175|3.15|3.44 |17.02|0  |0  |3   |2   |</span></span>
-<span><span class="co">#&gt; |Valiant            |18.1|6  |225  |105|2.76|3.46 |20.22|1  |0  |3   |1   |</span></span>
-<span><span class="co">#&gt; |Duster 360         |14.3|8  |360  |245|3.21|3.57 |15.84|0  |0  |3   |4   |</span></span>
-<span><span class="co">#&gt; |Merc 240D          |24.4|4  |146.7|62 |3.69|3.19 |20   |1  |0  |4   |2   |</span></span></code></pre></div>
-<p>After reading it in:</p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="reference/read_md_table.html">read_md_table</a></span><span class="op">(</span><span class="va">mtcars_file</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="va">mtcars_file</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/read_md_table_example.html">read_md_table_example</a></span><span class="op">(</span><span class="st">"mtcars.md"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="reference/read_md_table.html">read_md_table</a></span><span class="op">(</span><span class="va">mtcars_file</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Rows: 32 Columns: 12</span></span>
 <span><span class="co">#&gt; ── Column specification ────────────────────────────────────────────────────────</span></span>
 <span><span class="co">#&gt; Delimiter: "|"</span></span>
@@ -125,11 +113,53 @@
 <span><span class="co">#&gt;  9 Merc 230     22.8     4  141.    95  3.92  3.15  22.9     1     0     4     2</span></span>
 <span><span class="co">#&gt; 10 Merc 280     19.2     6  168.   123  3.92  3.44  18.3     1     0     4     4</span></span>
 <span><span class="co">#&gt; # ℹ 22 more rows</span></span></code></pre></div>
+<p>Read in an example markdown file that has multiple tables:</p>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">mtcars_file</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/read_md_table_example.html">read_md_table_example</a></span><span class="op">(</span><span class="st">"mtcars-split.md"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="reference/extract_md_tables.html">extract_md_tables</a></span><span class="op">(</span><span class="va">mtcars_file</span>, show_col_types <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [[1]]</span></span>
+<span><span class="co">#&gt; # A tibble: 4 × 12</span></span>
+<span><span class="co">#&gt;   model          mpg   cyl  disp    hp  drat    wt  qsec    vs    am  gear  carb</span></span>
+<span><span class="co">#&gt;   &lt;chr&gt;        &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;</span></span>
+<span><span class="co">#&gt; 1 Mazda RX4     21       6   160   110  3.9   2.62  16.5     0     1     4     4</span></span>
+<span><span class="co">#&gt; 2 Mazda RX4 W…  21       6   160   110  3.9   2.88  17.0     0     1     4     4</span></span>
+<span><span class="co">#&gt; 3 Datsun 710    22.8     4   108    93  3.85  2.32  18.6     1     1     4     1</span></span>
+<span><span class="co">#&gt; 4 Hornet 4 Dr…  21.4     6   258   110  3.08  3.22  19.4     1     0     3     1</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; [[2]]</span></span>
+<span><span class="co">#&gt; # A tibble: 4 × 12</span></span>
+<span><span class="co">#&gt;   model          mpg   cyl  disp    hp  drat    wt  qsec    vs    am  gear  carb</span></span>
+<span><span class="co">#&gt;   &lt;chr&gt;        &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;</span></span>
+<span><span class="co">#&gt; 1 Hornet Spor…  18.7     8  360    175  3.15  3.44  17.0     0     0     3     2</span></span>
+<span><span class="co">#&gt; 2 Valiant       18.1     6  225    105  2.76  3.46  20.2     1     0     3     1</span></span>
+<span><span class="co">#&gt; 3 Duster 360    14.3     8  360    245  3.21  3.57  15.8     0     0     3     4</span></span>
+<span><span class="co">#&gt; 4 Merc 240D     24.4     4  147.    62  3.69  3.19  20       1     0     4     2</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; [[3]]</span></span>
+<span><span class="co">#&gt; # A tibble: 4 × 12</span></span>
+<span><span class="co">#&gt;   model          mpg   cyl  disp    hp  drat    wt  qsec    vs    am  gear  carb</span></span>
+<span><span class="co">#&gt;   &lt;chr&gt;        &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;</span></span>
+<span><span class="co">#&gt; 1 Cadillac Fl…  10.4     8 472     205  2.93  5.25  18.0     0     0     3     4</span></span>
+<span><span class="co">#&gt; 2 Lincoln Con…  10.4     8 460     215  3     5.42  17.8     0     0     3     4</span></span>
+<span><span class="co">#&gt; 3 Chrysler Im…  14.7     8 440     230  3.23  5.34  17.4     0     0     3     4</span></span>
+<span><span class="co">#&gt; 4 Fiat 128      32.4     4  78.7    66  4.08  2.2   19.5     1     1     4     1</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; [[4]]</span></span>
+<span><span class="co">#&gt; # A tibble: 6 × 12</span></span>
+<span><span class="co">#&gt;   model          mpg   cyl  disp    hp  drat    wt  qsec    vs    am  gear  carb</span></span>
+<span><span class="co">#&gt;   &lt;chr&gt;        &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;</span></span>
+<span><span class="co">#&gt; 1 Porsche 914…  26       4 120.     91  4.43  2.14  16.7     0     1     5     2</span></span>
+<span><span class="co">#&gt; 2 Lotus Europa  30.4     4  95.1   113  3.77  1.51  16.9     1     1     5     2</span></span>
+<span><span class="co">#&gt; 3 Ford Panter…  15.8     8 351     264  4.22  3.17  14.5     0     1     5     4</span></span>
+<span><span class="co">#&gt; 4 Ferrari Dino  19.7     6 145     175  3.62  2.77  15.5     0     1     5     6</span></span>
+<span><span class="co">#&gt; 5 Maserati Bo…  15       8 301     335  3.54  3.57  14.6     0     1     5     8</span></span>
+<span><span class="co">#&gt; 6 Volvo 142E    21.4     4 121     109  4.11  2.78  18.6     1     1     4     2</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="from-a-string">From a String<a class="anchor" aria-label="anchor" href="#from-a-string"></a>
 </h3>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="reference/read_md_table.html">read_md_table</a></span><span class="op">(</span><span class="st">"| len | supp | dose |\n|---|---|---|\n| 4.2 | VC | 0.5 |"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Rows: 1 Columns: 3</span></span>
 <span><span class="co">#&gt; ── Column specification ────────────────────────────────────────────────────────</span></span>
@@ -147,7 +177,7 @@
 <div class="section level3">
 <h3 id="from-a-url">From a URL<a class="anchor" aria-label="anchor" href="#from-a-url"></a>
 </h3>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="reference/read_md_table.html">read_md_table</a></span><span class="op">(</span><span class="st">"https://raw.githubusercontent.com/jrdnbradford/readMDTable/main/inst/extdata/iris.md"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Rows: 150 Columns: 5</span></span>
 <span><span class="co">#&gt; ── Column specification ────────────────────────────────────────────────────────</span></span>
@@ -171,11 +201,35 @@
 <span><span class="co">#&gt;  9          4.4         2.9          1.4         0.2 Setosa </span></span>
 <span><span class="co">#&gt; 10          4.9         3.1          1.5         0.1 Setosa </span></span>
 <span><span class="co">#&gt; # ℹ 140 more rows</span></span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="reference/extract_md_tables.html">extract_md_tables</a></span><span class="op">(</span><span class="st">"https://raw.githubusercontent.com/jrdnbradford/readMDTable/main/inst/extdata/ToothGrowth.md"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Rows: 60 Columns: 4</span></span>
+<span><span class="co">#&gt; ── Column specification ────────────────────────────────────────────────────────</span></span>
+<span><span class="co">#&gt; Delimiter: "|"</span></span>
+<span><span class="co">#&gt; chr (1): supp</span></span>
+<span><span class="co">#&gt; dbl (3): rownames, len, dose</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; ℹ Use `spec()` to retrieve the full column specification for this data.</span></span>
+<span><span class="co">#&gt; ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</span></span>
+<span><span class="co">#&gt; # A tibble: 60 × 4</span></span>
+<span><span class="co">#&gt;    rownames   len supp   dose</span></span>
+<span><span class="co">#&gt;       &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt; &lt;dbl&gt;</span></span>
+<span><span class="co">#&gt;  1        1   4.2 VC      0.5</span></span>
+<span><span class="co">#&gt;  2        2  11.5 VC      0.5</span></span>
+<span><span class="co">#&gt;  3        3   7.3 VC      0.5</span></span>
+<span><span class="co">#&gt;  4        4   5.8 VC      0.5</span></span>
+<span><span class="co">#&gt;  5        5   6.4 VC      0.5</span></span>
+<span><span class="co">#&gt;  6        6  10   VC      0.5</span></span>
+<span><span class="co">#&gt;  7        7  11.2 VC      0.5</span></span>
+<span><span class="co">#&gt;  8        8  11.2 VC      0.5</span></span>
+<span><span class="co">#&gt;  9        9   5.2 VC      0.5</span></span>
+<span><span class="co">#&gt; 10       10   7   VC      0.5</span></span>
+<span><span class="co">#&gt; # ℹ 50 more rows</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="warnings-and-messy-data">Warnings and Messy Data<a class="anchor" aria-label="anchor" href="#warnings-and-messy-data"></a>
 </h3>
-<p>readMDTable will throw warnings if there are potential issues with the markdown table. In many cases it will still correctly read in the messy data:</p>
+<p><code>read_md_table</code> will throw warnings if there are potential issues with the markdown table. In many cases it will still correctly read in the messy data:</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="reference/read_md_table.html">read_md_table</a></span><span class="op">(</span></span>
 <span><span class="st">"  | Name   | Age |            City        | Date   |</span></span>
@@ -202,6 +256,7 @@
 <span><span class="co">#&gt; 1 Alice    30 &lt;NA&gt;        2021-01-08</span></span>
 <span><span class="co">#&gt; 2 Bob      25 Los Angeles 2023-07-22</span></span>
 <span><span class="co">#&gt; 3 Carol    27 Chicago     NA</span></span></code></pre></div>
+<p><code>extract_md_tables</code> may fail to recognize markdown tables with improper formatting, with the result that it won’t pass on the content to <code>read_md_table</code> and therefore won’t return a tibble for that table.</p>
 </div>
 </div>
 <div class="section level2">
@@ -262,7 +317,7 @@
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.</p>
 </div>
 
     </footer>
