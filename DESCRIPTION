@@ -3,11 +3,9 @@ Title: Read Markdown Tables into Tibbles
 Version: 0.1.1.9001
 Authors@R: 
     person("Jordan", "Bradford", , "jrdnbradford@gmail.com", role = c("aut", "cre", "cph"))
-Description: Functions for reading raw markdown tables from a 
-    string, file, or URL into tibbles. It includes options to 
-    warn users about potential issues with the markdown table 
-    format, ensuring robust data handling even if the table has
-    minor formatting errors.
+Description: Efficient reading of raw markdown tables into tibbles. Designed to
+    accept content from strings, files, and URLs and can parse multiple tables
+    from a single input.
 Imports:
     cli,
     httr2,
@@ -22,5 +20,6 @@ Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.2
 Suggests:
+    covr,
     testthat (>= 3.0.0)
 Config/testthat/edition: 3
