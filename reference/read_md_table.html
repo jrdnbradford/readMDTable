@@ -52,16 +52,14 @@
 
 
 <dl><dt id="arg-file">file<a class="anchor" aria-label="anchor" href="#arg-file"></a></dt>
-<dd><p>Either a path to a file, a connection, or
-literal data (either a single string or a raw vector).
-Files starting with <code>http://</code>, <code>https://</code>, <code>ftp://</code>,
-or <code>ftps://</code> will be automatically downloaded.</p></dd>
+<dd><p>Either a path to a file, a connection, or literal data (either
+a single string or a raw vector). Files starting with <code>http://</code>,
+<code>https://</code>, <code>ftp://</code>, or <code>ftps://</code> will be automatically downloaded.</p></dd>
 
 
 <dt id="arg-warn">warn<a class="anchor" aria-label="anchor" href="#arg-warn"></a></dt>
-<dd><p>Boolean. Should warnings be raised
-about possible issues with the passed <code>file</code>?
-Defaults to <code>TRUE</code>.</p></dd>
+<dd><p>Boolean. Should warnings be raised about possible issues with
+the passed <code>file</code>? Defaults to <code>TRUE</code>.</p></dd>
 
 
 <dt id="arg--">...<a class="anchor" aria-label="anchor" href="#arg--"></a></dt>
@@ -74,24 +72,19 @@ Defaults to <code>TRUE</code>.</p></dd>
     </div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
-    <p><code>read_md_table</code> reads a markdown table into
-a tibble from a string, file, or URL. It uses
-<code><a href="https://readr.tidyverse.org/reference/read_delim.html" class="external-link">readr::read_delim</a></code> to efficiently read in data.</p>
-<p><code>read_md_table</code> expects <code>file</code> to be a markdown table.
-If <code>file</code> is a markdown file that contains more than
-just a table or tables, the table(s) should be extracted
-with <code><a href="extract_md_tables.html">extract_md_tables</a></code> before reading them
-in.</p>
-<p>If <code>warn</code> is <code>TRUE</code>, <code>read_md_table</code> will warn if
-there are potential issues with the provided
-markdown table. Depending on the issue,
-<code>read_md_table</code> may still correctly read the table.
-For instance, if the row separating the header from
-the other rows is malformed or any rows have missing
-leading or trailing pipes, warnings will be raised
-but the data will be read correctly.
-<code><a href="https://readr.tidyverse.org/reference/read_delim.html" class="external-link">readr::read_delim</a></code> will provide its own warnings
-if there are potential issues.</p>
+    <p><code>read_md_table</code> reads a markdown table into a tibble from a string,
+file, or URL. It uses <code><a href="https://readr.tidyverse.org/reference/read_delim.html" class="external-link">readr::read_delim</a></code> to efficiently read in data.</p>
+<p><code>read_md_table</code> expects <code>file</code> to be a markdown table.  If <code>file</code> is a
+markdown file that contains more than just a table or tables, the table(s)
+should be extracted with <code><a href="extract_md_tables.html">extract_md_tables</a></code> before reading
+them in.</p>
+<p>If <code>warn</code> is <code>TRUE</code>, <code>read_md_table</code> will warn if there are potential
+issues with the provided markdown table. Depending on the issue,
+<code>read_md_table</code> may still correctly read the table. For instance, if the
+row separating the header from the other rows is malformed or any rows
+have missing leading or trailing pipes, warnings will be raised but the
+data will be read correctly. <code><a href="https://readr.tidyverse.org/reference/read_delim.html" class="external-link">readr::read_delim</a></code> will provide its own
+warnings if there are potential issues.</p>
     </div>
 
     <div class="section level2">
