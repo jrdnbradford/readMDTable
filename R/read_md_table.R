@@ -51,27 +51,6 @@
 #' )
 #' @export
 read_md_table <- function(file, warn = TRUE, ...) {
-  markdown_table <- source_file(file)
-  markdown_table <- stringr::str_split(markdown_table, "\n")[[1]]
-
-  if (warn) warn_md_table(markdown_table)
-
-  # Remove the header separator line (second line)
-  markdown_table <- markdown_table[-2]
-
-  # Remove leading and trailing pipes and trim whitespace
-  markdown_table <- stringr::str_replace_all(
-    markdown_table,
-    "^\\s*\\|\\s*|\\s*\\|\\s*$",
-    ""
-  )
-
-  markdown_tibble <- readr::read_delim(
-    paste(markdown_table, collapse = "\n"),
-    delim = "|",
-    trim_ws = TRUE,
-    ...
-  )
-
-  return(markdown_tibble)
+  content <- source_file(file)
+  read_md_table_content(content, warn = warn, ...)
 }

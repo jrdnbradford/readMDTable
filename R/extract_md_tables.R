@@ -71,7 +71,7 @@ extract_md_tables <- function(file, warn = TRUE, ...) {
   table_pattern <- "/|(?:([^\r\n|]*)\\|)+\r?\n\\|(?:(:?-+:?)\\|)+\r?\n(\\|(?:([^\r\n|]*)\\|)+\r?\n)+"
   table_matches <- gregexpr(table_pattern, content, perl = TRUE)
   tables <- regmatches(content, table_matches)[[1]]
-  tibbles <- lapply(tables, read_md_table, warn = warn, ...)
+  tibbles <- lapply(tables, function(table) read_md_table_content(table, warn = warn, ...))
 
   if (length(tibbles) == 1) {
     return(tibbles[[1]])
