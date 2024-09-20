@@ -60,6 +60,8 @@
 #'
 #' # Extract tables from the markdown file
 #' tables <- extract_md_tables(md)
+#'
+#' # Display the 2nd table in the list
 #' tables[[2]]
 #' @export
 extract_md_tables <- function(file, warn = TRUE, ...) {

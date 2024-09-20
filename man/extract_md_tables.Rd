@@ -206,5 +206,7 @@ Just some paragraph text here.
 
 # Extract tables from the markdown file
 tables <- extract_md_tables(md)
+
+# Display the 2nd table in the list
 tables[[2]]
 }
