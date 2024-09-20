@@ -23,7 +23,7 @@
 #' @param warn Boolean. Should warnings be raised about possible issues with
 #'   the passed `file`? Defaults to `TRUE`.
 #'
-#' @param ... Arguments passed on to [`readr::read_delim`].
+#' @inheritDotParams readr::read_delim -trim_ws -delim
 #'
 #' @returns A tibble created from the markdown table.
 #'

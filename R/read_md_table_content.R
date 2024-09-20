@@ -4,6 +4,7 @@
 #'   [readr::read_delim].
 #'
 #' @inheritParams read_md_table
+#' @inheritDotParams readr::read_delim -trim_ws -delim
 #'
 #' @returns A tibble.
 #'

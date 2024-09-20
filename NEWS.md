@@ -1,5 +1,6 @@
 # readMDTable (development version)
 
+* `@inheritDotParams` for arguments passed on to readr::read_delim
 * Abstracted the reading of markdown tables into a new internal function `read_md_table_content.R` (#42)
 * Add vignette benchmarking {readMDTable} to {rvest} (#40)
 * Added `extract_md_tables`, which captures all markdown tables from a markdown file (#36)
