@@ -9,10 +9,8 @@ Description: Efficient reading of raw markdown tables into tibbles. Designed to
 Imports:
     cli,
     httr2,
-    lubridate,
     readr,
-    stringr,
-    tibble
+    stringr
 URL: https://github.com/jrdnbradford/readMDTable, https://jrdnbradford.github.io/readMDTable/
 BugReports: https://github.com/jrdnbradford/readMDTable/issues
 License: GPL (>= 3)
@@ -21,5 +19,14 @@ Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.2
 Suggests:
     covr,
-    testthat (>= 3.0.0)
+    devtools,
+    ggplot2,
+    knitr,
+    lubridate,
+    microbenchmark,
+    rmarkdown,
+    rvest,
+    testthat (>= 3.0.0),
+    tibble
 Config/testthat/edition: 3
+VignetteBuilder: knitr
