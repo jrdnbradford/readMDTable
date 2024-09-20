@@ -1,6 +1,6 @@
 # readMDTable (development version)
 
-* Add vignette benchmarking readMDTable to rvest (#40)
+* Add vignette benchmarking {readMDTable} to {rvest} (#40)
 * Added `extract_md_tables`, which captures all markdown tables from a markdown file (#36)
 
 # readMDTable 0.1.1
