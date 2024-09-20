@@ -25,7 +25,7 @@ knitr::opts_chunk$set(
 
 readMDTable helps convert raw markdown tables from a string, file, or URL to tibbles. 
 
-Many sites (like GitHub) convert markdown tables into HTML tables. For these types of tables you may be better off using [rvest](https://rvest.tidyverse.org/).
+Many sites (like GitHub) convert markdown tables into HTML tables, making both available. See the vignette [Benchmarking rvest](https://jrdnbradford.github.io/readMDTable/articles/rvest-benchmarks.html) to help determine if you should use readMDTable or rvest.
 
 ## Installation
 
