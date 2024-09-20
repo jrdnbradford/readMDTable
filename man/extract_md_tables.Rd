@@ -14,7 +14,135 @@ a single string or a raw vector). Files starting with \verb{http://},
 \item{warn}{Boolean. Should warnings be raised about possible issues with
 the passed \code{file}? Defaults to \code{TRUE}.}
 
-\item{...}{Arguments passed on to \code{\link[readr:read_delim]{readr::read_delim}}.}
+\item{...}{
+  Arguments passed on to \code{\link[readr:read_delim]{readr::read_delim}}
+  \describe{
+    \item{\code{quote}}{Single character used to quote strings.}
+    \item{\code{escape_backslash}}{Does the file use backslashes to escape special
+characters? This is more general than \code{escape_double} as backslashes
+can be used to escape the delimiter character, the quote character, or
+to add special characters like \verb{\\\\n}.}
+    \item{\code{escape_double}}{Does the file escape quotes by doubling them?
+i.e. If this option is \code{TRUE}, the value \verb{""""} represents
+a single quote, \verb{\\"}.}
+    \item{\code{col_names}}{Either \code{TRUE}, \code{FALSE} or a character vector
+of column names.
+
+If \code{TRUE}, the first row of the input will be used as the column
+names, and will not be included in the data frame. If \code{FALSE}, column
+names will be generated automatically: X1, X2, X3 etc.
+
+If \code{col_names} is a character vector, the values will be used as the
+names of the columns, and the first row of the input will be read into
+the first row of the output data frame.
+
+Missing (\code{NA}) column names will generate a warning, and be filled
+in with dummy names \code{...1}, \code{...2} etc. Duplicate column names
+will generate a warning and be made unique, see \code{name_repair} to control
+how this is done.}
+    \item{\code{col_types}}{One of \code{NULL}, a \code{\link[readr:cols]{cols()}} specification, or
+a string. See \code{vignette("readr")} for more details.
+
+If \code{NULL}, all column types will be inferred from \code{guess_max} rows of the
+input, interspersed throughout the file. This is convenient (and fast),
+but not robust. If the guessed types are wrong, you'll need to increase
+\code{guess_max} or supply the correct types yourself.
+
+Column specifications created by \code{\link[=list]{list()}} or \code{\link[readr:cols]{cols()}} must contain
+one column specification for each column. If you only want to read a
+subset of the columns, use \code{\link[readr:cols_only]{cols_only()}}.
+
+Alternatively, you can use a compact string representation where each
+character represents one column:
+\itemize{
+\item c = character
+\item i = integer
+\item n = number
+\item d = double
+\item l = logical
+\item f = factor
+\item D = date
+\item T = date time
+\item t = time
+\item ? = guess
+\item _ or - = skip
+}
+
+By default, reading a file without a column specification will print a
+message showing what \code{readr} guessed they were. To remove this message,
+set \code{show_col_types = FALSE} or set \code{options(readr.show_col_types = FALSE)}.}
+    \item{\code{col_select}}{Columns to include in the results. You can use the same
+mini-language as \code{dplyr::select()} to refer to the columns by name. Use
+\code{c()} to use more than one selection expression. Although this
+usage is less common, \code{col_select} also accepts a numeric column index. See
+\code{\link[tidyselect:language]{?tidyselect::language}} for full details on the
+selection language.}
+    \item{\code{id}}{The name of a column in which to store the file path. This is
+useful when reading multiple input files and there is data in the file
+paths, such as the data collection date. If \code{NULL} (the default) no extra
+column is created.}
+    \item{\code{locale}}{The locale controls defaults that vary from place to place.
+The default locale is US-centric (like R), but you can use
+\code{\link[readr:locale]{locale()}} to create your own locale that controls things like
+the default time zone, encoding, decimal mark, big mark, and day/month
+names.}
+    \item{\code{na}}{Character vector of strings to interpret as missing values. Set this
+option to \code{character()} to indicate no missing values.}
+    \item{\code{quoted_na}}{\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}} Should missing values
+inside quotes be treated as missing values (the default) or strings. This
+parameter is soft deprecated as of readr 2.0.0.}
+    \item{\code{comment}}{A string used to identify comments. Any text after the
+comment characters will be silently ignored.}
+    \item{\code{skip}}{Number of lines to skip before reading data. If \code{comment} is
+supplied any commented lines are ignored \emph{after} skipping.}
+    \item{\code{n_max}}{Maximum number of lines to read.}
+    \item{\code{guess_max}}{Maximum number of lines to use for guessing column types.
+Will never use more than the number of lines read.
+See \code{vignette("column-types", package = "readr")} for more details.}
+    \item{\code{name_repair}}{Handling of column names. The default behaviour is to
+ensure column names are \code{"unique"}. Various repair strategies are
+supported:
+\itemize{
+\item \code{"minimal"}: No name repair or checks, beyond basic existence of names.
+\item \code{"unique"} (default value): Make sure names are unique and not empty.
+\item \code{"check_unique"}: No name repair, but check they are \code{unique}.
+\item \code{"unique_quiet"}: Repair with the \code{unique} strategy, quietly.
+\item \code{"universal"}: Make the names \code{unique} and syntactic.
+\item \code{"universal_quiet"}: Repair with the \code{universal} strategy, quietly.
+\item A function: Apply custom name repair (e.g., \code{name_repair = make.names}
+for names in the style of base R).
+\item A purrr-style anonymous function, see \code{\link[rlang:as_function]{rlang::as_function()}}.
+}
+
+This argument is passed on as \code{repair} to \code{\link[vctrs:vec_as_names]{vctrs::vec_as_names()}}.
+See there for more details on these terms and the strategies used
+to enforce them.}
+    \item{\code{num_threads}}{The number of processing threads to use for initial
+parsing and lazy reading of data. If your data contains newlines within
+fields the parser should automatically detect this and fall back to using
+one thread only. However if you know your file has newlines within quoted
+fields it is safest to set \code{num_threads = 1} explicitly.}
+    \item{\code{progress}}{Display a progress bar? By default it will only display
+in an interactive session and not while knitting a document. The automatic
+progress bar can be disabled by setting option \code{readr.show_progress} to
+\code{FALSE}.}
+    \item{\code{show_col_types}}{If \code{FALSE}, do not show the guessed column types. If
+\code{TRUE} always show the column types, even if they are supplied. If \code{NULL}
+(the default) only show the column types if they are not explicitly supplied
+by the \code{col_types} argument.}
+    \item{\code{skip_empty_rows}}{Should blank rows be ignored altogether? i.e. If this
+option is \code{TRUE} then blank rows will not be represented at all.  If it is
+\code{FALSE} then they will be represented by \code{NA} values in all the columns.}
+    \item{\code{lazy}}{Read values lazily? By default, this is \code{FALSE}, because there
+are special considerations when reading a file lazily that have tripped up
+some users. Specifically, things get tricky when reading and then writing
+back into the same file. But, in general, lazy reading (\code{lazy = TRUE}) has
+many benefits, especially for interactive use and when your downstream work
+only involves a subset of the rows or columns.
+
+Learn more in \code{\link[readr:should_read_lazy]{should_read_lazy()}} and in the documentation for the
+\code{altrep} argument of \code{\link[vroom:vroom]{vroom::vroom()}}.}
+  }}
 }
 \value{
 A tibble or list of tibbles.

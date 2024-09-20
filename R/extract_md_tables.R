@@ -7,6 +7,7 @@
 #'   than `readMDTable::read_md_table`.
 #'
 #' @inheritParams read_md_table
+#' @inheritDotParams readr::read_delim -trim_ws -delim
 #'
 #' @returns A tibble or list of tibbles.
 #'
