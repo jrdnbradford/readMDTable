@@ -24,7 +24,7 @@ readMDTable helps convert raw markdown tables from a string, file, or
 URL to tibbles.
 
 Many sites (like GitHub) convert markdown tables into HTML tables,
-making both available. See the vignette [Benchmarking
+making both available. See the vignette [Benchmarking Against
 rvest](https://jrdnbradford.github.io/readMDTable/articles/rvest-benchmarks.html)
 to help determine if you should use readMDTable or rvest.
 
@@ -50,14 +50,14 @@ devtools::install_github("jrdnbradford/readMDTable")
 
 ## Usage
 
-If the have a string, file, or URL whose entire content is just a
+If you have a string, file, or URL whose entire content is just a
 markdown *table*, you should use `read_md_table` which will return a
 tibble.
 
-If the string, file, or URL is a markdown file that has *other content*
-besides just a table or tables, such as headings, paragraphs, etc, you
-should use `extract_md_tables` which will parse the file, pass the
-tables to `read_md_table`, and return a tibble or list of tibbles.
+If the string, file, or URL is a markdown *file* that has *other
+content* besides just a table or tables, such as headings, paragraphs,
+etc, you should use `extract_md_tables` which will parse the file and
+return a tibble or list of tibbles.
 
 ### From a File
 
@@ -91,7 +91,8 @@ read_md_table(mtcars_file)
 #> # ℹ 22 more rows
 ```
 
-Read in an example markdown file that has multiple tables:
+Read in an example markdown file that has multiple tables as well as
+headings and paragraphs:
 
 ``` r
 mtcars_file <- read_md_table_example("mtcars-split.md")
@@ -243,5 +244,4 @@ read_md_table(
 ```
 
 `extract_md_tables` may fail to recognize markdown tables with improper
-formatting, with the result that it won’t pass on the content to
-`read_md_table` and therefore won’t return a tibble for that table.
+formatting.

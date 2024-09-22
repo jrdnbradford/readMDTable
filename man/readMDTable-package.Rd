@@ -8,7 +8,7 @@
 \description{
 \if{html}{\figure{logo.png}{options: style='float: right' alt='logo' width='120'}}
 
-Efficient reading of raw markdown tables into tibbles. Designed to accept content from strings, files, and URLs and can parse multiple tables from a single input.
+Efficient reading of raw markdown tables into tibbles. Designed to accept content from strings, files, and URLs with the ability to extract and read multiple tables from markdown for analysis.
 }
 \seealso{
 Useful links:
