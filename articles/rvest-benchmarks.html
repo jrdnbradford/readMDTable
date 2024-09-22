@@ -5,12 +5,12 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Benchmarking rvest • readMDTable</title>
+<title>Benchmarking Against rvest • readMDTable</title>
 <script src="../lightswitch.js"></script><script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
 <script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.4.2/css/all.min.css" rel="stylesheet">
 <link href="../deps/font-awesome-6.4.2/css/v4-shims.min.css" rel="stylesheet">
-<script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Benchmarking rvest">
+<script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Benchmarking Against rvest">
 </head>
 <body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
@@ -20,7 +20,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">readMDTable</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.1.9001</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.1.9002</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -33,7 +33,7 @@
 <li class="active nav-item dropdown">
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
   <ul class="dropdown-menu" aria-labelledby="dropdown-articles">
-<li><a class="dropdown-item" href="../articles/rvest-benchmarks.html">Benchmarking rvest</a></li>
+<li><a class="dropdown-item" href="../articles/rvest-benchmarks.html">Benchmarking Against rvest</a></li>
   </ul>
 </li>
 <li class="nav-item"><a class="nav-link" href="../news/index.html">Changelog</a></li>
@@ -63,7 +63,7 @@
 
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
-      <img src="../logo.png" class="logo" alt=""><h1>Benchmarking rvest</h1>
+      <img src="../logo.png" class="logo" alt=""><h1>Benchmarking Against rvest</h1>
             
       
       <small class="dont-index">Source: <a href="https://github.com/jrdnbradford/readMDTable/blob/main/vignettes/rvest-benchmarks.Rmd" class="external-link"><code>vignettes/rvest-benchmarks.Rmd</code></a></small>
@@ -73,13 +73,14 @@
     
     
 <p>In many cases, both raw markdown files <em>and</em> their
-html-rendered equivalents are both available. For instance, GitHub
+HTML-rendered equivalents are both available. For instance, GitHub
 repositories store raw markdown, but also render that markdown. In these
 cases, you have a choice between using readMDTable to parse the raw
-markdown, or rvest to parse the html. This vignette provides benchmarks
-to help you decide which is the better option for your use case.</p>
+markdown, or <a href="https://rvest.tidyverse.org/" class="external-link">rvest</a> to parse
+the HTML. This vignette provides benchmarks to help you decide which is
+the better option for your use case.</p>
 <p>The main benefit of readMDTable is that raw markdown is more
-lightweight that its html-rendered alternative, resulting in less
+lightweight that its HTML-rendered alternative, resulting in less
 retrieval time from the web. See the benchmarking below.</p>
 <div class="section level2">
 <h2 id="functions-tested">Functions Tested<a class="anchor" aria-label="anchor" href="#functions-tested"></a>
@@ -100,9 +101,8 @@ retrieval time from the web. See the benchmarking below.</p>
 <div class="section level2">
 <h2 id="benchmark-1">Benchmark 1<a class="anchor" aria-label="anchor" href="#benchmark-1"></a>
 </h2>
-<p>Comparing <code>readMDTable</code> and <code>rvest</code> on
-retrieving and parsing a markdown file with multiple tables and other
-non-table content.</p>
+<p>Comparing readMDTable and rvest on retrieving and parsing a markdown
+file with multiple tables and other non-table content.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">mtcars_split_raw_md_url</span> <span class="op">&lt;-</span> <span class="st">"https://raw.githubusercontent.com/jrdnbradford/readMDTable/refs/heads/main/inst/extdata/mtcars-split.md"</span></span>
 <span><span class="va">mtcars_split_html_url</span> <span class="op">&lt;-</span> <span class="st">"https://github.com/jrdnbradford/readMDTable/blob/main/inst/extdata/mtcars-split.md"</span></span>
@@ -119,8 +119,8 @@ non-table content.</p>
 <div class="section level2">
 <h2 id="benchmark-2">Benchmark 2<a class="anchor" aria-label="anchor" href="#benchmark-2"></a>
 </h2>
-<p>Comparing <code>readMDTable</code> and <code>rvest</code> on
-retrieving and parsing a markdown table file.</p>
+<p>Comparing readMDTable and rvest on retrieving and parsing a markdown
+table file.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">mtcars_raw_md_url</span> <span class="op">&lt;-</span> <span class="st">"https://raw.githubusercontent.com/jrdnbradford/readMDTable/refs/heads/main/inst/extdata/mtcars.md"</span></span>
 <span><span class="va">mtcars_html_url</span> <span class="op">&lt;-</span> <span class="st">"https://github.com/jrdnbradford/readMDTable/blob/main/inst/extdata/mtcars.md"</span></span>
@@ -137,9 +137,9 @@ retrieving and parsing a markdown table file.</p>
 <div class="section level2">
 <h2 id="benchmark-3">Benchmark 3<a class="anchor" aria-label="anchor" href="#benchmark-3"></a>
 </h2>
-<p>Comparing <code>readMDTable</code> and <code>rvest</code> on parsing
-a markdown file with multiple tables and other non-table content,
-already retrieved and stored in memory.</p>
+<p>Comparing readMDTable and rvest on parsing a markdown file with
+multiple tables and other non-table content, already retrieved and
+stored in memory.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">mtcars_raw_md_file</span> <span class="op">&lt;-</span> <span class="fu">readr</span><span class="fu">::</span><span class="fu"><a href="https://readr.tidyverse.org/reference/read_file.html" class="external-link">read_file</a></span><span class="op">(</span><span class="va">mtcars_split_raw_md_url</span><span class="op">)</span></span>
 <span><span class="va">mtcars_html_file</span> <span class="op">&lt;-</span> <span class="fu">readr</span><span class="fu">::</span><span class="fu"><a href="https://readr.tidyverse.org/reference/read_file.html" class="external-link">read_file</a></span><span class="op">(</span><span class="va">mtcars_split_html_url</span><span class="op">)</span></span>
@@ -156,8 +156,8 @@ already retrieved and stored in memory.</p>
 <div class="section level2">
 <h2 id="benchmark-4">Benchmark 4<a class="anchor" aria-label="anchor" href="#benchmark-4"></a>
 </h2>
-<p>Comparing <code>readMDTable</code> and <code>rvest</code> on parsing
-merely a markdown table, already retrieved and stored in memory.</p>
+<p>Comparing readMDTable and rvest on parsing merely a markdown table,
+already retrieved and stored in memory.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">raw_md</span> <span class="op">&lt;-</span> <span class="fu">readr</span><span class="fu">::</span><span class="fu"><a href="https://readr.tidyverse.org/reference/read_file.html" class="external-link">read_file</a></span><span class="op">(</span><span class="va">mtcars_raw_md_url</span><span class="op">)</span></span>
 <span><span class="va">html</span> <span class="op">&lt;-</span> <span class="fu">readr</span><span class="fu">::</span><span class="fu"><a href="https://readr.tidyverse.org/reference/read_file.html" class="external-link">read_file</a></span><span class="op">(</span><span class="va">mtcars_html_url</span><span class="op">)</span></span>
