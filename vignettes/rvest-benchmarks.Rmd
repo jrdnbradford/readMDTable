@@ -1,8 +1,8 @@
 ---
-title: "Benchmarking rvest"
+title: "Benchmarking Against rvest"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Benchmarking rvest}
+  %\VignetteIndexEntry{Benchmarking Against rvest}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -21,9 +21,9 @@ library(readMDTable)
 # devtools::load_all()
 ```
 
-In many cases, both raw markdown files *and* their html-rendered equivalents are both available. For instance, GitHub repositories store raw markdown, but also render that markdown. In these cases, you have a choice between using readMDTable to parse the raw markdown, or rvest to parse the html. This vignette provides benchmarks to help you decide which is the better option for your use case.
+In many cases, both raw markdown files *and* their HTML-rendered equivalents are both available. For instance, GitHub repositories store raw markdown, but also render that markdown. In these cases, you have a choice between using readMDTable to parse the raw markdown, or [rvest](https://rvest.tidyverse.org/) to parse the HTML. This vignette provides benchmarks to help you decide which is the better option for your use case.
 
-The main benefit of readMDTable is that raw markdown is more lightweight that its html-rendered alternative, resulting in less retrieval time from the web. See the benchmarking below.
+The main benefit of readMDTable is that raw markdown is more lightweight that its HTML-rendered alternative, resulting in less retrieval time from the web. See the benchmarking below.
 
 ## Functions Tested
 ```{r}
@@ -42,7 +42,7 @@ test_rvest <- function(content) {
 
 
 ## Benchmark 1
-Comparing `readMDTable` and `rvest` on retrieving and parsing a markdown file with multiple tables and other non-table content.
+Comparing readMDTable and rvest on retrieving and parsing a markdown file with multiple tables and other non-table content.
 
 ```{r}
 mtcars_split_raw_md_url <- "https://raw.githubusercontent.com/jrdnbradford/readMDTable/refs/heads/main/inst/extdata/mtcars-split.md"
@@ -59,7 +59,7 @@ ggplot2::autoplot(resp)
 
 
 ## Benchmark 2
-Comparing `readMDTable` and `rvest` on retrieving and parsing a markdown table file.
+Comparing readMDTable and rvest on retrieving and parsing a markdown table file.
 
 ```{r}
 mtcars_raw_md_url <- "https://raw.githubusercontent.com/jrdnbradford/readMDTable/refs/heads/main/inst/extdata/mtcars.md"
@@ -76,7 +76,7 @@ ggplot2::autoplot(resp)
 
 
 ## Benchmark 3
-Comparing `readMDTable` and `rvest` on parsing a markdown file with multiple tables and other non-table content, already retrieved and stored in memory.
+Comparing readMDTable and rvest on parsing a markdown file with multiple tables and other non-table content, already retrieved and stored in memory.
 
 ```{r}
 mtcars_raw_md_file <- readr::read_file(mtcars_split_raw_md_url)
@@ -93,7 +93,7 @@ ggplot2::autoplot(resp)
 
 
 ## Benchmark 4
-Comparing `readMDTable` and `rvest` on parsing merely a markdown table, already retrieved and stored in memory.
+Comparing readMDTable and rvest on parsing merely a markdown table, already retrieved and stored in memory.
 
 ```{r}
 raw_md <- readr::read_file(mtcars_raw_md_url)

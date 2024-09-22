@@ -152,10 +152,9 @@ Extract Markdown Tables from Markdown Files
 }
 \details{
 \code{extract_md_tables} attempts to capture all the markdown
-tables from \code{file}. Because it must parse through markdown that
-may contain much more than just tables, it requires that the
-tables follow the markdown table format much more closely
-than \code{readMDTable::read_md_table}.
+tables from \code{file} utilizing a regular expression and therefore
+requires that the tables follow the markdown table format much
+more closely than \code{readMDTable::read_md_table}.
 }
 \examples{
 md <-

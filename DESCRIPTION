@@ -1,11 +1,11 @@
 Package: readMDTable
 Title: Read Markdown Tables into Tibbles
-Version: 0.1.1.9001
+Version: 0.1.1.9002
 Authors@R: 
     person("Jordan", "Bradford", , "jrdnbradford@gmail.com", role = c("aut", "cre", "cph"))
 Description: Efficient reading of raw markdown tables into tibbles. Designed to
-    accept content from strings, files, and URLs and can parse multiple tables
-    from a single input.
+    accept content from strings, files, and URLs with the ability to extract
+    and read multiple tables from markdown for analysis.
 Imports:
     cli,
     httr2,

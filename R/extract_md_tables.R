@@ -1,10 +1,9 @@
 #' @title Extract Markdown Tables from Markdown Files
 #'
 #' @details `extract_md_tables` attempts to capture all the markdown
-#'   tables from `file`. Because it must parse through markdown that
-#'   may contain much more than just tables, it requires that the
-#'   tables follow the markdown table format much more closely
-#'   than `readMDTable::read_md_table`.
+#'   tables from `file` utilizing a regular expression and therefore
+#'   requires that the tables follow the markdown table format much
+#'   more closely than `readMDTable::read_md_table`.
 #'
 #' @inheritParams read_md_table
 #' @inheritDotParams readr::read_delim -trim_ws -delim
