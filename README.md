@@ -15,9 +15,9 @@ License](https://img.shields.io/github/license/jrdnbradford/readMDTable?logo=GNU
 [![Codecov test
 coverage](https://codecov.io/gh/jrdnbradford/readMDTable/graph/badge.svg)](https://app.codecov.io/gh/jrdnbradford/readMDTable)
 [![Monthly
-Downloads](https://cranlogs.r-pkg.org/badges/readMDTable?color=ff69b4)](https://cran.r-project.org/web/packages/readMDTable/index.html)
+Downloads](https://cranlogs.r-pkg.org/badges/readMDTable?color=ff69b4)](https://CRAN.R-project.org/package=readMDTable)
 [![Total
-Downloads](https://cranlogs.r-pkg.org/badges/grand-total/readMDTable?color=ff69b4)](https://cran.r-project.org/web/packages/readMDTable/index.html)
+Downloads](https://cranlogs.r-pkg.org/badges/grand-total/readMDTable?color=ff69b4)](https://CRAN.R-project.org/package=readMDTable)
 <!-- badges: end -->
 
 readMDTable helps convert raw markdown tables from a string, file, or
