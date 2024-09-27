@@ -1,5 +1,7 @@
 # readMDTable (development version)
 
+* Fixed a typo in a warning message (#59)
+
 # readMDTable 0.2.0
 
 * Update `extract_md_tables` example (#46)
