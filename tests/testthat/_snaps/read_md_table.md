@@ -21,7 +21,7 @@
     Condition
       Warning:
       x There are only 2 lines.
-      i Generally markdown tables should have <=3 rows.
+      i Generally markdown tables should have >=3 rows.
     Output
       # A tibble: 0 x 2
       # i 2 variables: H1 <chr>, H2 <chr>
