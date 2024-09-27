@@ -20,7 +20,7 @@ warn_md_table <- function(lines) {
     cli::cli_warn(
       c(
         "x" = "There {?is/are} only {length(lines)} line{?s}.",
-        "i" = "Generally markdown tables should have <=3 rows."
+        "i" = "Generally markdown tables should have >=3 rows."
       )
     )
   }
