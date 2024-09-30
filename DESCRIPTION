@@ -10,6 +10,7 @@ Imports:
     cli,
     httr2,
     readr,
+    purrr,
     stringr
 URL: https://github.com/jrdnbradford/readMDTable, https://jrdnbradford.github.io/readMDTable/
 BugReports: https://github.com/jrdnbradford/readMDTable/issues

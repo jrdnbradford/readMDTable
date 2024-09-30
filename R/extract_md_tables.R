@@ -69,11 +69,21 @@ extract_md_tables <- function(file, warn = TRUE, ...) {
     sapply(trimws) |>
     paste(collapse = "\n")
 
-  # See https://stackoverflow.com/questions/9837935/regex-for-markdown-table-syntax
-  table_pattern <- "/|(?:([^\r\n|]*)\\|)+\r?\n\\|(?:(:?-+:?)\\|)+\r?\n(\\|(?:([^\r\n|]*)\\|)+\r?\n)+"
+  table_pattern <- "\\|(?:([^\r\n|]*)\\|)+\r?\n\\|\\s*(:?-+:?)\\s*(\\|\\s*(:?-+:?)\\s*)*\\|?\r?\n(\\|(?:([^\r\n|]*)\\|)+\r?\n)+"
   table_matches <- gregexpr(table_pattern, content, perl = TRUE)
   tables <- regmatches(content, table_matches)[[1]]
-  tibbles <- lapply(tables, function(table) read_md_table_content(table, warn = warn, ...))
+
+  tibbles <- purrr::map(tables, function(table) {
+    tryCatch(
+      {
+        read_md_table_content(table, warn = warn, ...)
+      },
+      error = function(err) {
+        warning(paste("Failed to read table:", err$message))
+        return(NULL)
+      }
+    )
+  })
 
   if (length(tibbles) == 1) {
     return(tibbles[[1]])
