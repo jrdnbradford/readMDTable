@@ -73,21 +73,15 @@ extract_md_tables <- function(file, warn = TRUE, ...) {
   table_matches <- gregexpr(table_pattern, content, perl = TRUE)
   tables <- regmatches(content, table_matches)[[1]]
 
-  tibbles <- purrr::map(tables, function(table) {
-    tryCatch(
-      {
-        read_md_table_content(table, warn = warn, ...)
-      },
-      error = function(err) {
-        warning(paste("Failed to read table:", err$message))
-        return(NULL)
-      }
-    )
+  safe_read_md_table_content <- purrr::safely(read_md_table_content, quiet = warn)
+  table_tibbles <- purrr::map(tables, function(table) {
+    table_tibble <- safe_read_md_table_content(table, warn = warn, ...)
+    return(table_tibble$result)
   })
 
-  if (length(tibbles) == 1) {
-    return(tibbles[[1]])
+  if (length(table_tibbles) == 1) {
+    return(table_tibbles[[1]])
   }
 
-  return(tibbles)
+  return(table_tibbles)
 }
