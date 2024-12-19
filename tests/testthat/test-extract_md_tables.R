@@ -1,15 +1,7 @@
 test_that("extract_md_tables can read a markdown table from file", {
   md_file <- test_path("testmd", "simple.md")
   md_table <- extract_md_tables(md_file, show_col_types = FALSE)
-
-  expected_tibble <- tibble::tribble(
-    ~Name,   ~Age, ~City,         ~Date,
-    "Alice", 30,   "New York",    lubridate::ymd("2021/01/08"),
-    "Bob",   25,   "Los Angeles", lubridate::ymd("2023/07/22"),
-    "Carol", 27,   "Chicago",     lubridate::ymd("2022/11/01")
-  )
-
-  expect_identical(expected_tibble, md_table)
+  expect_identical(test_tibble_1, md_table)
 })
 
 
@@ -143,13 +135,5 @@ test_that("extract_md_tables can read multiple messy markdown tables from new fi
 test_that("extract_md_tables handles alignment separators", {
   md_file <- test_path("testmd", "aligned.md")
   md <- extract_md_tables(md_file, show_col_types = FALSE)
-
-  expected_tibble <- tibble::tribble(
-    ~Name,   ~Age, ~City,         ~Date,
-    "Alice", 30,   "New York",    lubridate::ymd("2021/01/08"),
-    "Bob",   25,   "Los Angeles", lubridate::ymd("2023/07/22"),
-    "Carol", 27,   "Chicago",     lubridate::ymd("2022/11/01")
-  )
-
-  expect_identical(expected_tibble, md)
+  expect_identical(test_tibble_1, md)
 })
