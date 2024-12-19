@@ -119,3 +119,18 @@ test_that("read_md_table handles separator line format of Gutenberg Project's mi
 
   expect_identical(expected_tibble, md)
 })
+
+
+test_that("read_md_table handles alignment separators", {
+  md_file <- test_path("testmd", "aligned.md")
+  md <- read_md_table(md_file, show_col_types = FALSE)
+
+  expected_tibble <- tibble::tribble(
+    ~Name,   ~Age, ~City,         ~Date,
+    "Alice", 30,   "New York",    lubridate::ymd("2021/01/08"),
+    "Bob",   25,   "Los Angeles", lubridate::ymd("2023/07/22"),
+    "Carol", 27,   "Chicago",     lubridate::ymd("2022/11/01")
+  )
+
+  expect_identical(expected_tibble, md)
+})
