@@ -137,3 +137,12 @@ test_that("extract_md_tables handles alignment separators", {
   md <- extract_md_tables(md_file, show_col_types = FALSE)
   expect_identical(test_tibble_1, md)
 })
+
+
+test_that("extract_md_tables can handle complicated Terraform READMEs", {
+  md_file <- test_path("testmd", "gke-terraform.md")
+  md <- extract_md_tables(md_file, show_col_types = FALSE)
+  expect_identical(tf_tibble_1, md[[1]])
+  expect_identical(tf_tibble_2, md[[2]])
+  expect_identical(tf_tibble_3, md[[3]])
+})
