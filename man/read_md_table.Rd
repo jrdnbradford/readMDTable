@@ -11,8 +11,8 @@ read_md_table(file, warn = TRUE, ...)
 a single string or a raw vector). Files starting with \verb{http://},
 \verb{https://}, \verb{ftp://}, or \verb{ftps://} will be automatically downloaded.}
 
-\item{warn}{Boolean. Should warnings be raised about possible issues with
-the passed \code{file}? Defaults to \code{TRUE}.}
+\item{warn}{Boolean. Should a warning be raised if \code{file} does not
+appear to be a markdown table? Defaults to \code{TRUE}.}
 
 \item{...}{
   Arguments passed on to \code{\link[readr:read_delim]{readr::read_delim}}
@@ -154,17 +154,14 @@ Read a Markdown Table into a Tibble
 \code{read_md_table} reads a markdown table into a tibble from a string,
 file, or URL. It uses \code{\link[readr:read_delim]{readr::read_delim}} to efficiently read in data.
 
-\code{read_md_table} expects \code{file} to be a markdown table.  If \code{file} is a
+\code{read_md_table} expects \code{file} to be a raw markdown table.  If \code{file} is a
 markdown file that contains more than just a table or tables, the table(s)
-should be extracted with \code{\link{extract_md_tables}} before reading
-them in.
+should be read in with \code{\link{extract_md_tables}} instead.
 
 If \code{warn} is \code{TRUE}, \code{read_md_table} will warn if there are potential
 issues with the provided markdown table. Depending on the issue,
-\code{read_md_table} may still correctly read the table. For instance, if the
-row separating the header from the other rows is malformed or any rows
-have missing leading or trailing pipes, warnings will be raised but the
-data will be read correctly. \code{\link[readr:read_delim]{readr::read_delim}} will provide its own
+\code{read_md_table} may still correctly read the table.
+\code{\link[readr:read_delim]{readr::read_delim}} will provide its own
 warnings if there are potential issues.
 }
 \examples{
@@ -181,7 +178,7 @@ read_md_table(
 )
 }
 
-# Get warnings for malformed tables
+# Get warning for malformed tables
 read_md_table(
   "| Name  | Age | City        | Date       |
    |-------|-----|-------------|------------|

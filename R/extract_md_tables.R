@@ -69,13 +69,24 @@ extract_md_tables <- function(file, warn = TRUE, ...) {
     sapply(trimws) |>
     paste(collapse = "\n")
 
-  table_pattern <- "\\|(?:([^\r\n|]*)\\|)+\r?\n\\|\\s*(:?-+:?)\\s*(\\|\\s*(:?-+:?)\\s*)*\\|?\r?\n(\\|(?:([^\r\n|]*)\\|)+\r?\n)+"
-  table_matches <- gregexpr(table_pattern, content, perl = TRUE)
-  tables <- regmatches(content, table_matches)[[1]]
+  tables <- match_md_tables(content)
+  if (is.null(tables)) {
+    cli::cli_abort(
+      c(
+        "x" = "Content in provided `file` does not match markdown table regex",
+        "i" = paste("If the content is indeed a markdown table, or close enough, try",
+                    "using read_md_table.")
+      )
+    )
+  }
 
-  safe_read_md_table_content <- purrr::safely(read_md_table_content, quiet = warn)
+  safe_read_md_table_content <- purrr::safely(
+    read_md_table_content,
+    quiet = TRUE
+  )
+
   table_tibbles <- purrr::map(tables, function(table) {
-    table_tibble <- safe_read_md_table_content(table, warn = warn, ...)
+    table_tibble <- safe_read_md_table_content(table, ...)
     return(table_tibble$result)
   })
 
@@ -85,3 +96,8 @@ extract_md_tables <- function(file, warn = TRUE, ...) {
 
   return(table_tibbles)
 }
+
+
+#' @rdname extract_md_tables
+#' @export
+extract_md_table <- extract_md_tables
