@@ -30,7 +30,6 @@ test_that("read_md_table can read messy markdown table from string", {
 
 
 test_that("read_md_table can read a markdown table from URL", {
-  skip_if_offline()
   mtcars <- "https://raw.githubusercontent.com/jrdnbradford/readMDTable/main/inst/extdata/mtcars.md"
   expected_tibble <- read_md_table(mtcars, show_col_types = FALSE)
   md <- read_md_table(read_md_table_example("mtcars.md"), show_col_types = FALSE)

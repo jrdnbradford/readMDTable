@@ -146,3 +146,9 @@ test_that("extract_md_tables can handle complicated Terraform READMEs", {
   expect_identical(tf_tibble_2, md[[2]])
   expect_identical(tf_tibble_3, md[[3]])
 })
+
+
+test_that("extract_md_tables aborts when no tables are found", {
+  md_file <- test_path("testmd", "no-table.md")
+  expect_error(extract_md_tables(md_file, show_col_types = FALSE))
+})
