@@ -57,6 +57,7 @@ read_md_table <- function(file, warn = TRUE, ...) {
         "i" = "Attempting to read in content anyway"
       )
     )
+    return(read_md_table_content(content, ...))
   }
-  read_md_table_content(table %||% content, ...)
+  return(read_md_table_content(table, ...))
 }
