@@ -2,17 +2,20 @@
 % Please edit documentation in R/extract_md_tables.R
 \name{extract_md_tables}
 \alias{extract_md_tables}
+\alias{extract_md_table}
 \title{Extract Markdown Tables from Markdown Files}
 \usage{
 extract_md_tables(file, warn = TRUE, ...)
+
+extract_md_table(file, warn = TRUE, ...)
 }
 \arguments{
 \item{file}{Either a path to a file, a connection, or literal data (either
 a single string or a raw vector). Files starting with \verb{http://},
 \verb{https://}, \verb{ftp://}, or \verb{ftps://} will be automatically downloaded.}
 
-\item{warn}{Boolean. Should warnings be raised about possible issues with
-the passed \code{file}? Defaults to \code{TRUE}.}
+\item{warn}{Boolean. Should a warning be raised if \code{file} does not
+appear to be a markdown table? Defaults to \code{TRUE}.}
 
 \item{...}{
   Arguments passed on to \code{\link[readr:read_delim]{readr::read_delim}}
