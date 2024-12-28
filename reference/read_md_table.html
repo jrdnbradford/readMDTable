@@ -62,8 +62,8 @@ a single string or a raw vector). Files starting with <code>http://</code>,
 
 
 <dt id="arg-warn">warn<a class="anchor" aria-label="anchor" href="#arg-warn"></a></dt>
-<dd><p>Boolean. Should warnings be raised about possible issues with
-the passed <code>file</code>? Defaults to <code>TRUE</code>.</p></dd>
+<dd><p>Boolean. Should a warning be raised if <code>file</code> does not
+appear to be a markdown table? Defaults to <code>TRUE</code>.</p></dd>
 
 
 <dt id="arg--">...<a class="anchor" aria-label="anchor" href="#arg--"></a></dt>
@@ -229,16 +229,13 @@ only involves a subset of the rows or columns.</p>
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
     <p><code>read_md_table</code> reads a markdown table into a tibble from a string,
 file, or URL. It uses <code><a href="https://readr.tidyverse.org/reference/read_delim.html" class="external-link">readr::read_delim</a></code> to efficiently read in data.</p>
-<p><code>read_md_table</code> expects <code>file</code> to be a markdown table.  If <code>file</code> is a
+<p><code>read_md_table</code> expects <code>file</code> to be a raw markdown table.  If <code>file</code> is a
 markdown file that contains more than just a table or tables, the table(s)
-should be extracted with <code><a href="extract_md_tables.html">extract_md_tables</a></code> before reading
-them in.</p>
+should be read in with <code><a href="extract_md_tables.html">extract_md_tables</a></code> instead.</p>
 <p>If <code>warn</code> is <code>TRUE</code>, <code>read_md_table</code> will warn if there are potential
 issues with the provided markdown table. Depending on the issue,
-<code>read_md_table</code> may still correctly read the table. For instance, if the
-row separating the header from the other rows is malformed or any rows
-have missing leading or trailing pipes, warnings will be raised but the
-data will be read correctly. <code><a href="https://readr.tidyverse.org/reference/read_delim.html" class="external-link">readr::read_delim</a></code> will provide its own
+<code>read_md_table</code> may still correctly read the table.
+<code><a href="https://readr.tidyverse.org/reference/read_delim.html" class="external-link">readr::read_delim</a></code> will provide its own
 warnings if there are potential issues.</p>
     </div>
 
@@ -271,6 +268,8 @@ warnings if there are potential issues.</p>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Read from a string</span></span></span>
 <span class="r-in"><span><span class="fu">read_md_table</span><span class="op">(</span><span class="st">"| H1 | H2 | \n|-----|-----|\n| R1C1 | R1C2 |\n| R2C1 | R2C2 |"</span><span class="op">)</span></span></span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span><span style="color: #BB0000;">✖</span> Content in provided `file` does not match the readMDTable regex</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Attempting to read in content anyway</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Rows: </span><span style="color: #0000BB;">2</span> <span style="font-weight: bold;">Columns: </span><span style="color: #0000BB;">2</span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">──</span> <span style="font-weight: bold;">Column specification</span> <span style="color: #00BBBB;">────────────────────────────────────────────────────────</span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Delimiter:</span> "|"</span>
@@ -313,7 +312,7 @@ warnings if there are potential issues.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 140 more rows</span></span>
 <span class="r-in"><span><span class="co"># }</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co"># Get warnings for malformed tables</span></span></span>
+<span class="r-in"><span><span class="co"># Get warning for malformed tables</span></span></span>
 <span class="r-in"><span><span class="fu">read_md_table</span><span class="op">(</span></span></span>
 <span class="r-in"><span>  <span class="st">"| Name  | Age | City        | Date       |</span></span></span>
 <span class="r-in"><span><span class="st">   |-------|-----|-------------|------------|</span></span></span>
@@ -321,9 +320,8 @@ warnings if there are potential issues.</p>
 <span class="r-in"><span><span class="st">   | Bob   | 25  | Los Angeles | 2023/07/22 |</span></span></span>
 <span class="r-in"><span><span class="st">     Carol | 27  | Chicago     | 2022/11/01  "</span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span><span style="color: #BB0000;">✖</span> Row 5 of the table does not have the same number of cells as the header row:</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span>   Carol | 27 | Chicago | 2022/11/01</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Expected: 5 pipes, but found: 3 pipes.</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span><span style="color: #BB0000;">✖</span> Content in provided `file` does not match the readMDTable regex</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Attempting to read in content anyway</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Rows: </span><span style="color: #0000BB;">3</span> <span style="font-weight: bold;">Columns: </span><span style="color: #0000BB;">4</span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">──</span> <span style="font-weight: bold;">Column specification</span> <span style="color: #00BBBB;">────────────────────────────────────────────────────────</span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Delimiter:</span> "|"</span>
