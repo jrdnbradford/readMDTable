@@ -140,7 +140,7 @@ extract_md_tables(mtcars_file, show_col_types = FALSE)
 ### From a String
 
 ``` r
-read_md_table("| len | supp | dose |\n|---|---|---|\n| 4.2 | VC | 0.5 |")
+read_md_table("| len | supp | dose |\n|---|---|---|\n| 4.2 | VC | 0.5 |\n")
 #> Rows: 1 Columns: 3
 #> ── Column specification ────────────────────────────────────────────────────────
 #> Delimiter: "|"
@@ -211,21 +211,23 @@ extract_md_tables("https://raw.githubusercontent.com/jrdnbradford/readMDTable/ma
 
 ### Warnings and Messy Data
 
-`read_md_table` will throw warnings if there are potential issues with
-the markdown table. In many cases it will still correctly read in the
-messy data:
+`read_md_table` will throw warnings by default if there are potential
+issues with the markdown table. In many cases it will still correctly
+read in the messy data if you use `force = TRUE`:
 
 ``` r
 read_md_table(
 "  | Name   | Age |            City        | Date   |
 |-------|-----|-------------|------------|
   | Alice |      30 |           | 2021/01/08 |
-  | Bob          | 25  | Los Angeles | 2023/07/22      
-  | Carol | 27       | Chicago     |      |"
+  | Bob          | 25  | Los Angeles | 2023/07/22
+  | Carol | 27       | Chicago     |      |",
+  force = TRUE
 )
-#> Warning: ✖ Row 4 of the table does not have the same number of cells as the header row:
-#>   | Bob | 25 | Los Angeles | 2023/07/22
-#> ℹ Expected: 5 pipes, but found: 4 pipes.
+#> Warning: ✖ Content in provided `file` does not match the readMDTable regex
+#> ℹ File an issue at https://github.com/jrdnbradford/readMDTable/issues if this
+#>   warning is in error
+#> ℹ Attempting to read in content anyway
 #> Rows: 3 Columns: 4
 #> ── Column specification ────────────────────────────────────────────────────────
 #> Delimiter: "|"
@@ -243,5 +245,5 @@ read_md_table(
 #> 3 Carol    27 Chicago     NA
 ```
 
-`extract_md_tables` may fail to recognize markdown tables with improper
-formatting.
+`extract_md_tables` will fail to recognize markdown tables that do not
+fit the markdown table format.

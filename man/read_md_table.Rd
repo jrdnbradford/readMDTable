@@ -4,7 +4,7 @@
 \alias{read_md_table}
 \title{Read a Markdown Table into a Tibble}
 \usage{
-read_md_table(file, warn = TRUE, ...)
+read_md_table(file, warn = TRUE, force = FALSE, ...)
 }
 \arguments{
 \item{file}{Either a path to a file, a connection, or literal data (either
@@ -13,6 +13,10 @@ a single string or a raw vector). Files starting with \verb{http://},
 
 \item{warn}{Boolean. Should a warning be raised if \code{file} does not
 appear to be a markdown table? Defaults to \code{TRUE}.}
+
+\item{force}{Boolean. Should \code{read_md_table} attempt to read in a table
+that does not fit the regex? This param should be used carefully as it
+may cause \code{read_md_table} to return unexpected data. Defaults to \code{FALSE}.}
 
 \item{...}{
   Arguments passed on to \code{\link[readr:read_delim]{readr::read_delim}}
@@ -169,7 +173,11 @@ warnings if there are potential issues.
 read_md_table(read_md_table_example("mtcars.md"))
 
 # Read from a string
-read_md_table("| H1 | H2 | \n|-----|-----|\n| R1C1 | R1C2 |\n| R2C1 | R2C2 |")
+read_md_table(
+  "| H1 | H2 | \n|-----|-----|\n| R1C1 | R1C2 |\n| R2C1 | R2C2 |",
+  warn = FALSE,
+  force = TRUE
+)
 
 \donttest{
 # Read from a URL
@@ -184,6 +192,7 @@ read_md_table(
    |-------|-----|-------------|------------|
    | Alice | 30  | New York    | 2021/01/08 |
    | Bob   | 25  | Los Angeles | 2023/07/22 |
-     Carol | 27  | Chicago     | 2022/11/01  "
+     Carol | 27  | Chicago     | 2022/11/01  ",
+  force = TRUE
 )
 }

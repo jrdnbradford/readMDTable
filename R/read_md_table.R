@@ -20,6 +20,10 @@
 #' @param warn Boolean. Should a warning be raised if `file` does not
 #'   appear to be a markdown table? Defaults to `TRUE`.
 #'
+#' @param force Boolean. Should `read_md_table` attempt to read in a table
+#'   that does not fit the regex? This param should be used carefully as it
+#'   may cause `read_md_table` to return unexpected data. Defaults to `FALSE`.
+#'
 #' @inheritDotParams readr::read_delim -trim_ws -delim
 #'
 #' @returns A tibble created from the markdown table.
@@ -29,7 +33,11 @@
 #' read_md_table(read_md_table_example("mtcars.md"))
 #'
 #' # Read from a string
-#' read_md_table("| H1 | H2 | \n|-----|-----|\n| R1C1 | R1C2 |\n| R2C1 | R2C2 |")
+#' read_md_table(
+#'   "| H1 | H2 | \n|-----|-----|\n| R1C1 | R1C2 |\n| R2C1 | R2C2 |",
+#'   warn = FALSE,
+#'   force = TRUE
+#' )
 #'
 #' \donttest{
 #' # Read from a URL
@@ -44,10 +52,11 @@
 #'    |-------|-----|-------------|------------|
 #'    | Alice | 30  | New York    | 2021/01/08 |
 #'    | Bob   | 25  | Los Angeles | 2023/07/22 |
-#'      Carol | 27  | Chicago     | 2022/11/01  "
+#'      Carol | 27  | Chicago     | 2022/11/01  ",
+#'   force = TRUE
 #' )
 #' @export
-read_md_table <- function(file, warn = TRUE, ...) {
+read_md_table <- function(file, warn = TRUE, force = FALSE, ...) {
   content <- source_file(file)
   table <- match_md_tables(content)
   if (is.null(table)) {
@@ -55,11 +64,20 @@ read_md_table <- function(file, warn = TRUE, ...) {
       cli::cli_warn(
         c(
           "x" = "Content in provided `file` does not match the readMDTable regex",
-          "i" = "Attempting to read in content anyway"
+          "i" = "File an issue at https://github.com/jrdnbradford/readMDTable/issues if this warning is in error"
         )
       )
     }
-    return(read_md_table_content(content, ...))
+    if (force) {
+      if (warn) {
+        cli::cli_alert_info(
+          c(
+            "i" = "Attempting to read in content anyway"
+          )
+        )
+      }
+      return(read_md_table_content(content, ...))
+    }
   }
   return(read_md_table_content(table, ...))
 }
