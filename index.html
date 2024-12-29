@@ -166,7 +166,7 @@
 <h3 id="from-a-string">From a String<a class="anchor" aria-label="anchor" href="#from-a-string"></a>
 </h3>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="reference/read_md_table.html">read_md_table</a></span><span class="op">(</span><span class="st">"| len | supp | dose |\n|---|---|---|\n| 4.2 | VC | 0.5 |"</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="fu"><a href="reference/read_md_table.html">read_md_table</a></span><span class="op">(</span><span class="st">"| len | supp | dose |\n|---|---|---|\n| 4.2 | VC | 0.5 |\n"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Rows: 1 Columns: 3</span></span>
 <span><span class="co">#&gt; ── Column specification ────────────────────────────────────────────────────────</span></span>
 <span><span class="co">#&gt; Delimiter: "|"</span></span>
@@ -235,18 +235,20 @@
 <div class="section level3">
 <h3 id="warnings-and-messy-data">Warnings and Messy Data<a class="anchor" aria-label="anchor" href="#warnings-and-messy-data"></a>
 </h3>
-<p><code>read_md_table</code> will throw warnings if there are potential issues with the markdown table. In many cases it will still correctly read in the messy data:</p>
+<p><code>read_md_table</code> will throw warnings by default if there are potential issues with the markdown table. In many cases it will still correctly read in the messy data if you use <code>force = TRUE</code>:</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="reference/read_md_table.html">read_md_table</a></span><span class="op">(</span></span>
 <span><span class="st">"  | Name   | Age |            City        | Date   |</span></span>
 <span><span class="st">|-------|-----|-------------|------------|</span></span>
 <span><span class="st">  | Alice |      30 |           | 2021/01/08 |</span></span>
-<span><span class="st">  | Bob          | 25  | Los Angeles | 2023/07/22      </span></span>
-<span><span class="st">  | Carol | 27       | Chicago     |      |"</span></span>
+<span><span class="st">  | Bob          | 25  | Los Angeles | 2023/07/22</span></span>
+<span><span class="st">  | Carol | 27       | Chicago     |      |"</span>,</span>
+<span>  force <span class="op">=</span> <span class="cn">TRUE</span></span>
 <span><span class="op">)</span></span>
-<span><span class="co">#&gt; Warning: ✖ Row 4 of the table does not have the same number of cells as the header row:</span></span>
-<span><span class="co">#&gt;   | Bob | 25 | Los Angeles | 2023/07/22</span></span>
-<span><span class="co">#&gt; ℹ Expected: 5 pipes, but found: 4 pipes.</span></span>
+<span><span class="co">#&gt; Warning: ✖ Content in provided `file` does not match the readMDTable regex</span></span>
+<span><span class="co">#&gt; ℹ File an issue at https://github.com/jrdnbradford/readMDTable/issues if this</span></span>
+<span><span class="co">#&gt;   warning is in error</span></span>
+<span><span class="co">#&gt; ℹ Attempting to read in content anyway</span></span>
 <span><span class="co">#&gt; Rows: 3 Columns: 4</span></span>
 <span><span class="co">#&gt; ── Column specification ────────────────────────────────────────────────────────</span></span>
 <span><span class="co">#&gt; Delimiter: "|"</span></span>
@@ -262,7 +264,7 @@
 <span><span class="co">#&gt; 1 Alice    30 &lt;NA&gt;        2021-01-08</span></span>
 <span><span class="co">#&gt; 2 Bob      25 Los Angeles 2023-07-22</span></span>
 <span><span class="co">#&gt; 3 Carol    27 Chicago     NA</span></span></code></pre></div>
-<p><code>extract_md_tables</code> may fail to recognize markdown tables with improper formatting.</p>
+<p><code>extract_md_tables</code> will fail to recognize markdown tables that do not fit the markdown table format.</p>
 </div>
 </div>
 </div>
