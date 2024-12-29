@@ -63,7 +63,7 @@
 #' # Display the 2nd table in the list
 #' tables[[2]]
 #' @export
-extract_md_tables <- function(file, warn = TRUE, ...) {
+extract_md_tables <- function(file, ...) {
   content <- source_file(file) |>
     (\(x) stringr::str_split(x, "\n")[[1]])() |>
     sapply(trimws) |>
