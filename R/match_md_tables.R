@@ -15,7 +15,7 @@ match_md_tables <- function(content) {
   table_pattern <- paste0(
     "\\|(?:([^\r\n|]*)\\|)+\r?\n",                        # Header
     "\\|\\s*(:?-+:?)\\s*(\\|\\s*(:?-+:?)\\s*)*\\|?\r?\n", # Separator
-    "(\\|(?:([^\r\n|]*)\\|)+\r?\n)+"                      # Data
+    "(\\|(?:([^\\r\\n|]*)\\|)+(\\r?\\n)?)+"               # Data
   )
 
   table_matches <- gregexpr(table_pattern, content, perl = TRUE)
