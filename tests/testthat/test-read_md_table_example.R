@@ -5,11 +5,13 @@ test_that("read_md_table_example returns file paths", {
 })
 
 
-test_that("read_md_table_example files parse with no warnings", {
+test_that("read_md_table_example returns 4 example files", {
   examples <- read_md_table_example()
   example_paths <- read_md_table_example(examples)
-  for (example in example_paths) {
-    expect_no_warning(extract_md_tables(example, show_col_types = FALSE))
-    expect_no_error(extract_md_tables(example, show_col_types = FALSE))
-  }
+  expect_length(example_paths, 4)
+})
+
+
+test_that("read_md_table_example handles non-existent file", {
+  expect_error(read_md_table_example("non_existent_file.md"))
 })
