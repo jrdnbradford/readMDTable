@@ -1,6 +1,10 @@
 # readMDTable (development version)
 
 * Fixed a typo in a warning message (#59)
+* `extract_md_table` alias added for `extract_md_tables` (#69)
+* Improvements to markdown table matching (#76)
+* `force` param added for `read_md_table` (#74)
+* Warnings now rely entirely on matching main regex (#69)
 
 # readMDTable 0.2.0
 
@@ -16,7 +20,7 @@
 * Fixed an issue on Windows where a warning was incorrectly raised on valid separator lines (#28)
 * Move from {httr} to {httr2} (#26)
 * Added example with warning for `read_md_table` (#20)
-* Fixed an issue with rendering the PDF manual due to unicode characters 
+* Fixed an issue with rendering the PDF manual due to unicode characters
 
 # readMDTable 0.1.0
 
