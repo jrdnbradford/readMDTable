@@ -12,7 +12,12 @@
 #'
 #' @noRd
 match_md_tables <- function(content) {
-  table_pattern <- "\\|(?:([^\r\n|]*)\\|)+\r?\n\\|\\s*(:?-+:?)\\s*(\\|\\s*(:?-+:?)\\s*)*\\|?\r?\n(\\|(?:([^\r\n|]*)\\|)+\r?\n)+"
+  table_pattern <- paste0(
+    "\\|(?:([^\r\n|]*)\\|)+\r?\n",                        # Header
+    "\\|\\s*(:?-+:?)\\s*(\\|\\s*(:?-+:?)\\s*)*\\|?\r?\n", # Separator
+    "(\\|(?:([^\r\n|]*)\\|)+\r?\n)+"                      # Data
+  )
+
   table_matches <- gregexpr(table_pattern, content, perl = TRUE)
   tables <- regmatches(content, table_matches)[[1]]
   if (length(tables) == 0) {
