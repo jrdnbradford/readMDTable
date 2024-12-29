@@ -51,12 +51,14 @@ read_md_table <- function(file, warn = TRUE, ...) {
   content <- source_file(file)
   table <- match_md_tables(content)
   if (is.null(table)) {
-    cli::cli_warn(
-      c(
-        "x" = "Content in provided `file` does not match the readMDTable regex",
-        "i" = "Attempting to read in content anyway"
+    if (warn) {
+      cli::cli_warn(
+        c(
+          "x" = "Content in provided `file` does not match the readMDTable regex",
+          "i" = "Attempting to read in content anyway"
+        )
       )
-    )
+    }
     return(read_md_table_content(content, ...))
   }
   return(read_md_table_content(table, ...))
