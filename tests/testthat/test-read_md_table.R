@@ -14,16 +14,15 @@ test_that("read_md_table can handle missing values in markdown table from file",
 
 test_that("read_md_table can read messy markdown table from file", {
   md_file <- test_path("testmd", "messy.md")
-  expect_warning(
-    md <- read_md_table(md_file, show_col_types = FALSE)
+  expect_snapshot(
+    md <- read_md_table(md_file, force = TRUE, show_col_types = FALSE)
   )
   expect_identical(test_tibble_2, md)
 })
 
 
 test_that("read_md_table can read messy markdown table from string", {
-  md_string <- I("| Name  | Age | City        | Date       |\n|-------|-----|-------------|------------|\n| Alice | 30  | New York    | 2021/01/08 |\n| Bob   | 25  | Los Angeles | 2023/07/22 |\n| Carol | 27  | Chicago     | 2022/11/01 |
-")
+  md_string <- "| Name  | Age | City        | Date       |\n|-------|-----|-------------|------------|\n| Alice | 30  | New York    | 2021/01/08 |\n| Bob   | 25  | Los Angeles | 2023/07/22 |\n| Carol | 27  | Chicago     | 2022/11/01 |\n"
   md <- read_md_table(md_string, show_col_types = FALSE)
   expect_identical(test_tibble_1, md)
 })
@@ -41,8 +40,8 @@ test_that("read_md_table handles separator line format of Gutenberg Project's mi
   # Essentially a reverse dependency check for https://github.com/ropensci/gutenbergr
   # https://www.gutenberg.org/MIRRORS.ALL
   md_file <- test_path("testmd", "gutenberg.md")
-  expect_warning(
-    md <- read_md_table(md_file, show_col_types = FALSE)
+  expect_snapshot(
+    md <- read_md_table(md_file, force = TRUE, show_col_types = FALSE)
   )
   expect_identical(test_tibble_1, md)
 })
@@ -52,4 +51,18 @@ test_that("read_md_table handles alignment separators", {
   md_file <- test_path("testmd", "aligned.md")
   md <- read_md_table(md_file, show_col_types = FALSE)
   expect_identical(test_tibble_1, md)
+})
+
+
+test_that("read_md_table handles file with no tables", {
+  md_file <- test_path("testmd", "no-table.md")
+  expect_warning(
+    expect_error(
+      md <- read_md_table(md_file, show_col_types = FALSE)
+    )
+  )
+
+  expect_snapshot(
+    md <- read_md_table(md_file, force = TRUE, show_col_types = FALSE)
+  )
 })
