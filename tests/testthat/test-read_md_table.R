@@ -28,6 +28,13 @@ test_that("read_md_table can read messy markdown table from string", {
 })
 
 
+test_that("read_md_table can read simple markdown table from string without ending newline", {
+  md_string <- "| len | supp | dose |\n|---|---|---|\n| 4.2 | VC | 0.5 |"
+  md <- read_md_table(md_string, show_col_types = FALSE)
+  expect_identical(test_tibble_3, md)
+})
+
+
 test_that("read_md_table can read a markdown table from URL", {
   mtcars <- "https://raw.githubusercontent.com/jrdnbradford/readMDTable/main/inst/extdata/mtcars.md"
   expected_tibble <- read_md_table(mtcars, show_col_types = FALSE)
