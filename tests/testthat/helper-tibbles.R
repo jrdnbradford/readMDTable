@@ -12,6 +12,11 @@ test_tibble_2 <- tibble::tribble(
   "Carol", 27,   "Chicago",     NA
 )
 
+test_tibble_3 <- tibble::tribble(
+  ~len,   ~supp, ~dose,
+  4.2,    "VC",   0.5
+)
+
 # Terraform tibbles created with dput
 tf_tibble_1 <- structure(
   list(
