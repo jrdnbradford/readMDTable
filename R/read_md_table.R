@@ -63,20 +63,29 @@ read_md_table <- function(file, warn = TRUE, force = FALSE, ...) {
     if (warn) {
       cli::cli_warn(
         c(
-          "x" = "Content in provided `file` does not match the readMDTable regex",
-          "i" = "File an issue at https://github.com/jrdnbradford/readMDTable/issues if this warning is in error"
+          "x" = "Content in provided `file` does not match the readMDTable regex.",
+          "i" = "File an issue at https://github.com/jrdnbradford/readMDTable/issues if this warning is in error."
         )
       )
     }
     if (force) {
       if (warn) {
-        cli::cli_alert_info(
+        cli::cli_warn(
           c(
-            "i" = "Attempting to read in content anyway"
+            "i" = "Attempting to read in content does not match the readMDTable regex."
           )
         )
       }
       return(read_md_table_content(content, ...))
+    } else {
+      if (warn) {
+        cli::cli_warn(
+          c(
+            "i" = "Cannot read content. Set `force = TRUE` to attempt reading anyway. This may return unexpected results."
+          )
+        )
+      }
+      return(NULL)
     }
   }
   return(read_md_table_content(table, ...))

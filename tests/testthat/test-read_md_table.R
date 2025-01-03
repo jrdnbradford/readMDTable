@@ -64,12 +64,11 @@ test_that("read_md_table handles alignment separators", {
 test_that("read_md_table handles file with no tables", {
   md_file <- test_path("testmd", "no-table.md")
   expect_warning(
-    expect_error(
-      md <- read_md_table(md_file, show_col_types = FALSE)
+    expect_warning(
+      read_md_table(md_file, force = FALSE, show_col_types = FALSE)
     )
   )
-
-  expect_snapshot(
-    md <- read_md_table(md_file, force = TRUE, show_col_types = FALSE)
+  expect_null(
+    read_md_table(md_file, force = FALSE, warn = FALSE, show_col_types = FALSE)
   )
 })
