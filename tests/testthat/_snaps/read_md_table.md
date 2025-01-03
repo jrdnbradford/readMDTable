@@ -4,10 +4,10 @@
       md <- read_md_table(md_file, force = TRUE, show_col_types = FALSE)
     Condition
       Warning:
-      x Content in provided `file` does not match the readMDTable regex
-      i File an issue at https://github.com/jrdnbradford/readMDTable/issues if this warning is in error
-    Message
-      i Attempting to read in content anyway
+      x Content in provided `file` does not match the readMDTable regex.
+      i File an issue at https://github.com/jrdnbradford/readMDTable/issues if this warning is in error.
+      Warning:
+      i Attempting to read in content does not match the readMDTable regex.
 
 # read_md_table handles separator line format of Gutenberg Project's mirror table
 
@@ -15,19 +15,8 @@
       md <- read_md_table(md_file, force = TRUE, show_col_types = FALSE)
     Condition
       Warning:
-      x Content in provided `file` does not match the readMDTable regex
-      i File an issue at https://github.com/jrdnbradford/readMDTable/issues if this warning is in error
-    Message
-      i Attempting to read in content anyway
-
-# read_md_table handles file with no tables
-
-    Code
-      md <- read_md_table(md_file, force = TRUE, show_col_types = FALSE)
-    Condition
+      x Content in provided `file` does not match the readMDTable regex.
+      i File an issue at https://github.com/jrdnbradford/readMDTable/issues if this warning is in error.
       Warning:
-      x Content in provided `file` does not match the readMDTable regex
-      i File an issue at https://github.com/jrdnbradford/readMDTable/issues if this warning is in error
-    Message
-      i Attempting to read in content anyway
+      i Attempting to read in content does not match the readMDTable regex.
 
