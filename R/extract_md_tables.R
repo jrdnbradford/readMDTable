@@ -1,9 +1,7 @@
 #' @title Extract Markdown Tables from Markdown Files
 #'
-#' @details `extract_md_tables` attempts to capture all the markdown
-#'   tables from `file` utilizing a regular expression and therefore
-#'   requires that the tables follow the markdown table format much
-#'   more closely than `readMDTable::read_md_table`.
+#' @details `extract_md_tables` captures all the markdown tables
+#'   from `file` and returns a tibble or list of tibbles
 #'
 #' @inheritParams read_md_table
 #' @inheritDotParams readr::read_delim -trim_ws -delim
@@ -74,8 +72,8 @@ extract_md_tables <- function(file, ...) {
     cli::cli_abort(
       c(
         "x" = "Content in provided `file` does not match markdown table regex",
-        "i" = paste("If the content is indeed a markdown table, or close enough, try",
-                    "using read_md_table.")
+        "i" = paste("If the content is indeed a markdown table, or close",
+                    "enough, try using `read_md_table`.")
       )
     )
   }

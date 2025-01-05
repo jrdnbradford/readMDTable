@@ -149,7 +149,7 @@ Learn more in \code{\link[readr:should_read_lazy]{should_read_lazy()}} and in th
   }}
 }
 \value{
-A tibble created from the markdown table.
+A tibble created from the markdown table, or \code{NULL}.
 }
 \description{
 Read a Markdown Table into a Tibble

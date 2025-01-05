@@ -39,13 +39,8 @@ install.packages("readMDTable")
 Install the development version from GitHub using pak:
 
 ``` r
+# install.packages("pak")
 pak::pkg_install("jrdnbradford/readMDTable")
-```
-
-or devtools:
-
-``` r
-devtools::install_github("jrdnbradford/readMDTable")
 ```
 
 ## Usage
@@ -224,10 +219,10 @@ read_md_table(
   | Carol | 27       | Chicago     |      |",
   force = TRUE
 )
-#> Warning: ✖ Content in provided `file` does not match the readMDTable regex
+#> Warning: ✖ Content in provided `file` does not match the readMDTable regex.
 #> ℹ File an issue at https://github.com/jrdnbradford/readMDTable/issues if this
-#>   warning is in error
-#> ℹ Attempting to read in content anyway
+#>   warning is in error.
+#> Warning: ℹ Attempting to read in content does not match the readMDTable regex.
 #> Rows: 3 Columns: 4
 #> ── Column specification ────────────────────────────────────────────────────────
 #> Delimiter: "|"

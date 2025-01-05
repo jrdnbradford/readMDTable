@@ -36,12 +36,8 @@ install.packages("readMDTable")
 
 Install the development version from GitHub using pak:
 ```{r pak-install, eval=FALSE}
+# install.packages("pak")
 pak::pkg_install("jrdnbradford/readMDTable")
-```
-
-or devtools:
-```{r devtools-install, eval=FALSE}
-devtools::install_github("jrdnbradford/readMDTable")
 ```
 
 ## Usage

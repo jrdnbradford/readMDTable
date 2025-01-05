@@ -26,7 +26,7 @@
 #'
 #' @inheritDotParams readr::read_delim -trim_ws -delim
 #'
-#' @returns A tibble created from the markdown table.
+#' @returns A tibble created from the markdown table, or `NULL`.
 #'
 #' @examples
 #' # Read from a file
@@ -63,8 +63,11 @@ read_md_table <- function(file, warn = TRUE, force = FALSE, ...) {
     if (warn) {
       cli::cli_warn(
         c(
-          "x" = "Content in provided `file` does not match the readMDTable regex.",
-          "i" = "File an issue at https://github.com/jrdnbradford/readMDTable/issues if this warning is in error."
+          "x" = paste("Content in provided `file` does",
+                      "not match the readMDTable regex."),
+          "i" = paste("File an issue at",
+                      "https://github.com/jrdnbradford/readMDTable/issues",
+                      "if this warning is in error.")
         )
       )
     }
@@ -72,7 +75,8 @@ read_md_table <- function(file, warn = TRUE, force = FALSE, ...) {
       if (warn) {
         cli::cli_warn(
           c(
-            "i" = "Attempting to read in content does not match the readMDTable regex."
+            "i" = paste("Attempting to read in content",
+                        "does not match the readMDTable regex.")
           )
         )
       }
@@ -81,7 +85,9 @@ read_md_table <- function(file, warn = TRUE, force = FALSE, ...) {
       if (warn) {
         cli::cli_warn(
           c(
-            "i" = "Cannot read content. Set `force = TRUE` to attempt reading anyway. This may return unexpected results."
+            "i" = paste("Cannot read content.",
+                        "Set `force = TRUE` to attempt reading anyway.",
+                        "This may return unexpected results.")
           )
         )
       }
