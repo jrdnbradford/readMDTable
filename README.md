@@ -26,17 +26,21 @@ URL to tibbles.
 Many sites (like GitHub) convert markdown tables into HTML tables,
 making both available. See the vignette [Benchmarking Against
 rvest](https://jrdnbradford.github.io/readMDTable/articles/rvest-benchmarks.html)
-to help determine if you should use readMDTable or rvest.
+to help determine if you should use readMDTable or
+[rvest](https://rvest.tidyverse.org/).
 
 ## Installation
 
-Install the latest CRAN release with:
+Install the latest
+[CRAN](https://CRAN.R-project.org/package=readMDTable) release with:
 
 ``` r
 install.packages("readMDTable")
 ```
 
-Install the development version from GitHub using pak:
+Install the development version from
+[GitHub](https://github.com/jrdnbradford/readMDTable) using
+[pak](https://github.com/r-lib/pak):
 
 ``` r
 # install.packages("pak")
