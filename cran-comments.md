@@ -1,5 +1,3 @@
-## R CMD check results
+## R CMD check results for 0.3.0
 
-0 errors | 0 warnings | 0 notes
-
-* I have updated the `description` in `DESCRIPTION` at the request of CRAN personnel
+0 errors ✔ | 0 warnings ✔ | 0 notes ✔

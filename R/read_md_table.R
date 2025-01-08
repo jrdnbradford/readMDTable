@@ -9,15 +9,15 @@
 #'
 #'   If `warn` is `TRUE`, `read_md_table` will warn if there are potential
 #'   issues with the provided markdown table. Depending on the issue,
-#'   `read_md_table` may still correctly read the table.
-#'   [`readr::read_delim`] will provide its own
-#'   warnings if there are potential issues.
+#'   `read_md_table` may still correctly read the table if `force` is
+#'   `TRUE.` [`readr::read_delim`] will provide its own warnings if
+#'   there are potential issues.
 #'
 #' @param file Either a path to a file, a connection, or literal data (either
 #'   a single string or a raw vector). Files starting with `http://`,
 #'   `https://`, `ftp://`, or `ftps://` will be automatically downloaded.
 #'
-#' @param warn Boolean. Should a warning be raised if `file` does not
+#' @param warn Boolean. Should warnings be raised if `file` does not
 #'   appear to be a markdown table? Defaults to `TRUE`.
 #'
 #' @param force Boolean. Should `read_md_table` attempt to read in a table
@@ -26,7 +26,7 @@
 #'
 #' @inheritDotParams readr::read_delim -trim_ws -delim
 #'
-#' @returns A tibble created from the markdown table.
+#' @returns A tibble created from the markdown table, or `NULL`.
 #'
 #' @examples
 #' # Read from a file
@@ -63,8 +63,11 @@ read_md_table <- function(file, warn = TRUE, force = FALSE, ...) {
     if (warn) {
       cli::cli_warn(
         c(
-          "x" = "Content in provided `file` does not match the readMDTable regex.",
-          "i" = "File an issue at https://github.com/jrdnbradford/readMDTable/issues if this warning is in error."
+          "x" = paste("Content in provided `file` does",
+                      "not match the readMDTable regex."),
+          "i" = paste("File an issue at",
+                      "https://github.com/jrdnbradford/readMDTable/issues",
+                      "if this warning is in error.")
         )
       )
     }
@@ -72,7 +75,8 @@ read_md_table <- function(file, warn = TRUE, force = FALSE, ...) {
       if (warn) {
         cli::cli_warn(
           c(
-            "i" = "Attempting to read in content does not match the readMDTable regex."
+            "i" = paste("Attempting to read in content",
+                        "does not match the readMDTable regex.")
           )
         )
       }
@@ -81,7 +85,9 @@ read_md_table <- function(file, warn = TRUE, force = FALSE, ...) {
       if (warn) {
         cli::cli_warn(
           c(
-            "i" = "Cannot read content. Set `force = TRUE` to attempt reading anyway. This may return unexpected results."
+            "i" = paste("Cannot read content.",
+                        "Set `force = TRUE` to attempt reading anyway.",
+                        "This may return unexpected results.")
           )
         )
       }

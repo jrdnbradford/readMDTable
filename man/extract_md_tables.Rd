@@ -151,10 +151,8 @@ A tibble or list of tibbles.
 Extract Markdown Tables from Markdown Files
 }
 \details{
-\code{extract_md_tables} attempts to capture all the markdown
-tables from \code{file} utilizing a regular expression and therefore
-requires that the tables follow the markdown table format much
-more closely than \code{readMDTable::read_md_table}.
+\code{extract_md_tables} captures all the markdown tables
+from \code{file} and returns a tibble or list of tibbles
 }
 \examples{
 md <-

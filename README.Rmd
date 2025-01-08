@@ -25,23 +25,19 @@ knitr::opts_chunk$set(
 
 readMDTable helps convert raw markdown tables from a string, file, or URL to tibbles.
 
-Many sites (like GitHub) convert markdown tables into HTML tables, making both available. See the vignette [Benchmarking Against rvest](https://jrdnbradford.github.io/readMDTable/articles/rvest-benchmarks.html) to help determine if you should use readMDTable or rvest.
+Many sites (like GitHub) convert markdown tables into HTML tables, making both available. See the vignette [Benchmarking Against rvest](https://jrdnbradford.github.io/readMDTable/articles/rvest-benchmarks.html) to help determine if you should use readMDTable or [rvest](https://rvest.tidyverse.org/).
 
 ## Installation
 
-Install the latest CRAN release with:
+Install the latest [CRAN](https://CRAN.R-project.org/package=readMDTable) release with:
 ```{r cran-install, eval=FALSE}
 install.packages("readMDTable")
 ```
 
-Install the development version from GitHub using pak:
+Install the development version from [GitHub](https://github.com/jrdnbradford/readMDTable) using [pak](https://github.com/r-lib/pak):
 ```{r pak-install, eval=FALSE}
+# install.packages("pak")
 pak::pkg_install("jrdnbradford/readMDTable")
-```
-
-or devtools:
-```{r devtools-install, eval=FALSE}
-devtools::install_github("jrdnbradford/readMDTable")
 ```
 
 ## Usage

@@ -1,9 +1,9 @@
-# readMDTable (development version)
+# readMDTable 0.3.0
 
 * BREAKING CHANGE: `force` param added for `read_md_table` (#74)
 * Fixed a typo in a warning message (#59)
 * `extract_md_table` alias added for `extract_md_tables` (#69)
-* Improvements to markdown table matching (#76)
+* Improvements to markdown table matching (#76, #81)
 * Warnings now rely entirely on matching main regex (#69)
 
 # readMDTable 0.2.0

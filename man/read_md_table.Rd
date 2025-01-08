@@ -11,7 +11,7 @@ read_md_table(file, warn = TRUE, force = FALSE, ...)
 a single string or a raw vector). Files starting with \verb{http://},
 \verb{https://}, \verb{ftp://}, or \verb{ftps://} will be automatically downloaded.}
 
-\item{warn}{Boolean. Should a warning be raised if \code{file} does not
+\item{warn}{Boolean. Should warnings be raised if \code{file} does not
 appear to be a markdown table? Defaults to \code{TRUE}.}
 
 \item{force}{Boolean. Should \code{read_md_table} attempt to read in a table
@@ -149,7 +149,7 @@ Learn more in \code{\link[readr:should_read_lazy]{should_read_lazy()}} and in th
   }}
 }
 \value{
-A tibble created from the markdown table.
+A tibble created from the markdown table, or \code{NULL}.
 }
 \description{
 Read a Markdown Table into a Tibble
@@ -164,9 +164,9 @@ should be read in with \code{\link{extract_md_tables}} instead.
 
 If \code{warn} is \code{TRUE}, \code{read_md_table} will warn if there are potential
 issues with the provided markdown table. Depending on the issue,
-\code{read_md_table} may still correctly read the table.
-\code{\link[readr:read_delim]{readr::read_delim}} will provide its own
-warnings if there are potential issues.
+\code{read_md_table} may still correctly read the table if \code{force} is
+\code{TRUE.} \code{\link[readr:read_delim]{readr::read_delim}} will provide its own warnings if
+there are potential issues.
 }
 \examples{
 # Read from a file
