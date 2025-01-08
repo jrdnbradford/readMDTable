@@ -38,7 +38,7 @@
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="../logo.png" class="logo" alt=""><h1>Extract Markdown Tables from Markdown Files</h1>
-      <small class="dont-index">Source: <a href="https://github.com/jrdnbradford/readMDTable/blob/main/R/extract_md_tables.R" class="external-link"><code>R/extract_md_tables.R</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/jrdnbradford/readMDTable/blob/CRAN-v0.3.0/R/extract_md_tables.R" class="external-link"><code>R/extract_md_tables.R</code></a></small>
       <div class="d-none name"><code>extract_md_tables.Rd</code></div>
     </div>
 
@@ -224,10 +224,8 @@ only involves a subset of the rows or columns.</p>
     </div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
-    <p><code>extract_md_tables</code> attempts to capture all the markdown
-tables from <code>file</code> utilizing a regular expression and therefore
-requires that the tables follow the markdown table format much
-more closely than <code><a href="read_md_table.html">readMDTable::read_md_table</a></code>.</p>
+    <p><code>extract_md_tables</code> captures all the markdown tables
+from <code>file</code> and returns a tibble or list of tibbles</p>
     </div>
 
     <div class="section level2">
