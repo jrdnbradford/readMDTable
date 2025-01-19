@@ -1,6 +1,7 @@
 # readMDTable (development version)
 
 * Fixed a typo in a `read_md_table` warning message
+* Updated documentation for internal and exported functions
 
 # readMDTable 0.3.0
 
