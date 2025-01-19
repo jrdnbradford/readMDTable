@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">readMDTable</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.3.0.9001</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.3.0.9002</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -225,7 +225,7 @@ only involves a subset of the rows or columns.</p>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
     <p><code>extract_md_tables</code> captures all the markdown tables
-from <code>file</code> and returns a tibble or list of tibbles</p>
+from <code>file</code> and returns a tibble or list of tibbles.</p>
     </div>
 
     <div class="section level2">
@@ -233,9 +233,11 @@ from <code>file</code> and returns a tibble or list of tibbles</p>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">md</span> <span class="op">&lt;-</span></span></span>
 <span class="r-in"><span><span class="st">"# Heading 1</span></span></span>
 <span class="r-in"><span><span class="st"></span></span></span>
-<span class="r-in"><span><span class="st">We'll split the `mtcars` dataset for testing `extract_md_tables`.</span></span></span>
+<span class="r-in"><span><span class="st">This example splits the `mtcars` dataset into several different tables</span></span></span>
+<span class="r-in"><span><span class="st">with the same header.</span></span></span>
 <span class="r-in"><span><span class="st"></span></span></span>
-<span class="r-in"><span><span class="st">## Heading 2</span></span></span>
+<span class="r-in"><span><span class="st">## Table 1</span></span></span>
+<span class="r-in"><span><span class="st">The first table contains the initial four rows of the `mtcars` dataset.</span></span></span>
 <span class="r-in"><span><span class="st"></span></span></span>
 <span class="r-in"><span><span class="st">|model              |mpg |cyl|disp |hp |drat|wt   |qsec |vs |am |gear|carb|</span></span></span>
 <span class="r-in"><span><span class="st">|-------------------|----|---|-----|---|----|-----|-----|---|---|----|----|</span></span></span>
@@ -244,12 +246,8 @@ from <code>file</code> and returns a tibble or list of tibbles</p>
 <span class="r-in"><span><span class="st">|Datsun 710         |22.8|4  |108  |93 |3.85|2.32 |18.61|1  |1  |4   |1   |</span></span></span>
 <span class="r-in"><span><span class="st">|Hornet 4 Drive     |21.4|6  |258  |110|3.08|3.215|19.44|1  |0  |3   |1   |</span></span></span>
 <span class="r-in"><span><span class="st"></span></span></span>
-<span class="r-in"><span><span class="st">## Another Heading 2</span></span></span>
-<span class="r-in"><span><span class="st">Another paragraph.</span></span></span>
-<span class="r-in"><span><span class="st"></span></span></span>
-<span class="r-in"><span><span class="st">With some lines.</span></span></span>
-<span class="r-in"><span><span class="st"></span></span></span>
-<span class="r-in"><span><span class="st">Like this one.</span></span></span>
+<span class="r-in"><span><span class="st">## Table 2</span></span></span>
+<span class="r-in"><span><span class="st">The second table includes the next four rows of the dataset.</span></span></span>
 <span class="r-in"><span><span class="st"></span></span></span>
 <span class="r-in"><span><span class="st">|model              |mpg |cyl|disp |hp |drat|wt   |qsec |vs |am |gear|carb|</span></span></span>
 <span class="r-in"><span><span class="st">|-------------------|----|---|-----|---|----|-----|-----|---|---|----|----|</span></span></span>
@@ -258,7 +256,8 @@ from <code>file</code> and returns a tibble or list of tibbles</p>
 <span class="r-in"><span><span class="st">|Duster 360         |14.3|8  |360  |245|3.21|3.57 |15.84|0  |0  |3   |4   |</span></span></span>
 <span class="r-in"><span><span class="st">|Merc 240D          |24.4|4  |146.7|62 |3.69|3.19 |20   |1  |0  |4   |2   |</span></span></span>
 <span class="r-in"><span><span class="st"></span></span></span>
-<span class="r-in"><span><span class="st">Just some paragraph text here.</span></span></span>
+<span class="r-in"><span><span class="st">## Tables 3 and 4</span></span></span>
+<span class="r-in"><span><span class="st">The last two tables contain four and six rows, respectively.</span></span></span>
 <span class="r-in"><span><span class="st"></span></span></span>
 <span class="r-in"><span><span class="st">|model              |mpg |cyl|disp |hp |drat|wt   |qsec |vs |am |gear|carb|</span></span></span>
 <span class="r-in"><span><span class="st">|-------------------|----|---|-----|---|----|-----|-----|---|---|----|----|</span></span></span>
@@ -274,7 +273,10 @@ from <code>file</code> and returns a tibble or list of tibbles</p>
 <span class="r-in"><span><span class="st">|Ford Pantera L     |15.8|8  |351  |264|4.22|3.17 |14.5 |0  |1  |5   |4   |</span></span></span>
 <span class="r-in"><span><span class="st">|Ferrari Dino       |19.7|6  |145  |175|3.62|2.77 |15.5 |0  |1  |5   |6   |</span></span></span>
 <span class="r-in"><span><span class="st">|Maserati Bora      |15  |8  |301  |335|3.54|3.57 |14.6 |0  |1  |5   |8   |</span></span></span>
-<span class="r-in"><span><span class="st">|Volvo 142E         |21.4|4  |121  |109|4.11|2.78 |18.6 |1  |1  |4   |2   |"</span></span></span>
+<span class="r-in"><span><span class="st">|Volvo 142E         |21.4|4  |121  |109|4.11|2.78 |18.6 |1  |1  |4   |2   |</span></span></span>
+<span class="r-in"><span><span class="st"></span></span></span>
+<span class="r-in"><span><span class="st"># Conclusion</span></span></span>
+<span class="r-in"><span><span class="st">These four markdown tables contain the classic `mtcars` dataset."</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Extract tables from the markdown file</span></span></span>
 <span class="r-in"><span><span class="va">tables</span> <span class="op">&lt;-</span> <span class="fu">extract_md_tables</span><span class="op">(</span><span class="va">md</span><span class="op">)</span></span></span>
