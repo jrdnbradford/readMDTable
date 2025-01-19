@@ -75,7 +75,7 @@ read_md_table <- function(file, warn = TRUE, force = FALSE, ...) {
       if (warn) {
         cli::cli_warn(
           c(
-            "i" = paste("Attempting to read in content",
+            "i" = paste("Attempting to read in content that",
                         "does not match the readMDTable regex.")
           )
         )

@@ -1,5 +1,7 @@
 # readMDTable (development version)
 
+* Fixed a typo in a `read_md_table` warning message
+
 # readMDTable 0.3.0
 
 * BREAKING CHANGE: `force` param added for `read_md_table` (#74)
