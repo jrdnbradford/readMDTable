@@ -152,15 +152,17 @@ Extract Markdown Tables from Markdown Files
 }
 \details{
 \code{extract_md_tables} captures all the markdown tables
-from \code{file} and returns a tibble or list of tibbles
+from \code{file} and returns a tibble or list of tibbles.
 }
 \examples{
 md <-
 "# Heading 1
 
-We'll split the `mtcars` dataset for testing `extract_md_tables`.
+This example splits the `mtcars` dataset into several different tables
+with the same header.
 
-## Heading 2
+## Table 1
+The first table contains the initial four rows of the `mtcars` dataset.
 
 |model              |mpg |cyl|disp |hp |drat|wt   |qsec |vs |am |gear|carb|
 |-------------------|----|---|-----|---|----|-----|-----|---|---|----|----|
@@ -169,12 +171,8 @@ We'll split the `mtcars` dataset for testing `extract_md_tables`.
 |Datsun 710         |22.8|4  |108  |93 |3.85|2.32 |18.61|1  |1  |4   |1   |
 |Hornet 4 Drive     |21.4|6  |258  |110|3.08|3.215|19.44|1  |0  |3   |1   |
 
-## Another Heading 2
-Another paragraph.
-
-With some lines.
-
-Like this one.
+## Table 2
+The second table includes the next four rows of the dataset.
 
 |model              |mpg |cyl|disp |hp |drat|wt   |qsec |vs |am |gear|carb|
 |-------------------|----|---|-----|---|----|-----|-----|---|---|----|----|
@@ -183,7 +181,8 @@ Like this one.
 |Duster 360         |14.3|8  |360  |245|3.21|3.57 |15.84|0  |0  |3   |4   |
 |Merc 240D          |24.4|4  |146.7|62 |3.69|3.19 |20   |1  |0  |4   |2   |
 
-Just some paragraph text here.
+## Tables 3 and 4
+The last two tables contain four and six rows, respectively.
 
 |model              |mpg |cyl|disp |hp |drat|wt   |qsec |vs |am |gear|carb|
 |-------------------|----|---|-----|---|----|-----|-----|---|---|----|----|
@@ -199,7 +198,11 @@ Just some paragraph text here.
 |Ford Pantera L     |15.8|8  |351  |264|4.22|3.17 |14.5 |0  |1  |5   |4   |
 |Ferrari Dino       |19.7|6  |145  |175|3.62|2.77 |15.5 |0  |1  |5   |6   |
 |Maserati Bora      |15  |8  |301  |335|3.54|3.57 |14.6 |0  |1  |5   |8   |
-|Volvo 142E         |21.4|4  |121  |109|4.11|2.78 |18.6 |1  |1  |4   |2   |"
+|Volvo 142E         |21.4|4  |121  |109|4.11|2.78 |18.6 |1  |1  |4   |2   |
+
+# Conclusion
+These four markdown tables contain the classic `mtcars` dataset.
+"
 
 # Extract tables from the markdown file
 tables <- extract_md_tables(md)

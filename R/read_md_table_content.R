@@ -3,21 +3,17 @@
 #' @details Performs basic parsing of a markdown table and passes it along to
 #'   [readr::read_delim].
 #'
-#' @inheritParams read_md_table
+#' @param markdown_table A character vector of a markdown table.
 #' @inheritDotParams readr::read_delim -trim_ws -delim
 #'
-#' @returns A tibble.
+#' @returns A tibble of data created from `markdown_table`.
 #'
 #' @keywords internal
 #'
 #' @noRd
 read_md_table_content <- function(markdown_table, ...) {
   markdown_table <- stringr::str_split(markdown_table, "\n")[[1]]
-
-  # Remove the header separator line (second line)
   markdown_table <- markdown_table[-2]
-
-  # Remove leading and trailing pipes and trim whitespace
   markdown_table <- stringr::str_replace_all(
     markdown_table,
     "^\\s*\\|\\s*|\\s*\\|\\s*$",
