@@ -201,8 +201,7 @@ The last two tables contain four and six rows, respectively.
 |Volvo 142E         |21.4|4  |121  |109|4.11|2.78 |18.6 |1  |1  |4   |2   |
 
 # Conclusion
-These four markdown tables contain the classic `mtcars` dataset.
-"
+These four markdown tables contain the classic `mtcars` dataset."
 
 # Extract tables from the markdown file
 tables <- extract_md_tables(md)
