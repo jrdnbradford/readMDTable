@@ -6,7 +6,8 @@
 #' @inheritParams read_md_table
 #' @inheritDotParams readr::read_delim -trim_ws -delim
 #'
-#' @returns A tibble or list of tibbles.
+#' @returns A tibble or list of tibbles extracted from the
+#'   markdown tables in `file`.
 #'
 #' @examples
 #' md <-
@@ -58,7 +59,7 @@
 #' These four markdown tables contain the classic `mtcars` dataset."
 #'
 #' # Extract tables from the markdown file
-#' tables <- extract_md_tables(md)
+#' tables <- extract_md_tables(md, show_col_types = FALSE)
 #'
 #' # Display the 2nd table in the list
 #' tables[[2]]
