@@ -41,7 +41,7 @@ test_rvest <- function(content) {
 ## Benchmark 1
 Comparing readMDTable and rvest on retrieving and parsing a markdown file with multiple tables and other non-table content.
 
-```{r benchmark-1}
+```{r benchmark-1, fig.alt = "Violin plot showing that extract_md_tables is faster than rvest"}
 mtcars_split_raw_md_url <- "https://raw.githubusercontent.com/jrdnbradford/readMDTable/refs/heads/main/inst/extdata/mtcars-split.md"
 mtcars_split_html_url <- "https://github.com/jrdnbradford/readMDTable/blob/main/inst/extdata/mtcars-split.md"
 
@@ -58,7 +58,7 @@ ggplot2::autoplot(resp)
 ## Benchmark 2
 Comparing readMDTable and rvest on retrieving and parsing a markdown table file.
 
-```{r benchmark-2}
+```{r benchmark-2, fig.alt = "Violin plot showing that read_md_table is faster than rvest"}
 mtcars_raw_md_url <- "https://raw.githubusercontent.com/jrdnbradford/readMDTable/refs/heads/main/inst/extdata/mtcars.md"
 mtcars_html_url <- "https://github.com/jrdnbradford/readMDTable/blob/main/inst/extdata/mtcars.md"
 
@@ -75,7 +75,7 @@ ggplot2::autoplot(resp)
 ## Benchmark 3
 Comparing readMDTable and rvest on parsing a markdown file with multiple tables and other non-table content, already retrieved and stored in memory.
 
-```{r benchmark-3}
+```{r benchmark-3, fig.alt = "Violin plot showing that rvest is faster than extract_md_tables"}
 mtcars_raw_md_file <- readr::read_file(mtcars_split_raw_md_url)
 mtcars_html_file <- readr::read_file(mtcars_split_html_url)
 
@@ -92,7 +92,7 @@ ggplot2::autoplot(resp)
 ## Benchmark 4
 Comparing readMDTable and rvest on parsing merely a markdown table, already retrieved and stored in memory.
 
-```{r benchmark-4}
+```{r benchmark-4, fig.alt = "Violin plot showing that rvest is slighlty faster than read_md_table"}
 raw_md <- readr::read_file(mtcars_raw_md_url)
 html <- readr::read_file(mtcars_html_url)
 
