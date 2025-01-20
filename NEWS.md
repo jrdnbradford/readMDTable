@@ -2,6 +2,7 @@
 
 * Fixed a typo in a `read_md_table` warning message
 * Updated documentation for internal and exported functions
+* Added alt text for `rvest-benchmarks` violin plots
 
 # readMDTable 0.3.0
 

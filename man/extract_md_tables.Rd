@@ -145,7 +145,8 @@ Learn more in \code{\link[readr:should_read_lazy]{should_read_lazy()}} and in th
   }}
 }
 \value{
-A tibble or list of tibbles.
+A tibble or list of tibbles extracted from the
+markdown tables in \code{file}.
 }
 \description{
 Extract Markdown Tables from Markdown Files
@@ -204,7 +205,7 @@ The last two tables contain four and six rows, respectively.
 These four markdown tables contain the classic `mtcars` dataset."
 
 # Extract tables from the markdown file
-tables <- extract_md_tables(md)
+tables <- extract_md_tables(md, show_col_types = FALSE)
 
 # Display the 2nd table in the list
 tables[[2]]
