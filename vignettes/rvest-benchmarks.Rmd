@@ -48,7 +48,7 @@ mtcars_split_html_url <- "https://github.com/jrdnbradford/readMDTable/blob/main/
 resp <- microbenchmark::microbenchmark(
   test_extract_md_tables(mtcars_split_raw_md_url),
   test_rvest(mtcars_split_html_url),
-  times = 50
+  times = 20
 )
 
 ggplot2::autoplot(resp)
@@ -65,7 +65,7 @@ mtcars_html_url <- "https://github.com/jrdnbradford/readMDTable/blob/main/inst/e
 resp <- microbenchmark::microbenchmark(
   test_read_md_table(mtcars_raw_md_url),
   test_rvest(mtcars_html_url),
-  times = 50
+  times = 20
 )
 
 ggplot2::autoplot(resp)
@@ -82,7 +82,7 @@ mtcars_html_file <- readr::read_file(mtcars_split_html_url)
 resp <- microbenchmark::microbenchmark(
   test_extract_md_tables(mtcars_raw_md_file),
   test_rvest(mtcars_html_file),
-  times = 50
+  times = 100
 )
 
 ggplot2::autoplot(resp)
@@ -99,7 +99,7 @@ html <- readr::read_file(mtcars_html_url)
 resp <- microbenchmark::microbenchmark(
   test_read_md_table(raw_md),
   test_rvest(html),
-  times = 50
+  times = 100
 )
 
 ggplot2::autoplot(resp)

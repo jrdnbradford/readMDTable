@@ -27,7 +27,7 @@ Many sites (like GitHub) convert markdown tables into HTML tables,
 making both available. See the vignette [Benchmarking Against
 rvest](https://jrdnbradford.github.io/readMDTable/articles/rvest-benchmarks.html)
 to help determine if you should use readMDTable or
-[rvest](https://rvest.tidyverse.org/).
+[rvest](https://rvest.tidyverse.org/) in those circumstances.
 
 ## Installation
 
@@ -226,7 +226,8 @@ read_md_table(
 #> Warning: ✖ Content in provided `file` does not match the readMDTable regex.
 #> ℹ File an issue at https://github.com/jrdnbradford/readMDTable/issues if this
 #>   warning is in error.
-#> Warning: ℹ Attempting to read in content does not match the readMDTable regex.
+#> Warning: ℹ Attempting to read in content that does not match the readMDTable
+#> regex.
 #> Rows: 3 Columns: 4
 #> ── Column specification ────────────────────────────────────────────────────────
 #> Delimiter: "|"
