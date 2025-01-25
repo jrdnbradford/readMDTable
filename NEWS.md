@@ -1,9 +1,9 @@
 # readMDTable (development version)
 
-* Add dependency on R (>= 4.1.0) (#91)
-* Fixed a typo in a `read_md_table` warning message
-* Updated documentation for internal and exported functions
-* Added alt text for `rvest-benchmarks` violin plots
+* Add dependency on R (>= 4.1.0) (#92)
+* Fixed a typo in a `read_md_table` warning message (#86)
+* Updated documentation for internal and exported functions (#88)
+* Added alt text for `rvest-benchmarks` violin plots (#90)
 
 # readMDTable 0.3.0
 
