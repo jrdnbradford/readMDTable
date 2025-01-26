@@ -20,7 +20,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">readMDTable</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.3.0.9004</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.3.1</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -112,7 +112,7 @@ file with multiple tables and other non-table content.</p>
 <span><span class="va">resp</span> <span class="op">&lt;-</span> <span class="fu">microbenchmark</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/microbenchmark/man/microbenchmark.html" class="external-link">microbenchmark</a></span><span class="op">(</span></span>
 <span>  <span class="fu">test_extract_md_tables</span><span class="op">(</span><span class="va">mtcars_split_raw_md_url</span><span class="op">)</span>,</span>
 <span>  <span class="fu">test_rvest</span><span class="op">(</span><span class="va">mtcars_split_html_url</span><span class="op">)</span>,</span>
-<span>  times <span class="op">=</span> <span class="fl">50</span></span>
+<span>  times <span class="op">=</span> <span class="fl">20</span></span>
 <span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/autoplot.html" class="external-link">autoplot</a></span><span class="op">(</span><span class="va">resp</span><span class="op">)</span></span></code></pre></div>
@@ -130,7 +130,7 @@ table file.</p>
 <span><span class="va">resp</span> <span class="op">&lt;-</span> <span class="fu">microbenchmark</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/microbenchmark/man/microbenchmark.html" class="external-link">microbenchmark</a></span><span class="op">(</span></span>
 <span>  <span class="fu">test_read_md_table</span><span class="op">(</span><span class="va">mtcars_raw_md_url</span><span class="op">)</span>,</span>
 <span>  <span class="fu">test_rvest</span><span class="op">(</span><span class="va">mtcars_html_url</span><span class="op">)</span>,</span>
-<span>  times <span class="op">=</span> <span class="fl">50</span></span>
+<span>  times <span class="op">=</span> <span class="fl">20</span></span>
 <span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/autoplot.html" class="external-link">autoplot</a></span><span class="op">(</span><span class="va">resp</span><span class="op">)</span></span></code></pre></div>
@@ -149,7 +149,7 @@ stored in memory.</p>
 <span><span class="va">resp</span> <span class="op">&lt;-</span> <span class="fu">microbenchmark</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/microbenchmark/man/microbenchmark.html" class="external-link">microbenchmark</a></span><span class="op">(</span></span>
 <span>  <span class="fu">test_extract_md_tables</span><span class="op">(</span><span class="va">mtcars_raw_md_file</span><span class="op">)</span>,</span>
 <span>  <span class="fu">test_rvest</span><span class="op">(</span><span class="va">mtcars_html_file</span><span class="op">)</span>,</span>
-<span>  times <span class="op">=</span> <span class="fl">50</span></span>
+<span>  times <span class="op">=</span> <span class="fl">100</span></span>
 <span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/autoplot.html" class="external-link">autoplot</a></span><span class="op">(</span><span class="va">resp</span><span class="op">)</span></span></code></pre></div>
@@ -167,7 +167,7 @@ already retrieved and stored in memory.</p>
 <span><span class="va">resp</span> <span class="op">&lt;-</span> <span class="fu">microbenchmark</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/microbenchmark/man/microbenchmark.html" class="external-link">microbenchmark</a></span><span class="op">(</span></span>
 <span>  <span class="fu">test_read_md_table</span><span class="op">(</span><span class="va">raw_md</span><span class="op">)</span>,</span>
 <span>  <span class="fu">test_rvest</span><span class="op">(</span><span class="va">html</span><span class="op">)</span>,</span>
-<span>  times <span class="op">=</span> <span class="fl">50</span></span>
+<span>  times <span class="op">=</span> <span class="fl">100</span></span>
 <span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/autoplot.html" class="external-link">autoplot</a></span><span class="op">(</span><span class="va">resp</span><span class="op">)</span></span></code></pre></div>
