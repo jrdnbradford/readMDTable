@@ -1,0 +1,18 @@
+repos:
+- repo: https://github.com/pre-commit/pre-commit-hooks
+  rev: v5.0.0
+  hooks:
+  - id: no-commit-to-branch
+
+- repo: https://github.com/lorenzwalthert/precommit
+  rev: v0.4.3
+  hooks:
+  - id: parsable-R
+  - id: use-tidy-description
+  - id: roxygenize
+    additional_dependencies:
+    - httr2
+    - readr
+  - id: no-print-statement
+  - id: readme-rmd-rendered
+  - id: deps-in-desc
