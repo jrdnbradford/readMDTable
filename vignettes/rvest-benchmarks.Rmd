@@ -16,9 +16,23 @@ knitr::opts_chunk$set(
 )
 ```
 
+```{r save-plot, include = FALSE}
+
+save_plot <- function(resp, num) {
+  ggplot2::ggsave(
+    filename = paste0("vignettes/img/benchmark-", num, ".png"),
+    plot     = ggplot2::autoplot(resp),
+    width    = 6,
+    height   = 2,
+    dpi      = 300
+  )
+}
+
+```
+
 In many cases, both raw markdown files *and* their HTML-rendered equivalents are both available. For instance, GitHub repositories store raw markdown, but also render that markdown. In these cases, you have a choice between using readMDTable to parse the raw markdown, or [rvest](https://rvest.tidyverse.org/) to parse the HTML. This vignette provides benchmarks to help you decide which is the better option for your use case.
 
-The main benefit of readMDTable is that raw markdown is more lightweight that its HTML-rendered alternative, resulting in less retrieval time from the web. See the benchmarking below.
+The main benefit of readMDTable is that raw markdown is more lightweight that its HTML-rendered alternative, resulting in less retrieval time from the web. The benchmark plots below are pre-computed outside the vignette.
 
 ## Functions Tested
 ```{r functions-tested}
@@ -41,41 +55,49 @@ test_rvest <- function(content) {
 ## Benchmark 1
 Comparing readMDTable and rvest on retrieving and parsing a markdown file with multiple tables and other non-table content.
 
-```{r benchmark-1, fig.alt = "Violin plot showing that extract_md_tables is faster than rvest"}
+```{r benchmark-1, eval = FALSE}
 mtcars_split_raw_md_url <- "https://raw.githubusercontent.com/jrdnbradford/readMDTable/refs/heads/main/inst/extdata/mtcars-split.md"
 mtcars_split_html_url <- "https://github.com/jrdnbradford/readMDTable/blob/main/inst/extdata/mtcars-split.md"
 
 resp <- microbenchmark::microbenchmark(
   test_extract_md_tables(mtcars_split_raw_md_url),
   test_rvest(mtcars_split_html_url),
-  times = 20
+  times = 100
 )
 
 ggplot2::autoplot(resp)
+```
+
+```{r benchmark-1-img, out.height = '250px', echo = FALSE, fig.alt = "Violin plot showing that extract_md_tables is faster than rvest"}
+knitr::include_graphics("img/benchmark-1.png")
 ```
 
 
 ## Benchmark 2
 Comparing readMDTable and rvest on retrieving and parsing a markdown table file.
 
-```{r benchmark-2, fig.alt = "Violin plot showing that read_md_table is faster than rvest"}
+```{r benchmark-2, eval = FALSE}
 mtcars_raw_md_url <- "https://raw.githubusercontent.com/jrdnbradford/readMDTable/refs/heads/main/inst/extdata/mtcars.md"
 mtcars_html_url <- "https://github.com/jrdnbradford/readMDTable/blob/main/inst/extdata/mtcars.md"
 
 resp <- microbenchmark::microbenchmark(
   test_read_md_table(mtcars_raw_md_url),
   test_rvest(mtcars_html_url),
-  times = 20
+  times = 100
 )
 
 ggplot2::autoplot(resp)
+```
+
+```{r benchmark-2-img, out.height = '250px', echo = FALSE, fig.alt = "Violin plot showing that read_md_table is faster than rvest"}
+knitr::include_graphics("img/benchmark-2.png")
 ```
 
 
 ## Benchmark 3
 Comparing readMDTable and rvest on parsing a markdown file with multiple tables and other non-table content, already retrieved and stored in memory.
 
-```{r benchmark-3, fig.alt = "Violin plot showing that rvest is faster than extract_md_tables"}
+```{r benchmark-3, eval = FALSE}
 mtcars_raw_md_file <- readr::read_file(mtcars_split_raw_md_url)
 mtcars_html_file <- readr::read_file(mtcars_split_html_url)
 
@@ -88,11 +110,15 @@ resp <- microbenchmark::microbenchmark(
 ggplot2::autoplot(resp)
 ```
 
+```{r benchmark-3-img, out.height = '250px', echo = FALSE, fig.alt = "Violin plot showing that rvest is faster than extract_md_tables"}
+knitr::include_graphics("img/benchmark-3.png")
+```
+
 
 ## Benchmark 4
 Comparing readMDTable and rvest on parsing merely a markdown table, already retrieved and stored in memory.
 
-```{r benchmark-4, fig.alt = "Violin plot showing that rvest is slighlty faster than read_md_table"}
+```{r benchmark-4, eval = FALSE}
 raw_md <- readr::read_file(mtcars_raw_md_url)
 html <- readr::read_file(mtcars_html_url)
 
@@ -103,4 +129,8 @@ resp <- microbenchmark::microbenchmark(
 )
 
 ggplot2::autoplot(resp)
+```
+
+```{r benchmark-4-img, out.height = '250px', echo = FALSE, fig.alt = "Violin plot showing that rvest is slighlty faster than read_md_table"}
+knitr::include_graphics("img/benchmark-4.png")
 ```
