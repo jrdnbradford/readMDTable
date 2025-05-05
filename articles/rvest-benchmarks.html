@@ -81,7 +81,8 @@ the HTML. This vignette provides benchmarks to help you decide which is
 the better option for your use case.</p>
 <p>The main benefit of readMDTable is that raw markdown is more
 lightweight that its HTML-rendered alternative, resulting in less
-retrieval time from the web. See the benchmarking below.</p>
+retrieval time from the web. The benchmark plots below are pre-computed
+outside the vignette.</p>
 <div class="section level2">
 <h2 id="functions-tested">Functions Tested<a class="anchor" aria-label="anchor" href="#functions-tested"></a>
 </h2>
@@ -112,11 +113,11 @@ file with multiple tables and other non-table content.</p>
 <span><span class="va">resp</span> <span class="op">&lt;-</span> <span class="fu">microbenchmark</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/microbenchmark/man/microbenchmark.html" class="external-link">microbenchmark</a></span><span class="op">(</span></span>
 <span>  <span class="fu">test_extract_md_tables</span><span class="op">(</span><span class="va">mtcars_split_raw_md_url</span><span class="op">)</span>,</span>
 <span>  <span class="fu">test_rvest</span><span class="op">(</span><span class="va">mtcars_split_html_url</span><span class="op">)</span>,</span>
-<span>  times <span class="op">=</span> <span class="fl">20</span></span>
+<span>  times <span class="op">=</span> <span class="fl">100</span></span>
 <span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/autoplot.html" class="external-link">autoplot</a></span><span class="op">(</span><span class="va">resp</span><span class="op">)</span></span></code></pre></div>
-<p><img src="rvest-benchmarks_files/figure-html/benchmark-1-1.png" alt="Violin plot showing that extract_md_tables is faster than rvest" width="864"></p>
+<p><img src="img/benchmark-1.png" alt="Violin plot showing that extract_md_tables is faster than rvest" height="250px"></p>
 </div>
 <div class="section level2">
 <h2 id="benchmark-2">Benchmark 2<a class="anchor" aria-label="anchor" href="#benchmark-2"></a>
@@ -130,11 +131,11 @@ table file.</p>
 <span><span class="va">resp</span> <span class="op">&lt;-</span> <span class="fu">microbenchmark</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/microbenchmark/man/microbenchmark.html" class="external-link">microbenchmark</a></span><span class="op">(</span></span>
 <span>  <span class="fu">test_read_md_table</span><span class="op">(</span><span class="va">mtcars_raw_md_url</span><span class="op">)</span>,</span>
 <span>  <span class="fu">test_rvest</span><span class="op">(</span><span class="va">mtcars_html_url</span><span class="op">)</span>,</span>
-<span>  times <span class="op">=</span> <span class="fl">20</span></span>
+<span>  times <span class="op">=</span> <span class="fl">100</span></span>
 <span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/autoplot.html" class="external-link">autoplot</a></span><span class="op">(</span><span class="va">resp</span><span class="op">)</span></span></code></pre></div>
-<p><img src="rvest-benchmarks_files/figure-html/benchmark-2-1.png" alt="Violin plot showing that read_md_table is faster than rvest" width="864"></p>
+<p><img src="img/benchmark-2.png" alt="Violin plot showing that read_md_table is faster than rvest" height="250px"></p>
 </div>
 <div class="section level2">
 <h2 id="benchmark-3">Benchmark 3<a class="anchor" aria-label="anchor" href="#benchmark-3"></a>
@@ -153,7 +154,7 @@ stored in memory.</p>
 <span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/autoplot.html" class="external-link">autoplot</a></span><span class="op">(</span><span class="va">resp</span><span class="op">)</span></span></code></pre></div>
-<p><img src="rvest-benchmarks_files/figure-html/benchmark-3-1.png" alt="Violin plot showing that rvest is faster than extract_md_tables" width="864"></p>
+<p><img src="img/benchmark-3.png" alt="Violin plot showing that rvest is faster than extract_md_tables" height="250px"></p>
 </div>
 <div class="section level2">
 <h2 id="benchmark-4">Benchmark 4<a class="anchor" aria-label="anchor" href="#benchmark-4"></a>
@@ -171,7 +172,7 @@ already retrieved and stored in memory.</p>
 <span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/autoplot.html" class="external-link">autoplot</a></span><span class="op">(</span><span class="va">resp</span><span class="op">)</span></span></code></pre></div>
-<p><img src="rvest-benchmarks_files/figure-html/benchmark-4-1.png" alt="Violin plot showing that rvest is slighlty faster than read_md_table" width="864"></p>
+<p><img src="img/benchmark-4.png" alt="Violin plot showing that rvest is slighlty faster than read_md_table" height="250px"></p>
 </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside>
