@@ -3,7 +3,7 @@ pkgdown: 2.1.3
 pkgdown_sha: ~
 articles:
   rvest-benchmarks: rvest-benchmarks.html
-last_built: 2025-11-07T17:12Z
+last_built: 2025-11-07T17:50Z
 urls:
   reference: https://jrdnbradford.github.io/readMDTable/reference
   article: https://jrdnbradford.github.io/readMDTable/articles
