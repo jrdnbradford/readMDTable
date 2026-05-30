@@ -94,7 +94,8 @@ names.}
 option to \code{character()} to indicate no missing values.}
     \item{\code{quoted_na}}{\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}} Should missing values
 inside quotes be treated as missing values (the default) or strings. This
-parameter is soft deprecated as of readr 2.0.0.}
+argument is deprecated and only works when using the legacy first edition
+parser. See \code{\link[readr:with_edition]{with_edition()}} for more.}
     \item{\code{comment}}{A string used to identify comments. Any text after the
 comment characters will be silently ignored.}
     \item{\code{skip}}{Number of lines to skip before reading data. If \code{comment} is

@@ -12,15 +12,15 @@ Depends:
 Imports:
     cli,
     httr2,
-    readr,
+    readr (>= 2.2.0),
     purrr,
     stringr
 URL: https://github.com/jrdnbradford/readMDTable, https://jrdnbradford.github.io/readMDTable/
 BugReports: https://github.com/jrdnbradford/readMDTable/issues
 License: GPL (>= 3)
 Encoding: UTF-8
-Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.3.2
+Config/roxygen2/version: 8.0.0
+Config/roxygen2/markdown: TRUE
 Suggests:
     covr,
     devtools,

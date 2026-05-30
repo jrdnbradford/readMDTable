@@ -22,5 +22,10 @@ Useful links:
 \author{
 \strong{Maintainer}: Jordan Bradford \email{jrdnbradford@gmail.com} (\href{https://orcid.org/0009-0000-8570-3474}{ORCID}) [copyright holder]
 
+Authors:
+\itemize{
+  \item Jordan Bradford \email{jrdnbradford@gmail.com} (\href{https://orcid.org/0009-0000-8570-3474}{ORCID}) [copyright holder]
+}
+
 }
 \keyword{internal}
