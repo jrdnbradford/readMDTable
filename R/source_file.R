@@ -15,6 +15,7 @@ source_file <- function(file) {
   } else if (grepl("^((http|ftp)s?|sftp)://", file)) {
     markdown <- httr2::request(file) |>
       httr2::req_retry(max_tries = 3) |>
+      httr2::req_timeout(seconds = 30) |>
       httr2::req_headers("Accept" = "text/plain") |>
       httr2::req_perform(verbosity = 0) |>
       httr2::resp_body_string()
