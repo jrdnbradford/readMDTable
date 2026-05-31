@@ -245,13 +245,13 @@ extract_md_table(file, ...)
 
 ## Value
 
-A tibble or list of tibbles extracted from the markdown tables in
-`file`.
+A named list of tibbles (names `"table_1"`, `"table_2"`, …) extracted
+from the markdown tables in `file`.
 
 ## Details
 
 `extract_md_tables` captures all the markdown tables from `file` and
-returns a tibble or list of tibbles.
+returns a named list of tibbles.
 
 ## Examples
 
