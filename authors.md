@@ -8,15 +8,16 @@
 ## Citation
 
 Source:
-[`DESCRIPTION`](https://github.com/jrdnbradford/readMDTable/blob/v0.3.3/DESCRIPTION)
+[`DESCRIPTION`](https://github.com/jrdnbradford/readMDTable/blob/main/DESCRIPTION)
 
 Bradford J (2026). *readMDTable: Read Markdown Tables into Tibbles*. R
-package version 0.3.3, <https://github.com/jrdnbradford/readMDTable>.
+package version 0.3.3.9000,
+<https://github.com/jrdnbradford/readMDTable>.
 
     @Manual{,
       title = {readMDTable: Read Markdown Tables into Tibbles},
       author = {Jordan Bradford},
       year = {2026},
-      note = {R package version 0.3.3},
+      note = {R package version 0.3.3.9000},
       url = {https://github.com/jrdnbradford/readMDTable},
     }
