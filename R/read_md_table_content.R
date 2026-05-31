@@ -21,7 +21,7 @@ read_md_table_content <- function(markdown_table, ...) {
   )
 
   markdown_tibble <- readr::read_delim(
-    paste(markdown_table, collapse = "\n"),
+    I(paste(markdown_table, collapse = "\n")),
     delim = "|",
     trim_ws = TRUE,
     ...

@@ -1,5 +1,10 @@
 # readMDTable (development version)
 
+# readMDTable 0.3.3
+
+* Update to {roxygen2} to 8.0.0
+* Requires {readr} >= 2.2.0
+
 # readMDTable 0.3.2
 
 * Pre-compute `rvest-benchmarks` benchmark images (#98)
