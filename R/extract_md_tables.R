@@ -1,13 +1,13 @@
 #' @title Extract Markdown Tables from Markdown Files
 #'
 #' @details `extract_md_tables` captures all the markdown tables
-#'   from `file` and returns a tibble or list of tibbles.
+#'   from `file` and returns a named list of tibbles.
 #'
 #' @inheritParams read_md_table
 #' @inheritDotParams readr::read_delim -trim_ws -delim
 #'
-#' @returns A tibble or list of tibbles extracted from the
-#'   markdown tables in `file`.
+#' @returns A named list of tibbles (names `"table_1"`, `"table_2"`, …)
+#'   extracted from the markdown tables in `file`.
 #'
 #' @examples
 #' md <-
@@ -91,10 +91,7 @@ extract_md_tables <- function(file, ...) {
     return(table_tibble$result)
   })
 
-  if (length(table_tibbles) == 1) {
-    return(table_tibbles[[1]])
-  }
-
+  names(table_tibbles) <- paste0("table_", seq_along(table_tibbles))
   return(table_tibbles)
 }
 

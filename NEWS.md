@@ -1,5 +1,7 @@
 # readMDTable (development version)
 
+* BREAKING CHANGE: `extract_md_tables` now always returns a named list of tibbles (names `"table_1"`, `"table_2"`, …) regardless of how many tables are found. Previously a single tibble was returned when only one table was present.
+
 # readMDTable 0.3.3
 
 * Update to {roxygen2} to 8.0.0
