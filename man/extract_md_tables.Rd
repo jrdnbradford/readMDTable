@@ -146,15 +146,15 @@ Learn more in \code{\link[readr:should_read_lazy]{should_read_lazy()}} and in th
   }}
 }
 \value{
-A tibble or list of tibbles extracted from the
-markdown tables in \code{file}.
+A named list of tibbles (names \code{"table_1"}, \code{"table_2"}, …)
+extracted from the markdown tables in \code{file}.
 }
 \description{
 Extract Markdown Tables from Markdown Files
 }
 \details{
 \code{extract_md_tables} captures all the markdown tables
-from \code{file} and returns a tibble or list of tibbles.
+from \code{file} and returns a named list of tibbles.
 }
 \examples{
 md <-
