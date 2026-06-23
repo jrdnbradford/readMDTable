@@ -38,10 +38,6 @@ The main benefit of readMDTable is that raw markdown is more lightweight that it
 ```{r functions-tested}
 library(readMDTable)
 
-test_extract_md_tables <- function(content) {
-  extract_md_tables(content, show_col_types = FALSE)
-}
-
 test_read_md_table <- function(content) {
   read_md_table(content, show_col_types = FALSE)
 }
@@ -60,7 +56,7 @@ mtcars_split_raw_md_url <- "https://raw.githubusercontent.com/jrdnbradford/readM
 mtcars_split_html_url <- "https://github.com/jrdnbradford/readMDTable/blob/main/inst/extdata/mtcars-split.md"
 
 resp <- microbenchmark::microbenchmark(
-  test_extract_md_tables(mtcars_split_raw_md_url),
+  test_read_md_table(mtcars_split_raw_md_url),
   test_rvest(mtcars_split_html_url),
   times = 100
 )
@@ -68,7 +64,7 @@ resp <- microbenchmark::microbenchmark(
 ggplot2::autoplot(resp)
 ```
 
-```{r benchmark-1-img, out.height = '250px', echo = FALSE, fig.alt = "Violin plot showing that extract_md_tables is faster than rvest"}
+```{r benchmark-1-img, out.height = '250px', echo = FALSE, fig.alt = "Violin plot showing that read_md_table is faster than rvest"}
 knitr::include_graphics("img/benchmark-1.png")
 ```
 
@@ -102,7 +98,7 @@ mtcars_raw_md_file <- readr::read_file(mtcars_split_raw_md_url)
 mtcars_html_file <- readr::read_file(mtcars_split_html_url)
 
 resp <- microbenchmark::microbenchmark(
-  test_extract_md_tables(mtcars_raw_md_file),
+  test_read_md_table(mtcars_raw_md_file),
   test_rvest(mtcars_html_file),
   times = 100
 )
@@ -110,7 +106,7 @@ resp <- microbenchmark::microbenchmark(
 ggplot2::autoplot(resp)
 ```
 
-```{r benchmark-3-img, out.height = '250px', echo = FALSE, fig.alt = "Violin plot showing that rvest is faster than extract_md_tables"}
+```{r benchmark-3-img, out.height = '250px', echo = FALSE, fig.alt = "Violin plot showing that rvest is faster than read_md_table"}
 knitr::include_graphics("img/benchmark-3.png")
 ```
 

@@ -12,6 +12,7 @@ Depends:
 Imports:
     cli,
     httr2,
+    lifecycle,
     readr (>= 2.2.0),
     purrr,
     stringr
@@ -24,6 +25,7 @@ Config/roxygen2/markdown: TRUE
 Suggests:
     covr,
     devtools,
+    dplyr,
     ggplot2,
     knitr,
     lubridate,
