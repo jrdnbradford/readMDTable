@@ -47,6 +47,7 @@ read_md_table(mtcars_path)
 #> 
 #> ℹ Use `spec()` to retrieve the full column specification for this data.
 #> ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+#> $table_1
 #> # A tibble: 32 × 12
 #>    model         mpg   cyl  disp    hp  drat    wt  qsec    vs    am  gear  carb
 #>    <chr>       <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl>
@@ -61,4 +62,5 @@ read_md_table(mtcars_path)
 #>  9 Merc 230     22.8     4  141.    95  3.92  3.15  22.9     1     0     4     2
 #> 10 Merc 280     19.2     6  168.   123  3.92  3.44  18.3     1     0     4     4
 #> # ℹ 22 more rows
+#> 
 ```

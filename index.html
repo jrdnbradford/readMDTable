@@ -28,7 +28,7 @@
 
     <a class="navbar-brand me-2" href="index.html">readMDTable</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.3.3.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.4.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -90,8 +90,7 @@
 <div class="section level2">
 <h2 id="usage">Usage<a class="anchor" aria-label="anchor" href="#usage"></a>
 </h2>
-<p>If you have a string, file, or URL whose entire content is just a markdown <em>table</em>, you should use <code>read_md_table</code> which will return a tibble.</p>
-<p>If the string, file, or URL is a markdown <em>file</em> that has <em>other content</em> besides just a table or tables, such as headings, paragraphs, etc, you should use <code>extract_md_tables</code> which will parse the file and return a tibble or list of tibbles.</p>
+<p><code>read_md_table</code> reads all markdown tables from a string, file, or URL and returns a named list of tibbles (<code>"table_1"</code>, <code>"table_2"</code>, …). It handles both pure-table content and mixed markdown documents containing headings, paragraphs, and multiple tables.</p>
 <div class="section level3">
 <h3 id="from-a-file">From a File<a class="anchor" aria-label="anchor" href="#from-a-file"></a>
 </h3>
@@ -108,6 +107,7 @@
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; ℹ Use `spec()` to retrieve the full column specification for this data.</span></span>
 <span><span class="co">#&gt; ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</span></span>
+<span><span class="co">#&gt; $table_1</span></span>
 <span><span class="co">#&gt; # A tibble: 32 × 12</span></span>
 <span><span class="co">#&gt;    model         mpg   cyl  disp    hp  drat    wt  qsec    vs    am  gear  carb</span></span>
 <span><span class="co">#&gt;    &lt;chr&gt;       &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;</span></span>
@@ -126,8 +126,8 @@
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">mtcars_file</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/read_md_table_example.html">read_md_table_example</a></span><span class="op">(</span><span class="st">"mtcars-split.md"</span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu"><a href="reference/extract_md_tables.html">extract_md_tables</a></span><span class="op">(</span><span class="va">mtcars_file</span>, show_col_types <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [[1]]</span></span>
+<span><span class="fu"><a href="reference/read_md_table.html">read_md_table</a></span><span class="op">(</span><span class="va">mtcars_file</span>, show_col_types <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span><span class="co">#&gt; $table_1</span></span>
 <span><span class="co">#&gt; # A tibble: 4 × 12</span></span>
 <span><span class="co">#&gt;   model          mpg   cyl  disp    hp  drat    wt  qsec    vs    am  gear  carb</span></span>
 <span><span class="co">#&gt;   &lt;chr&gt;        &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;</span></span>
@@ -136,7 +136,7 @@
 <span><span class="co">#&gt; 3 Datsun 710    22.8     4   108    93  3.85  2.32  18.6     1     1     4     1</span></span>
 <span><span class="co">#&gt; 4 Hornet 4 Dr…  21.4     6   258   110  3.08  3.22  19.4     1     0     3     1</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; [[2]]</span></span>
+<span><span class="co">#&gt; $table_2</span></span>
 <span><span class="co">#&gt; # A tibble: 4 × 12</span></span>
 <span><span class="co">#&gt;   model          mpg   cyl  disp    hp  drat    wt  qsec    vs    am  gear  carb</span></span>
 <span><span class="co">#&gt;   &lt;chr&gt;        &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;</span></span>
@@ -145,7 +145,7 @@
 <span><span class="co">#&gt; 3 Duster 360    14.3     8  360    245  3.21  3.57  15.8     0     0     3     4</span></span>
 <span><span class="co">#&gt; 4 Merc 240D     24.4     4  147.    62  3.69  3.19  20       1     0     4     2</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; [[3]]</span></span>
+<span><span class="co">#&gt; $table_3</span></span>
 <span><span class="co">#&gt; # A tibble: 4 × 12</span></span>
 <span><span class="co">#&gt;   model          mpg   cyl  disp    hp  drat    wt  qsec    vs    am  gear  carb</span></span>
 <span><span class="co">#&gt;   &lt;chr&gt;        &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;</span></span>
@@ -154,7 +154,7 @@
 <span><span class="co">#&gt; 3 Chrysler Im…  14.7     8 440     230  3.23  5.34  17.4     0     0     3     4</span></span>
 <span><span class="co">#&gt; 4 Fiat 128      32.4     4  78.7    66  4.08  2.2   19.5     1     1     4     1</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; [[4]]</span></span>
+<span><span class="co">#&gt; $table_4</span></span>
 <span><span class="co">#&gt; # A tibble: 6 × 12</span></span>
 <span><span class="co">#&gt;   model          mpg   cyl  disp    hp  drat    wt  qsec    vs    am  gear  carb</span></span>
 <span><span class="co">#&gt;   &lt;chr&gt;        &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;</span></span>
@@ -178,6 +178,7 @@
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; ℹ Use `spec()` to retrieve the full column specification for this data.</span></span>
 <span><span class="co">#&gt; ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</span></span>
+<span><span class="co">#&gt; $table_1</span></span>
 <span><span class="co">#&gt; # A tibble: 1 × 3</span></span>
 <span><span class="co">#&gt;     len supp   dose</span></span>
 <span><span class="co">#&gt;   &lt;dbl&gt; &lt;chr&gt; &lt;dbl&gt;</span></span>
@@ -196,6 +197,7 @@
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; ℹ Use `spec()` to retrieve the full column specification for this data.</span></span>
 <span><span class="co">#&gt; ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</span></span>
+<span><span class="co">#&gt; $table_1</span></span>
 <span><span class="co">#&gt; # A tibble: 150 × 5</span></span>
 <span><span class="co">#&gt;    sepal.length sepal.width petal.length petal.width variety</span></span>
 <span><span class="co">#&gt;           &lt;dbl&gt;       &lt;dbl&gt;        &lt;dbl&gt;       &lt;dbl&gt; &lt;chr&gt;  </span></span>
@@ -211,7 +213,7 @@
 <span><span class="co">#&gt; 10          4.9         3.1          1.5         0.1 Setosa </span></span>
 <span><span class="co">#&gt; # ℹ 140 more rows</span></span></code></pre></div>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="reference/extract_md_tables.html">extract_md_tables</a></span><span class="op">(</span><span class="st">"https://raw.githubusercontent.com/jrdnbradford/readMDTable/main/inst/extdata/ToothGrowth.md"</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="fu"><a href="reference/read_md_table.html">read_md_table</a></span><span class="op">(</span><span class="st">"https://raw.githubusercontent.com/jrdnbradford/readMDTable/main/inst/extdata/ToothGrowth.md"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Rows: 60 Columns: 4</span></span>
 <span><span class="co">#&gt; ── Column specification ────────────────────────────────────────────────────────</span></span>
 <span><span class="co">#&gt; Delimiter: "|"</span></span>
@@ -220,6 +222,7 @@
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; ℹ Use `spec()` to retrieve the full column specification for this data.</span></span>
 <span><span class="co">#&gt; ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</span></span>
+<span><span class="co">#&gt; $table_1</span></span>
 <span><span class="co">#&gt; # A tibble: 60 × 4</span></span>
 <span><span class="co">#&gt;    rownames   len supp   dose</span></span>
 <span><span class="co">#&gt;       &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt; &lt;dbl&gt;</span></span>
@@ -262,13 +265,13 @@
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; ℹ Use `spec()` to retrieve the full column specification for this data.</span></span>
 <span><span class="co">#&gt; ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</span></span>
+<span><span class="co">#&gt; $table_1</span></span>
 <span><span class="co">#&gt; # A tibble: 3 × 4</span></span>
 <span><span class="co">#&gt;   Name    Age City        Date      </span></span>
 <span><span class="co">#&gt;   &lt;chr&gt; &lt;dbl&gt; &lt;chr&gt;       &lt;date&gt;    </span></span>
 <span><span class="co">#&gt; 1 Alice    30 &lt;NA&gt;        2021-01-08</span></span>
 <span><span class="co">#&gt; 2 Bob      25 Los Angeles 2023-07-22</span></span>
 <span><span class="co">#&gt; 3 Carol    27 Chicago     NA</span></span></code></pre></div>
-<p><code>extract_md_tables</code> will fail to recognize markdown tables that do not fit the markdown table format.</p>
 </div>
 </div>
 </div>

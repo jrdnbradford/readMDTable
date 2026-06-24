@@ -19,10 +19,6 @@ vignette.
 
 library(readMDTable)
 
-test_extract_md_tables <- function(content) {
-  extract_md_tables(content, show_col_types = FALSE)
-}
-
 test_read_md_table <- function(content) {
   read_md_table(content, show_col_types = FALSE)
 }
@@ -43,7 +39,7 @@ mtcars_split_raw_md_url <- "https://raw.githubusercontent.com/jrdnbradford/readM
 mtcars_split_html_url <- "https://github.com/jrdnbradford/readMDTable/blob/main/inst/extdata/mtcars-split.md"
 
 resp <- microbenchmark::microbenchmark(
-  test_extract_md_tables(mtcars_split_raw_md_url),
+  test_read_md_table(mtcars_split_raw_md_url),
   test_rvest(mtcars_split_html_url),
   times = 100
 )
@@ -51,7 +47,7 @@ resp <- microbenchmark::microbenchmark(
 ggplot2::autoplot(resp)
 ```
 
-![Violin plot showing that extract_md_tables is faster than
+![Violin plot showing that read_md_table is faster than
 rvest](img/benchmark-1.png)
 
 ## Benchmark 2
@@ -88,7 +84,7 @@ mtcars_raw_md_file <- readr::read_file(mtcars_split_raw_md_url)
 mtcars_html_file <- readr::read_file(mtcars_split_html_url)
 
 resp <- microbenchmark::microbenchmark(
-  test_extract_md_tables(mtcars_raw_md_file),
+  test_read_md_table(mtcars_raw_md_file),
   test_rvest(mtcars_html_file),
   times = 100
 )
@@ -97,7 +93,7 @@ ggplot2::autoplot(resp)
 ```
 
 ![Violin plot showing that rvest is faster than
-extract_md_tables](img/benchmark-3.png)
+read_md_table](img/benchmark-3.png)
 
 ## Benchmark 4
 

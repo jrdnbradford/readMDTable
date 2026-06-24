@@ -1,11 +1,14 @@
 # Changelog
 
-## readMDTable (development version)
+## readMDTable 0.4.0
 
-- BREAKING CHANGE: `extract_md_tables` now always returns a named list
-  of tibbles (names `"table_1"`, `"table_2"`, …) regardless of how many
-  tables are found. Previously a single tibble was returned when only
-  one table was present.
+CRAN release: 2026-06-24
+
+- BREAKING CHANGE: `read_md_table` now always returns a named list of
+  tibbles (names `"table_1"`, `"table_2"`, …), or `NULL` if no tables
+  are found. It reads all tables in the content, including
+  mixed-markdown documents. `extract_md_tables` and `extract_md_table`
+  are now deprecated.
 
 ## readMDTable 0.3.3
 

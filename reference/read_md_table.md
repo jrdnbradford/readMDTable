@@ -1,11 +1,15 @@
-# Read a Markdown Table into a Tibble
+# Read Markdown Tables into Tibbles
 
-Read a Markdown Table into a Tibble
+Read Markdown Tables into Tibbles
 
 ## Usage
 
 ``` r
 read_md_table(file, warn = TRUE, force = FALSE, ...)
+
+extract_md_tables(file, warn = TRUE, force = FALSE, ...)
+
+extract_md_table(file, warn = TRUE, force = FALSE, ...)
 ```
 
 ## Arguments
@@ -18,12 +22,12 @@ read_md_table(file, warn = TRUE, force = FALSE, ...)
 
 - warn:
 
-  Boolean. Should warnings be raised if `file` does not appear to be a
-  markdown table? Defaults to `TRUE`.
+  Boolean. Should warnings be raised if `file` does not appear to
+  contain a markdown table? Defaults to `TRUE`.
 
 - force:
 
-  Boolean. Should `read_md_table` attempt to read in a table that does
+  Boolean. Should `read_md_table` attempt to read in content that does
   not fit the regex? This param should be used carefully as it may cause
   `read_md_table` to return unexpected data. Defaults to `FALSE`.
 
@@ -117,9 +121,11 @@ read_md_table(file, warn = TRUE, force = FALSE, ...)
   `col_select`
 
   :   Columns to include in the results. You can use the same
-      mini-language as `dplyr::select()` to refer to the columns by
-      name. Use [`c()`](https://rdrr.io/r/base/c.html) to use more than
-      one selection expression. Although this usage is less common,
+      mini-language as
+      [`dplyr::select()`](https://dplyr.tidyverse.org/reference/select.html)
+      to refer to the columns by name. Use
+      [`c()`](https://rdrr.io/r/base/c.html) to use more than one
+      selection expression. Although this usage is less common,
       `col_select` also accepts a numeric column index. See
       [`?tidyselect::language`](https://tidyselect.r-lib.org/reference/language.html)
       for full details on the selection language.
@@ -254,31 +260,27 @@ read_md_table(file, warn = TRUE, force = FALSE, ...)
 
 ## Value
 
-A tibble created from the markdown table, or `NULL`.
+A named list of tibbles (names `"table_1"`, `"table_2"`, …), or `NULL`
+if no tables are found and `force` is `FALSE`.
 
 ## Details
 
-`read_md_table` reads a markdown table into a tibble from a string,
-file, or URL. It uses
+`read_md_table` reads all markdown tables from a string, file, or URL
+and returns them as a named list of tibbles. It uses
 [`readr::read_delim`](https://readr.tidyverse.org/reference/read_delim.html)
 to efficiently read in data.
 
-`read_md_table` expects `file` to be a raw markdown table. If `file` is
-a markdown file that contains more than just a table or tables, the
-table(s) should be read in with
-[`extract_md_tables`](https://jrdnbradford.github.io/readMDTable/reference/extract_md_tables.md)
-instead.
-
-If `warn` is `TRUE`, `read_md_table` will warn if there are potential
-issues with the provided markdown table. Depending on the issue,
-`read_md_table` may still correctly read the table if `force` is `TRUE.`
+If `warn` is `TRUE`, `read_md_table` will warn if no markdown tables are
+detected in the content. When `force` is also `TRUE`, it will attempt to
+read the content as a table anyway.
 [`readr::read_delim`](https://readr.tidyverse.org/reference/read_delim.html)
-will provide its own warnings if there are potential issues.
+will provide its own warnings if there are potential issues with a
+table.
 
 ## Examples
 
 ``` r
-# Read from a file
+# Read a single table from a file
 read_md_table(read_md_table_example("mtcars.md"))
 #> Rows: 32 Columns: 12
 #> ── Column specification ────────────────────────────────────────────────────────
@@ -288,6 +290,7 @@ read_md_table(read_md_table_example("mtcars.md"))
 #> 
 #> ℹ Use `spec()` to retrieve the full column specification for this data.
 #> ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+#> $table_1
 #> # A tibble: 32 × 12
 #>    model         mpg   cyl  disp    hp  drat    wt  qsec    vs    am  gear  carb
 #>    <chr>       <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl>
@@ -302,6 +305,48 @@ read_md_table(read_md_table_example("mtcars.md"))
 #>  9 Merc 230     22.8     4  141.    95  3.92  3.15  22.9     1     0     4     2
 #> 10 Merc 280     19.2     6  168.   123  3.92  3.44  18.3     1     0     4     4
 #> # ℹ 22 more rows
+#> 
+
+# Read multiple tables from a file
+read_md_table(read_md_table_example("mtcars-split.md"), show_col_types = FALSE)
+#> $table_1
+#> # A tibble: 4 × 12
+#>   model          mpg   cyl  disp    hp  drat    wt  qsec    vs    am  gear  carb
+#>   <chr>        <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl>
+#> 1 Mazda RX4     21       6   160   110  3.9   2.62  16.5     0     1     4     4
+#> 2 Mazda RX4 W…  21       6   160   110  3.9   2.88  17.0     0     1     4     4
+#> 3 Datsun 710    22.8     4   108    93  3.85  2.32  18.6     1     1     4     1
+#> 4 Hornet 4 Dr…  21.4     6   258   110  3.08  3.22  19.4     1     0     3     1
+#> 
+#> $table_2
+#> # A tibble: 4 × 12
+#>   model          mpg   cyl  disp    hp  drat    wt  qsec    vs    am  gear  carb
+#>   <chr>        <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl>
+#> 1 Hornet Spor…  18.7     8  360    175  3.15  3.44  17.0     0     0     3     2
+#> 2 Valiant       18.1     6  225    105  2.76  3.46  20.2     1     0     3     1
+#> 3 Duster 360    14.3     8  360    245  3.21  3.57  15.8     0     0     3     4
+#> 4 Merc 240D     24.4     4  147.    62  3.69  3.19  20       1     0     4     2
+#> 
+#> $table_3
+#> # A tibble: 4 × 12
+#>   model          mpg   cyl  disp    hp  drat    wt  qsec    vs    am  gear  carb
+#>   <chr>        <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl>
+#> 1 Cadillac Fl…  10.4     8 472     205  2.93  5.25  18.0     0     0     3     4
+#> 2 Lincoln Con…  10.4     8 460     215  3     5.42  17.8     0     0     3     4
+#> 3 Chrysler Im…  14.7     8 440     230  3.23  5.34  17.4     0     0     3     4
+#> 4 Fiat 128      32.4     4  78.7    66  4.08  2.2   19.5     1     1     4     1
+#> 
+#> $table_4
+#> # A tibble: 6 × 12
+#>   model          mpg   cyl  disp    hp  drat    wt  qsec    vs    am  gear  carb
+#>   <chr>        <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl>
+#> 1 Porsche 914…  26       4 120.     91  4.43  2.14  16.7     0     1     5     2
+#> 2 Lotus Europa  30.4     4  95.1   113  3.77  1.51  16.9     1     1     5     2
+#> 3 Ford Panter…  15.8     8 351     264  4.22  3.17  14.5     0     1     5     4
+#> 4 Ferrari Dino  19.7     6 145     175  3.62  2.77  15.5     0     1     5     6
+#> 5 Maserati Bo…  15       8 301     335  3.54  3.57  14.6     0     1     5     8
+#> 6 Volvo 142E    21.4     4 121     109  4.11  2.78  18.6     1     1     4     2
+#> 
 
 # Read from a string
 read_md_table(
@@ -316,11 +361,13 @@ read_md_table(
 #> 
 #> ℹ Use `spec()` to retrieve the full column specification for this data.
 #> ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+#> $table_1
 #> # A tibble: 2 × 2
 #>   H1    H2   
 #>   <chr> <chr>
 #> 1 R1C1  R1C2 
 #> 2 R2C1  R2C2 
+#> 
 
 # \donttest{
 # Read from a URL
@@ -335,6 +382,7 @@ read_md_table(
 #> 
 #> ℹ Use `spec()` to retrieve the full column specification for this data.
 #> ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+#> $table_1
 #> # A tibble: 150 × 5
 #>    sepal.length sepal.width petal.length petal.width variety
 #>           <dbl>       <dbl>        <dbl>       <dbl> <chr>  
@@ -349,6 +397,7 @@ read_md_table(
 #>  9          4.4         2.9          1.4         0.2 Setosa 
 #> 10          4.9         3.1          1.5         0.1 Setosa 
 #> # ℹ 140 more rows
+#> 
 # }
 
 # Get warning for malformed tables
@@ -373,10 +422,12 @@ read_md_table(
 #> 
 #> ℹ Use `spec()` to retrieve the full column specification for this data.
 #> ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+#> $table_1
 #> # A tibble: 3 × 4
 #>   Name    Age City        Date      
 #>   <chr> <dbl> <chr>       <date>    
 #> 1 Alice    30 New York    2021-01-08
 #> 2 Bob      25 Los Angeles 2023-07-22
 #> 3 Carol    27 Chicago     2022-11-01
+#> 
 ```

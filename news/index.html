@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">readMDTable</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.3.3.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.4.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -38,12 +38,12 @@
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="../logo.png" class="logo" alt=""><h1>Changelog</h1>
-      <small>Source: <a href="https://github.com/jrdnbradford/readMDTable/blob/main/NEWS.md" class="external-link"><code>NEWS.md</code></a></small>
+      <small>Source: <a href="https://github.com/jrdnbradford/readMDTable/blob/v0.4.0/NEWS.md" class="external-link"><code>NEWS.md</code></a></small>
     </div>
 
     <div class="section level2">
-<h2 class="pkg-version" data-toc-text="development version" id="readmdtable-development-version">readMDTable (development version)<a class="anchor" aria-label="anchor" href="#readmdtable-development-version"></a></h2>
-<ul><li>BREAKING CHANGE: <code>extract_md_tables</code> now always returns a named list of tibbles (names <code>"table_1"</code>, <code>"table_2"</code>, …) regardless of how many tables are found. Previously a single tibble was returned when only one table was present.</li>
+<h2 class="pkg-version" data-toc-text="0.4.0" id="readmdtable-040">readMDTable 0.4.0<a class="anchor" aria-label="anchor" href="#readmdtable-040"></a></h2><p class="text-muted">CRAN release: 2026-06-24</p>
+<ul><li>BREAKING CHANGE: <code>read_md_table</code> now always returns a named list of tibbles (names <code>"table_1"</code>, <code>"table_2"</code>, …), or <code>NULL</code> if no tables are found. It reads all tables in the content, including mixed-markdown documents. <code>extract_md_tables</code> and <code>extract_md_table</code> are now deprecated.</li>
 </ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.3.3" id="readmdtable-033">readMDTable 0.3.3<a class="anchor" aria-label="anchor" href="#readmdtable-033"></a></h2><p class="text-muted">CRAN release: 2026-05-31</p>

@@ -31,14 +31,10 @@ pak::pkg_install("jrdnbradford/readMDTable")
 
 ## Usage
 
-If you have a string, file, or URL whose entire content is just a
-markdown *table*, you should use `read_md_table` which will return a
-tibble.
-
-If the string, file, or URL is a markdown *file* that has *other
-content* besides just a table or tables, such as headings, paragraphs,
-etc, you should use `extract_md_tables` which will parse the file and
-return a tibble or list of tibbles.
+`read_md_table` reads all markdown tables from a string, file, or URL
+and returns a named list of tibbles (`"table_1"`, `"table_2"`, …). It
+handles both pure-table content and mixed markdown documents containing
+headings, paragraphs, and multiple tables.
 
 ### From a File
 
@@ -57,6 +53,7 @@ read_md_table(mtcars_file)
 #> 
 #> ℹ Use `spec()` to retrieve the full column specification for this data.
 #> ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+#> $table_1
 #> # A tibble: 32 × 12
 #>    model         mpg   cyl  disp    hp  drat    wt  qsec    vs    am  gear  carb
 #>    <chr>       <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl>
@@ -80,8 +77,8 @@ headings and paragraphs:
 
 mtcars_file <- read_md_table_example("mtcars-split.md")
 
-extract_md_tables(mtcars_file, show_col_types = FALSE)
-#> [[1]]
+read_md_table(mtcars_file, show_col_types = FALSE)
+#> $table_1
 #> # A tibble: 4 × 12
 #>   model          mpg   cyl  disp    hp  drat    wt  qsec    vs    am  gear  carb
 #>   <chr>        <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl>
@@ -90,7 +87,7 @@ extract_md_tables(mtcars_file, show_col_types = FALSE)
 #> 3 Datsun 710    22.8     4   108    93  3.85  2.32  18.6     1     1     4     1
 #> 4 Hornet 4 Dr…  21.4     6   258   110  3.08  3.22  19.4     1     0     3     1
 #> 
-#> [[2]]
+#> $table_2
 #> # A tibble: 4 × 12
 #>   model          mpg   cyl  disp    hp  drat    wt  qsec    vs    am  gear  carb
 #>   <chr>        <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl>
@@ -99,7 +96,7 @@ extract_md_tables(mtcars_file, show_col_types = FALSE)
 #> 3 Duster 360    14.3     8  360    245  3.21  3.57  15.8     0     0     3     4
 #> 4 Merc 240D     24.4     4  147.    62  3.69  3.19  20       1     0     4     2
 #> 
-#> [[3]]
+#> $table_3
 #> # A tibble: 4 × 12
 #>   model          mpg   cyl  disp    hp  drat    wt  qsec    vs    am  gear  carb
 #>   <chr>        <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl>
@@ -108,7 +105,7 @@ extract_md_tables(mtcars_file, show_col_types = FALSE)
 #> 3 Chrysler Im…  14.7     8 440     230  3.23  5.34  17.4     0     0     3     4
 #> 4 Fiat 128      32.4     4  78.7    66  4.08  2.2   19.5     1     1     4     1
 #> 
-#> [[4]]
+#> $table_4
 #> # A tibble: 6 × 12
 #>   model          mpg   cyl  disp    hp  drat    wt  qsec    vs    am  gear  carb
 #>   <chr>        <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl>
@@ -133,6 +130,7 @@ read_md_table("| len | supp | dose |\n|---|---|---|\n| 4.2 | VC | 0.5 |\n")
 #> 
 #> ℹ Use `spec()` to retrieve the full column specification for this data.
 #> ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+#> $table_1
 #> # A tibble: 1 × 3
 #>     len supp   dose
 #>   <dbl> <chr> <dbl>
@@ -152,6 +150,7 @@ read_md_table("https://raw.githubusercontent.com/jrdnbradford/readMDTable/main/i
 #> 
 #> ℹ Use `spec()` to retrieve the full column specification for this data.
 #> ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+#> $table_1
 #> # A tibble: 150 × 5
 #>    sepal.length sepal.width petal.length petal.width variety
 #>           <dbl>       <dbl>        <dbl>       <dbl> <chr>  
@@ -170,7 +169,7 @@ read_md_table("https://raw.githubusercontent.com/jrdnbradford/readMDTable/main/i
 
 ``` r
 
-extract_md_tables("https://raw.githubusercontent.com/jrdnbradford/readMDTable/main/inst/extdata/ToothGrowth.md")
+read_md_table("https://raw.githubusercontent.com/jrdnbradford/readMDTable/main/inst/extdata/ToothGrowth.md")
 #> Rows: 60 Columns: 4
 #> ── Column specification ────────────────────────────────────────────────────────
 #> Delimiter: "|"
@@ -179,6 +178,7 @@ extract_md_tables("https://raw.githubusercontent.com/jrdnbradford/readMDTable/ma
 #> 
 #> ℹ Use `spec()` to retrieve the full column specification for this data.
 #> ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+#> $table_1
 #> # A tibble: 60 × 4
 #>    rownames   len supp   dose
 #>       <dbl> <dbl> <chr> <dbl>
@@ -225,6 +225,7 @@ read_md_table(
 #> 
 #> ℹ Use `spec()` to retrieve the full column specification for this data.
 #> ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+#> $table_1
 #> # A tibble: 3 × 4
 #>   Name    Age City        Date      
 #>   <chr> <dbl> <chr>       <date>    
@@ -233,18 +234,14 @@ read_md_table(
 #> 3 Carol    27 Chicago     NA
 ```
 
-`extract_md_tables` will fail to recognize markdown tables that do not
-fit the markdown table format.
-
 # Package index
 
 ## All functions
 
-- [`extract_md_tables()`](https://jrdnbradford.github.io/readMDTable/reference/extract_md_tables.md)
-  [`extract_md_table()`](https://jrdnbradford.github.io/readMDTable/reference/extract_md_tables.md)
-  : Extract Markdown Tables from Markdown Files
 - [`read_md_table()`](https://jrdnbradford.github.io/readMDTable/reference/read_md_table.md)
-  : Read a Markdown Table into a Tibble
+  [`extract_md_tables()`](https://jrdnbradford.github.io/readMDTable/reference/read_md_table.md)
+  [`extract_md_table()`](https://jrdnbradford.github.io/readMDTable/reference/read_md_table.md)
+  : Read Markdown Tables into Tibbles
 - [`read_md_table_example()`](https://jrdnbradford.github.io/readMDTable/reference/read_md_table_example.md)
   : Get Path to readMDTable Examples
 
