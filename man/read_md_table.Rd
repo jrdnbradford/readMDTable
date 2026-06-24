@@ -2,9 +2,15 @@
 % Please edit documentation in R/read_md_table.R
 \name{read_md_table}
 \alias{read_md_table}
-\title{Read a Markdown Table into a Tibble}
+\alias{extract_md_tables}
+\alias{extract_md_table}
+\title{Read Markdown Tables into Tibbles}
 \usage{
 read_md_table(file, warn = TRUE, force = FALSE, ...)
+
+extract_md_tables(file, warn = TRUE, force = FALSE, ...)
+
+extract_md_table(file, warn = TRUE, force = FALSE, ...)
 }
 \arguments{
 \item{file}{Either a path to a file, a connection, or literal data (either
@@ -12,9 +18,9 @@ a single string or a raw vector). Files starting with \verb{http://},
 \verb{https://}, \verb{ftp://}, or \verb{ftps://} will be automatically downloaded.}
 
 \item{warn}{Boolean. Should warnings be raised if \code{file} does not
-appear to be a markdown table? Defaults to \code{TRUE}.}
+appear to contain a markdown table? Defaults to \code{TRUE}.}
 
-\item{force}{Boolean. Should \code{read_md_table} attempt to read in a table
+\item{force}{Boolean. Should \code{read_md_table} attempt to read in content
 that does not fit the regex? This param should be used carefully as it
 may cause \code{read_md_table} to return unexpected data. Defaults to \code{FALSE}.}
 
@@ -150,28 +156,28 @@ Learn more in \code{\link[readr:should_read_lazy]{should_read_lazy()}} and in th
   }}
 }
 \value{
-A tibble created from the markdown table, or \code{NULL}.
+A named list of tibbles (names \code{"table_1"}, \code{"table_2"}, …), or
+\code{NULL} if no tables are found and \code{force} is \code{FALSE}.
 }
 \description{
-Read a Markdown Table into a Tibble
+Read Markdown Tables into Tibbles
 }
 \details{
-\code{read_md_table} reads a markdown table into a tibble from a string,
-file, or URL. It uses \code{\link[readr:read_delim]{readr::read_delim}} to efficiently read in data.
+\code{read_md_table} reads all markdown tables from a string, file, or
+URL and returns them as a named list of tibbles. It uses
+\code{\link[readr:read_delim]{readr::read_delim}} to efficiently read in data.
 
-\code{read_md_table} expects \code{file} to be a raw markdown table.  If \code{file} is a
-markdown file that contains more than just a table or tables, the table(s)
-should be read in with \code{\link{extract_md_tables}} instead.
-
-If \code{warn} is \code{TRUE}, \code{read_md_table} will warn if there are potential
-issues with the provided markdown table. Depending on the issue,
-\code{read_md_table} may still correctly read the table if \code{force} is
-\code{TRUE.} \code{\link[readr:read_delim]{readr::read_delim}} will provide its own warnings if
-there are potential issues.
+If \code{warn} is \code{TRUE}, \code{read_md_table} will warn if no markdown tables are
+detected in the content. When \code{force} is also \code{TRUE}, it will attempt to
+read the content as a table anyway. \code{\link[readr:read_delim]{readr::read_delim}} will provide its
+own warnings if there are potential issues with a table.
 }
 \examples{
-# Read from a file
+# Read a single table from a file
 read_md_table(read_md_table_example("mtcars.md"))
+
+# Read multiple tables from a file
+read_md_table(read_md_table_example("mtcars-split.md"), show_col_types = FALSE)
 
 # Read from a string
 read_md_table(

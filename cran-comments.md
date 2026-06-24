@@ -1,3 +1,3 @@
-## R CMD check results for 0.3.3
+## R CMD check results for 0.4.0
 
 0 errors ✔ | 0 warnings ✔ | 0 notes ✔

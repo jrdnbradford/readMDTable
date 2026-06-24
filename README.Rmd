@@ -44,9 +44,7 @@ pak::pkg_install("jrdnbradford/readMDTable")
 ```{r install, echo=FALSE, include=FALSE}
 library(readMDTable)
 ```
-If you have a string, file, or URL whose entire content is just a markdown *table*, you should use `read_md_table` which will return a tibble.
-
-If the string, file, or URL is a markdown *file* that has *other content* besides just a table or tables, such as headings, paragraphs, etc, you should use `extract_md_tables` which will parse the file and return a tibble or list of tibbles.
+`read_md_table` reads all markdown tables from a string, file, or URL and returns a named list of tibbles (`"table_1"`, `"table_2"`, …). It handles both pure-table content and mixed markdown documents containing headings, paragraphs, and multiple tables.
 
 ### From a File
 Read in an example markdown table from the package:
@@ -60,7 +58,7 @@ Read in an example markdown file that has multiple tables as well as headings an
 ```{r example-2}
 mtcars_file <- read_md_table_example("mtcars-split.md")
 
-extract_md_tables(mtcars_file, show_col_types = FALSE)
+read_md_table(mtcars_file, show_col_types = FALSE)
 ```
 
 ### From a String
@@ -73,7 +71,7 @@ read_md_table("| len | supp | dose |\n|---|---|---|\n| 4.2 | VC | 0.5 |\n")
 read_md_table("https://raw.githubusercontent.com/jrdnbradford/readMDTable/main/inst/extdata/iris.md")
 ```
 ```{r example-5}
-extract_md_tables("https://raw.githubusercontent.com/jrdnbradford/readMDTable/main/inst/extdata/ToothGrowth.md")
+read_md_table("https://raw.githubusercontent.com/jrdnbradford/readMDTable/main/inst/extdata/ToothGrowth.md")
 ```
 
 ### Warnings and Messy Data
@@ -88,5 +86,3 @@ read_md_table(
   force = TRUE
 )
 ```
-
-`extract_md_tables` will fail to recognize markdown tables that do not fit the markdown table format.

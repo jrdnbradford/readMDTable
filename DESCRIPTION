@@ -1,6 +1,6 @@
 Package: readMDTable
 Title: Read Markdown Tables into Tibbles
-Version: 0.3.3.9000
+Version: 0.4.0.9000
 Authors@R:
     person("Jordan", "Bradford", , "jrdnbradford@gmail.com", role = c("aut", "cre", "cph"),
     comment = c(ORCID = "0009-0000-8570-3474"))
@@ -12,6 +12,7 @@ Depends:
 Imports:
     cli,
     httr2,
+    lifecycle,
     readr (>= 2.2.0),
     purrr,
     stringr
@@ -24,6 +25,7 @@ Config/roxygen2/markdown: TRUE
 Suggests:
     covr,
     devtools,
+    dplyr,
     ggplot2,
     knitr,
     lubridate,
